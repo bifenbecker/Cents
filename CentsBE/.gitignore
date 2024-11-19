@@ -1,0 +1,21 @@
+node_modules
+/.history
+.env
+.env.staging
+.env.test
+.DS_STORE
+public/csv/uploads/*
+!public/csv/uploads/.gitkeep
+.history
+.vscode
+.env.staging
+*.log
+coverage
+/.nyc_output
+dump.rdb
+
+tokens.txt
+
+# intellij configs
+.idea/
+tmp

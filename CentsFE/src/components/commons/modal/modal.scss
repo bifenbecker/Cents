@@ -1,0 +1,27 @@
+.modal-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: $color-thirty-percent-black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .cents-modal {
+    overflow-y: auto;
+    max-width: 80%;
+    max-height: 60%;
+    background: white;
+    border-radius: 6px;
+    position: relative;
+  }
+  .confirmation-modal-body {
+    border-radius: 25px;
+  }
+}
+.dark-background {
+  background: $color-sixty-percent-black;
+}

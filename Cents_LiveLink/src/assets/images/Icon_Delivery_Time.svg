@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Icon_Delivery Time</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ORDER-FORM" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="DRIVER_Drop-Off-&amp;-Pick-Up-Locations-Copy-9" transform="translate(-18.000000, -593.000000)" stroke="#000000">
+            <g id="Delivery" transform="translate(17.769879, 567.000000)">
+                <g id="Icon_Date-and-Time" transform="translate(13.230121, 39.000000) rotate(-180.000000) translate(-13.230121, -39.000000) translate(0.230121, 26.000000)">
+                    <g transform="translate(0.625926, 0.625926)" id="Icon_Clock_Side-Panel">
+                        <path d="M12.3600563,24.7365926 C5.53378568,24.7365926 0,19.1991177 0,12.3682963 C0,5.53747487 5.53378568,5.32907052e-15 12.3600563,5.32907052e-15 C19.1863268,5.32907052e-15 24.7201125,5.53747487 24.7201125,12.3682963 C24.7201125,19.1991177 19.1863268,24.7365926 12.3600563,24.7365926 Z M12.3600563,22.5919644 C18.0025815,22.5919644 22.576752,18.0146723 22.576752,12.3682963 C22.576752,6.72192033 18.0025815,2.14462822 12.3600563,2.14462822 C6.71753101,2.14462822 2.14336053,6.72192033 2.14336053,12.3682963 C2.14336053,18.0146723 6.71753101,22.5919644 12.3600563,22.5919644 Z M12.3828748,5.55124988 L12.3828748,12.3514993 L18.9809264,12.3514993"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>9DCE477B-AFD6-4477-83AE-4E521F2AAA60</title>
+    <g id="Cents-Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MACHINES-(STATE-1:-Live-&amp;-Connected)-Copy-20" transform="translate(-573.000000, -283.000000)" stroke="#BBBBBB">
+            <g id="SIDE-PANEL" transform="translate(546.500000, 200.000000)">
+                <g id="Insight" transform="translate(27.500000, 82.000000)">
+                    <g id="Icon_No-Device-Paired" transform="translate(0.000000, 2.000000)">
+                        <line x1="10.5" y1="2.5" x2="3.5" y2="13" id="Line" stroke-width="1.65" stroke-linecap="round" transform="translate(7.000000, 7.500000) scale(-1, 1) rotate(-78.690068) translate(-7.000000, -7.500000) "></line>
+                        <circle id="Oval" stroke-width="1.5" cx="7" cy="7" r="7"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

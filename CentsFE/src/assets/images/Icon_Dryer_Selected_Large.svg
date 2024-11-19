@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="55px" viewBox="0 0 42 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon__Dryer Selected_Large</title>
+    <g id="Cents-Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="MACHINES-(Set-Up-Machine)" transform="translate(-825.000000, -544.000000)">
+            <g id="SIDE-PANEL" transform="translate(545.000000, 200.000000)">
+                <g id="Group" transform="translate(281.496000, 345.038645)">
+                    <path d="M-3.55271368e-14,-5.61328761e-13 L39.0846667,-5.61328761e-13 L39.0846667,52.9776197 L-3.55271368e-14,52.9776197 L-3.55271368e-14,-5.61328761e-13 Z M0.292,6.44075949 L38.792,6.44075949 M0.292,46.839237 L38.792,46.839237 M31.9953333,3.27732962 L34.5686667,3.27732962 M25.776,3.27732962 L28.35,3.27732962 M26.542,24.6769225 L26.542,28.6037519" id="Icon__Dryer-Unselected_Side-Panel" stroke="#000000" stroke-width="1.5"></path>
+                    <ellipse id="Oval" stroke="#3790F4" stroke-width="4.5" cx="19.4543333" cy="26.5851076" rx="13.875" ry="14.1103481"></ellipse>
+                    <ellipse id="Oval" stroke="#000000" stroke-width="1.5" cx="19.542" cy="26.6403372" rx="11.9626667" ry="12.1655777"></ellipse>
+                    <ellipse id="Oval" stroke="#000000" stroke-width="1.5" cx="19.542" cy="26.6403372" rx="15.6293333" ry="15.8944385"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,583 @@
+@import "./machine-stats/machine-stats.scss";
+@import "./devices-list/devices-list.scss";
+@import "./machines-list/machines-list.scss";
+@import "./machine-details/machine-details";
+@import "./device-details/device-details.scss";
+@import "./unpair-confirmation-popup/unpair-confirmation-popup.scss";
+
+.machines-container {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  grid-template-rows: 15% 81%;
+  row-gap: 25px;
+  column-gap: 15px;
+  height: 100%;
+  width: 100%;
+  padding: 25px 15px;
+  min-height: 560px;
+  min-width: 850px;
+
+  .store-info-card {
+    grid-column: 1 / span 2;
+  }
+
+  .machine-list-card {
+    .common-list-item {
+      margin: 0px 25px;
+      position: relative;
+
+      &.active {
+        padding-left: 29px;
+        padding-right: 29px;
+        margin: 0px;
+      }
+
+      &.no-border {
+        border-bottom: 0px;
+      }
+
+      * {
+        margin: 0 13px 0 0;
+      }
+
+      .circle-icon {
+        margin-left: 0;
+      }
+
+      p {
+        margin-bottom: 0px;
+        font-size: 14px;
+        font-weight: 500;
+
+        &.rounded-border {
+          font-size: 12px;
+          max-width: 130px;
+          font-weight: 400;
+          margin-left: 61px;
+
+          &.machine-location {
+            margin-left: 23px;
+          }
+        }
+
+        &.device-display-name {
+          width: 55px;
+        }
+
+        &.machine-display-name {
+          width: 50px;
+        }
+
+        &.machine-capacity {
+          font-weight: 400;
+          width: 30px;
+        }
+      }
+
+      .status-indicator {
+        margin-left: auto;
+        margin-right: 0;
+      }
+    }
+  }
+
+  .machine-info-card {
+    position: relative;
+    overflow: hidden;
+    .device-info-header {
+      padding: 8.5px 25px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid $fifty-percent-grey;
+      position: relative;
+
+      p {
+        margin: 0px;
+        align-self: baseline;
+        font-size: 24px;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        position: relative;
+        top: 2px;
+        max-width: 80%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    .centered-right-card-text {
+      text-align: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .machines-wizard-step-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      .flex-centered {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .machine-wizard-header {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .back-button-container {
+          position: absolute;
+          left: 20px;
+          margin-top: 1px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          button {
+            padding: 0;
+            margin-left: 12px;
+            font-size: 16px;
+            text-decoration: none;
+
+          }
+
+          .back-chevron-icon {
+            pointer-events: none;
+            path {
+              color: $color-theme !important;
+            }
+          }
+
+          .cancel-button {
+            text-decoration: none
+          }
+        }
+        p {
+          font-size: 18px;
+          font-weight: 500;
+          margin: 0;
+        }
+        .close-icon {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            height: 18px;
+        }
+      }
+      .create-customer-header {
+        height: 75px;
+    }
+
+    .create-customer-wizard{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-right: 22px;
+
+        .header{
+            margin: 0px;
+        }
+    }
+      .machine-wizard-content {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .header{
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .description-with-input {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          p {
+            font-size: 16px;
+            font-weight: 500;
+            text-align: center;
+          }
+          .input-container {
+            display: flex;
+            align-items: center;
+            img {
+              height: 24px;
+              margin-right: 4px;
+            }
+          }
+          .machine-number{
+            padding-right: 24px;
+          }
+          .pricing{
+            padding-right: 18px;
+          }
+          .material-like-text-field {
+            &.pricing-input {
+              width: 180px;
+            }
+            &.time-selection {
+              width: 220px;
+            }
+          }
+        }
+
+        .model-type-select,
+        .location-selection {
+          width: 220px;
+          border: 1px solid black;
+          left: 0;
+
+          img.icon {
+            height: 28px;
+          }
+          .custom-indicator {
+            opacity: 1;
+          }
+        }
+
+        .location-selection {
+          width: 275px;
+        }
+
+        .type-selectors-container {
+          display: flex;
+          .type-selector {
+            display: flex;
+            flex-direction: column;
+            width: 120px;
+            height: 160px;
+            border: 0.65px solid black;
+            border-radius: 24px;
+            font-size: 14px;
+            align-items: center;
+            justify-content: center;
+            margin: auto 15px;
+
+            &.wash-type-selector {
+              width: 140px;
+            }
+
+            &.active {
+              border-width: 2px;
+            }
+
+            img:first-child {
+              // margin-top: 30px;
+              margin-bottom: 12px;
+              // width: 40px;
+            }
+
+            .checkbox-icon {
+              margin-top: 7px;
+            }
+          }
+        }
+      }
+      .machine-wizard-footer {
+        display: flex;
+        padding: 0 30px;
+        height: 110px;
+        border-top: 1px solid #bbbbbb;
+        margin-top: auto;
+        align-items: center;
+        .error-message {
+          margin-right: auto;
+          color: #b00020;
+          font-size: 14px;
+        }
+
+        .btn-container {
+          display: flex;
+          align-items: center;
+          .cancel-button {
+            text-decoration: underline;
+            font-size: 12px;
+          }
+        }
+      }
+      .buttons-position{
+        justify-content: flex-end;
+    }
+    }
+
+        .wizard-text-fields-container{
+            margin-top: 20px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            .icon-text-container{
+                display: flex;
+                align-items: flex-start;
+                padding: 5px 12px;
+                margin: 6px 0;
+                width: 240px;
+                img{
+                    margin-right: 10px;
+                    margin-top: 10px;
+                    width: 22px;
+                }
+
+                .fields-column-group{
+                    width: calc( 100% - 32px );
+                    .material-like-text-field{
+                        width: 100%;
+                    }
+                    .margin-bottom{
+                        margin-bottom: 15px;
+                    }
+                }
+
+                .material-like-text-field{
+
+                    .add-customer-dropdown-option{
+                        width: 100%;
+                        border: 0px solid transparent;
+                        background: transparent;
+                        text-align: left;
+                        max-width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        color: $color-theme;
+                        padding: 8px 14px;
+                        font-weight: 300;
+                        cursor: pointer;
+
+                        .customer-name{
+                            font-weight: 400;
+                            color: $color-theme;
+                        }
+
+                        // &:hover{
+                        //     background: $dropdown-item-hover;
+                        // }
+                    }
+
+                    .grey-text {
+                      text-align: center;
+                      color: $color-dark-grey;
+                    }
+
+                    &>input{
+                        height: 32px;
+                    }
+                    textarea{
+                        border: 0px;
+                    }
+                    width: calc( 100% - 32px );
+                    .label, .material-react-select__input, input, textarea{
+                        font-weight: 300;
+                        font-size: 14px;
+
+                        &.move-top{
+                            font-size: 11px;
+                        }
+                    }
+
+                    &.active{
+                        .label{
+                            font-size: 11px;
+                        }
+                    }
+
+                    &.text-area{
+                        &.active{
+                            .label{
+                                top: -9px;
+                            }
+                        }
+
+                        .label{
+                            top: 8px;
+                            &.move-top{
+                                top: -9px;
+                            }
+                        }
+                    }
+                }
+
+                textarea{
+                    height: 80px;
+                    min-height: 60px;
+                    max-height: 100px;
+                }
+            }
+
+            .cust-search-select{
+                .material-react-select__menu{
+                    width: 160%;
+                    left: -9px;
+                    .material-react-select__option{
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                }
+            }
+            .dryer-time-container{
+                margin-top: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding-right: 22px;
+                p{
+                    margin-bottom: 5px;
+                }
+            }
+        }
+
+    .machine-info-container {
+      .machine-info-right-menu {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+
+        .machine-menu-icon-container {
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          user-select: none;
+
+          .machine-menu-icon {
+            max-width: 100%;
+          }
+        }
+
+        .machine-context-menu-background-click-area {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+        }
+
+        .machine-context-menu {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          width: 220px;
+          background: white;
+          padding: 5px 0;
+          top: 50px;
+          right: 30px;
+          box-shadow: 0px 0px 5px 0px $fifty-percent-grey;
+          border-radius: 2px;
+
+          &:active,
+          &:focus {
+            box-shadow: 0px 0px 5px 0px $fifty-percent-grey !important;
+          }
+
+          .machine-context-menu-item {
+            padding: 5px 10px;
+            width: 100%;
+            font-size: 14px;
+            user-select: none;
+
+            &.disabled {
+              pointer-events: none;
+              cursor: pointer;
+              background: $fifty-percent-grey;
+            }
+
+            &:hover {
+              cursor: pointer;
+              background: $color-locations-item-selected-background;
+            }
+          }
+        }
+      }
+
+      .machine-general-info {
+        padding: 28px;
+        display: grid;
+        grid-template-columns: 45% 45%;
+        row-gap: 25px;
+        column-gap: 15px;
+        align-items: flex-start;
+
+        &:after {
+          content: "";
+          display: block;
+          position: relative;
+          grid-column: 1 / span 2;
+          width: calc(100%);
+          height: 2px;
+          background: $fifty-percent-grey;
+          margin: 10px auto;
+        }
+
+        .machine-single-info-container {
+          display: flex;
+          align-items: center;
+
+          &.col-span-2 {
+            grid-column: 1 / span 2;
+          }
+
+          &.prices-info-container {
+            align-items: flex-start;
+
+            .price-container {
+              margin-bottom: 8px;
+              p {
+                margin: 0px;
+              }
+
+              .price-value {
+                font-size: 14px;
+
+                span {
+                  font-size: 12px;
+                }
+              }
+              .price-load-type-label {
+                font-size: 11px;
+              }
+            }
+          }
+
+          & > * {
+            margin: 0px;
+          }
+          p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 14px;
+            span {
+              font-size: 12px;
+              font-style: italic;
+              font-weight: 300;
+            }
+          }
+
+          img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+          }
+
+          .running-state {
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+}

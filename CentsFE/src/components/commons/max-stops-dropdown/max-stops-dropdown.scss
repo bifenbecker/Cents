@@ -1,0 +1,55 @@
+.max-stops-with-input-dropdown-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  .max-stops-input-dropdown {
+    &.small {
+      width: 110px;
+      height: 35px;
+      .dropdown-menu {
+        .dropdown-menu-container {
+          max-height: 140px;
+          .dropdown-item.active {
+            background-color: $color-theme;
+          }
+          .dropdown-item,
+          .dropdown-header {
+            padding: 2px 16px;
+            span {
+              font-size: 80%;
+            }
+          }
+        }
+      }
+    }
+    // Need to add styles for normal size inputs and items
+    .max-stops-toggle-container {
+      .max-stops-input {
+        width: auto;
+        .suffix {
+          display: flex;
+          align-items: center;
+        }
+        &.disabled {
+          opacity: 1;
+          input {
+            cursor: not-allowed;
+          }
+        }
+      }
+      .max-stops-down-arrow {
+         cursor: pointer;
+      }
+    }
+    .dropdown-menu {
+      .dropdown-menu-container {
+        position: relative;
+        max-height: 200px;
+        overflow: auto;
+      }
+    }
+  }
+  .error-message.small {
+    font-size: 70%;
+  }
+}

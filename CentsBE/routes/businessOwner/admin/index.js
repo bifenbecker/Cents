@@ -1,0 +1,32 @@
+const router = require('express').Router();
+const globalSettings = require('./globalSettings');
+const location = require('./location');
+const team = require('./teamMembers');
+const batch = require('./batch');
+const services = require('./services');
+const taskRoutes = require('./tasks');
+const products = require('./products');
+const filestack = require('./fileStack');
+const promotions = require('./promotions');
+const taxes = require('./taxes');
+const modifiers = require('./modifiers');
+const tiers = require('./tiers');
+const preferences = require('./preferences');
+const preferencesFix = require('./preferences-fix');
+
+router.use('/settings', globalSettings);
+router.use('/locations', location);
+router.use('/team', team);
+router.use('/batches', batch);
+router.use('/services', services);
+router.use('/tasks', taskRoutes);
+router.use('/products', products);
+router.get('/filestack', filestack);
+router.use('/promotions', promotions);
+router.use('/taxes', taxes);
+router.use('/modifiers', modifiers);
+router.use('/tiers', tiers);
+router.use('/preferences', preferences);
+router.use('/advanced-customer-preferences', preferencesFix);
+
+module.exports = router;

@@ -1,0 +1,242 @@
+version: '3'
+
+services:
+    main-app:
+        container_name: main-app
+        depends_on:
+            - db-postgres
+            - elasticsearch
+            - redis
+            - mongodb
+        restart: always
+        env_file:
+            - .env
+        ports:
+            - ${PORT}:${PORT}
+        networks:
+            net_backend:
+            net_frontend:
+    db-postgres:
+        image: postgres:${POSTGRES_IMAGE_TAG}
+        container_name: postgres
+        restart: always
+        ports:
+            - '5432:5432'
+        volumes:
+            - ${DATA_PATH}/postgres:/var/lib/postgresql/data
+        environment:
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME}"]
+            interval: 10s
+            timeout: 5s
+            retries: 10
+        networks:
+            net_backend:
+                aliases:
+                - postgres
+            net_frontend:
+    db-admin:
+        image: dpage/pgadmin4
+        container_name: pgadmin
+        restart: always
+        environment:
+            PGADMIN_LISTEN_PORT: 5678
+            PGADMIN_DEFAULT_EMAIL: ${DB_USERNAME}@host.local
+            PGADMIN_DEFAULT_PASSWORD: ${DB_PASSWORD}
+        ports:
+            - '5678:5678'
+        volumes:
+            - pgadmin-volume:/var/lib/pgadmin
+        networks:
+            net_backend:
+                aliases:
+                - pgadmin
+            net_frontend:
+    ## Opensearch for the future replacement of the elasticsearch
+    # elasticsearch:
+    #     image: opensearchproject/opensearch:${OPENSEARCH_IMAGE_TAG}
+    #     container_name: opensearch
+    #     restart: always
+    #     environment:
+    #         - cluster.name=opensearch-cluster
+    #         - node.name=opensearch-node1
+    #         - bootstrap.memory_lock=true
+    #         - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+    #         - "DISABLE_INSTALL_DEMO_CONFIG=true"
+    #         - "DISABLE_SECURITY_PLUGIN=true"
+    #         - "discovery.type=single-node"
+    #     ulimits:
+    #         memlock:
+    #             soft: -1
+    #             hard: -1
+    #         nofile:
+    #             soft: 65536
+    #             hard: 65536
+    #     volumes:
+    #         - ${DATA_PATH}/elasticsearch:/usr/share/elasticsearch/data
+    #     ports:
+    #         - 9200:9200
+    #         - 9600:9600
+    #     networks:
+    #         net_backend:
+    #             aliases:
+    #             - elasticsearch
+    #         net_frontend:
+    # opensearch-dashboards:
+    #     image: opensearchproject/opensearch-dashboards:1.3.0
+    #     container_name: opensearch-dashboards
+    #     restart: always
+    #     environment:
+    #         OPENSEARCH_HOSTS: http://elasticsearch:9200
+    #         DISABLE_SECURITY_DASHBOARDS_PLUGIN: 'true'
+    #     ports:
+    #         - '5601:5601'
+    #     networks:
+    #         net_backend:
+    #             aliases:
+    #             - opensearch-dashboards
+    #         net_frontend:
+    db-elasticsearch-fix:
+        image: busybox
+        # temporary container that only executes fix for the file system permissions
+        container_name: db-elasticsearch-fix
+        command: sh -c "chown 1000:1000 /usr/share/elasticsearch/data"
+        volumes:
+            - ${DATA_PATH}/elasticsearch:/usr/share/elasticsearch/data
+        networks:
+            net_backend:
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch-oss:${ELASTICSEARCH_IMAGE_TAG}
+        container_name: elasticsearch
+        restart: always
+        ports:
+            - '9200:9200'
+        environment:
+        - cluster.name=docker-cluster
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+        - discovery.type=single-node
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+        healthcheck:
+            test:
+                [
+                "CMD-SHELL",
+                "curl -s http://localhost:9200 | grep -q 'You Know, for Search'",
+                ]
+            interval: 10s
+            timeout: 10s
+            retries: 120
+        volumes:
+            - ${DATA_PATH}/elasticsearch:/usr/share/elasticsearch/data
+        networks:
+            net_backend:
+                aliases:
+                - elasticsearch
+            net_frontend:
+    kibana:
+        image: docker.elastic.co/kibana/kibana-oss:${ELASTICSEARCH_IMAGE_TAG}
+        container_name: kibana
+        restart: always
+        depends_on:
+            - elasticsearch
+        environment:
+            SERVER_NAME: kibana.local
+            ELASTICSEARCH_URL: http://elasticsearch:9200
+        ports:
+            - '5601:5601'
+        networks:
+            net_backend:
+                aliases:
+                - kibana
+            net_frontend:
+    cerebro:
+        image: lmenezes/cerebro:0.9.4
+        container_name: cerebro
+        restart: always
+        ports:
+            - '9000:9000'
+        networks:
+            net_backend:
+                aliases:
+                - cerebro
+            net_frontend:
+    redis:
+        image: redis:${REDIS_IMAGE_TAG}
+        container_name: redis
+        restart: always
+        ports:
+            - '6379:6379'
+        command: redis-server --save 20 1 --loglevel warning
+        healthcheck:
+            test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+            interval: 1s
+            timeout: 3s
+            retries: 10
+        volumes:
+            - ${DATA_PATH}/redis:/data
+        networks:
+            net_backend:
+                aliases:
+                - redis
+            net_frontend:
+    mongodb:
+        image: mongo:${MONGO_IMAGE_TAG}
+        container_name: mongodb
+        ports:
+        - 27017:27017
+        healthcheck:
+            test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+            interval: 10s
+            timeout: 10s
+            retries: 10
+        volumes:
+        - ${DATA_PATH}/mongo:/data/db
+        - mongo-configdb-volume:/data/configdb
+        networks:
+            net_backend:
+                aliases:
+                - mongodb
+            net_frontend:
+    mongo-express:
+        image: mongo-express:0.54.0
+        container_name: mongo-express
+        restart: always
+        environment:
+            ME_CONFIG_MONGODB_SERVER: mongodb
+        ports:
+            - '8081:8081'
+        networks:
+            net_backend:
+                aliases:
+                - mongo-express
+            net_frontend:
+
+networks:
+  net_frontend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.238.0/24
+  net_backend:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    internal: true
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.239.0/24
+
+volumes:
+  pgadmin-volume:
+    driver: local
+  mongo-configdb-volume:
+    driver: local

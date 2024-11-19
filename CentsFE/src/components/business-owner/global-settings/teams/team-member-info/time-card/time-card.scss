@@ -1,0 +1,123 @@
+.timecard-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-y: auto;
+  flex: 1;
+
+  .timecard-content {
+    padding: 25px;
+    padding-bottom: 0;
+    .insights-container {
+      height: 25px;
+      display: flex;
+      padding-left: 15px;
+
+      .insights-content {
+        display: flex;
+        flex: 1;
+
+        p {
+          font-size: 14px;
+          font-weight: 500;
+        }
+        .insights-value {
+          color: $color-status-blue;
+          margin-left: 4px;
+        }
+      }
+    }
+
+    .logs-header-container {
+      display: flex;
+      margin: 25px 5px 5px 15px;
+
+      .header-title {
+        p {
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+      }
+    }
+    .time-logs-list-content {
+      height: 360px;
+      overflow-y: auto;
+
+      .no-time-logs-text {
+        font-size: 14px;
+        font-weight: 400;
+        text-align: center;
+        margin-top: 25px;
+      }
+
+      .time-logs-list {
+        padding: 0;
+        & > div {
+          position: relative;
+        }
+      }
+
+      .time-log-short-row-item {
+        width: 100%;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        margin: 10px 0px;
+        padding-left: 15px;
+
+        &.active {
+          background: $color-locations-item-selected-background;
+          .text-container.spacer {
+            display: block;
+          }
+        }
+
+        .text-container {
+          display: flex;
+          flex-direction: column;
+          overflow: hidden;
+          &.spacer {
+            display: none;
+          }
+          p {
+            margin: 0;
+            width: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+            &.main-text {
+              font-size: 14px;
+              font-weight: 400;
+            }
+            &.edit-text {
+              cursor: pointer;
+              text-decoration: underline;
+              color: $color-status-blue;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+    .date {
+      width: 20%;
+    }
+    .checkIn-Checkout {
+      width: 25%;
+    }
+    .hours {
+      width: 15%;
+    }
+    .spacer {
+      width: 15%;
+    }
+  }
+  .error-message {
+    font-size: 12px;
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 0px;
+  }
+}

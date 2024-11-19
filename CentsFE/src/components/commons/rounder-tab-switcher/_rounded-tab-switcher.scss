@@ -1,0 +1,54 @@
+.rounded-tab-switcher-container {
+    display: flex;
+    margin: 24px;
+
+   &.service-categories {
+      width: 135px;
+    }
+
+    &.locations {
+      width: 90%;
+    }
+
+    .rounded-tab {
+        cursor: pointer;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 500;
+        box-shadow: 0 0 4px 0 rgba(0,0,0,0.2);
+        border: 0.25px solid lightgray;
+
+
+        &.service-categories {
+          width: 62.5px;
+        }
+
+        &.locations {
+          width: 33.33%;
+        }
+
+        &.tiers-categories {
+          width: 90px;
+        }
+
+        &.first-tab {
+          border-top-left-radius: 25px;
+          border-bottom-left-radius: 25px;
+          border-right: 0;
+        }
+        
+        &.last-tab {
+          border-top-right-radius: 25px;
+          border-bottom-right-radius: 25px;
+          border-left: 0;
+        }
+
+        &.active {
+          background-color: $color-theme;
+          color: white;
+          border: 0;
+        }
+      }
+  }

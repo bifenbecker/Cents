@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55 (78076) - https://sketchapp.com -->
+    <title>314E59B5-A02F-47FC-9E7A-9DEADEC69AF8</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="Asset-Artboard-Page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon_Scale_Weigh" stroke="#000000" stroke-width="0.65">
+            <g transform="translate(-0.000000, 0.000000)">
+                <path d="M0.330587605,0.325 C0.501806053,5.29693702 4.58633983,9.275 9.6,9.275 L36.4800018,9.275 C41.493662,9.275 45.5781958,5.29693702 45.7494142,0.325 L0.330587605,0.325 Z" id="Rectangle"></path>
+                <path d="M4.16500006,47.675 L41.9150001,47.675 L41.9150001,30.7200005 C41.9150001,20.2956258 33.4643747,11.8450005 23.0400001,11.8450005 C12.6156254,11.8450005 4.16500006,20.2956258 4.16500006,30.7200005 L4.16500006,47.675 Z" id="Rectangle"></path>
+                <circle id="Oval" cx="23.0400009" cy="30.7200005" r="11.5200005"></circle>
+                <circle id="Oval-Copy" cx="23.0400005" cy="30.72" r="1.92000003"></circle>
+                <path d="M24.9599991,32.6400009 L27.8399991,35.520001" id="Line" stroke-linecap="round"></path>
+                <path d="M23.0400005,12.4800003 L23.0400005,8.86456468" id="Line-3" stroke-linecap="square"></path>
+            </g>
+        </g>
+    </g>
+</svg>

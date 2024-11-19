@@ -1,0 +1,60 @@
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  
+  .timeline-item {
+    display: flex;
+    flex-direction: row;
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 15px;
+      flex-grow: 0;
+      flex-shrink: 0;
+
+      .point {
+        width: 14px;
+        height: 14px;
+        margin: 0px 3px;
+        background: $color-theme;
+        border-radius: 50%;
+        flex-shrink: 0;
+        flex-grow: 0;
+      }
+
+      .tick-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .line {
+        width: 2px;
+        background: $color-theme;
+        flex-grow: 1;
+      }
+    }
+
+    .timeline-content {
+      padding-bottom: 20px;
+      position: relative;
+      top: -5px;
+
+      p {
+        font-size: 14px;
+
+        &.head {
+          font-weight: 500;
+        }
+        &.data {
+          font-weight: 400;
+          color: $header-button-inactive-text;
+          line-height: 18px;
+        }
+      }
+    }
+
+  }
+}

@@ -1,0 +1,51 @@
+.bo-sidebar-container{
+    width:61px;
+    height: calc( 100vh - 70px );
+    background-color: #3790F4;
+    display: flex;
+    flex-direction: column;
+    z-index: 0;
+    top: 70px;
+    position: fixed;
+
+    a{
+        &:hover{
+            text-decoration: none;
+        }
+        .sidebar-tab-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px 0;
+            margin: 10px auto;
+            user-select: none;
+        
+            p{
+                font-size:8.5px;
+                color: $light-color-theme-foreground;
+                margin-top: 4px;
+                margin-bottom: 0;
+            }
+    
+            .icon{
+                color: $white;
+                path{
+                    // To handle svg icons from font awesome
+                    color: white;
+                }
+            }
+    
+            &.active{
+                p{
+                    color: $white;
+                }
+            }
+        }
+    }
+
+
+    .bottom-bubbles{
+        margin-top: auto;
+        margin-bottom: 21px;
+    }
+}

@@ -1,0 +1,32 @@
+.dropdown-tab-select{
+  .material-react-select__menu {
+    width: 108%;
+    margin-left: -4%;
+    &:last-child() {
+      padding-bottom: 8px;
+    }
+  }
+  .dropdown-tab-container{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    &__tab {
+      padding: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+      background-color: #ffffff;
+      z-index: 1!important;
+      &.active{
+        background: #3d98ff;
+        color: white;
+        &:first-child() {
+          border-top-left-radius: 5px;
+        }
+        &:last-child() {
+          border-top-right-radius: 5px;
+        }
+      }
+    }
+  }
+}

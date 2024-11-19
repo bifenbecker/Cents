@@ -1,0 +1,203 @@
+.delivery-settings-container {
+  & > div {
+    flex-direction: column;
+    & > * {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.zones-and-zip-codes-container {
+  display: inline-block;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+
+.delivery-settings-container .offer-your-customers-content {
+  width: 90%;
+  color: #000000;
+  font-family: $roboto;
+  font-size: 14px;
+  letter-spacing: 0;
+  margin-left: 5%;
+  text-align: justify;
+  text-justify: inter-word;
+  p {
+    font-size: 14px;
+  }
+  b {
+    font-size: 14px;
+  }
+  .bold-content {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+}
+
+.delivery-settings-container .offer-toggle-container {
+  display: flex;
+  font-size: 14px;
+  flex-direction: row;
+  font-family: $roboto;
+  align-items: center;
+
+  & > img {
+    margin-right: 14px;
+  }
+
+  .spacer {
+    width: 23px;
+    margin-right: 14px;
+  }
+  .double-spacer {
+    width: 39px;
+  }
+  .offer-toggle {
+    margin-left: 14px;
+  }
+
+  .offer-toggled-disabled-message {
+    font-size: 10px;
+    margin: 0 0 0 7px;
+    color: $header-button-inactive-text;
+    font-style: italic;
+
+    &.black {
+      color: $black;
+    }
+  }
+  .warning-container {
+    width: 90%;
+  }
+  p {
+    font-size: 14px;
+    color: $color-error;
+  }
+
+  span {
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+.account-settings-nav {
+  font-weight: 500;
+  color: $color-error;
+
+  &:hover {
+    color: $color-error;
+    text-decoration: none;
+  }
+}
+.delivery-heading-container {
+  margin-left: 10%;
+  width: 80%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.delivery-settings-container .delivery-offers-container, .online-order-fee-summary {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  flex-direction: row;
+  overflow: hidden;
+  margin-left: 10%;
+  margin-top: 10px;
+
+  &.description-container {
+    margin-left: 13%;
+    span {
+      font-size: 12px;
+      text-transform: none;
+      line-height: 14px;
+    }
+  }
+  & > div {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  img {
+    margin-right: 14px;
+  }
+  div {
+    overflow: hidden;
+  }
+  p {
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #000000;
+    font-family: $roboto;
+    font-size: 14px;
+    letter-spacing: 0;
+    // line-height: 14px;
+  }
+  span {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .no-data-text {
+    color: #7b7b7b !important;
+  }
+  .data-header {
+    font-weight: bold;
+  }
+  .data-message {
+    max-width: 500px;
+  }
+  .text-warning-mark-container {
+    display: flex;
+    align-items: center;
+    .warning-mark {
+      height: 10px !important ;
+      width: 10px !important ;
+      background-color: #b00020 !important ;
+      border-radius: 10px;
+      margin-left: 10px;
+    }
+  }
+  .link-text {
+    color: #3d98ff !important ;
+    font-size: 14px;
+    text-decoration: underline;
+  }
+}
+
+.online-order-fee-summary {
+  margin-left: 5%;
+  margin-top: 0;
+
+  span {
+    text-transform: initial !important;
+  }
+}
+
+.delivery-settings-container .delivery-offers-warning-container {
+  background-color: #f3dad9cc;
+  width: 90%;
+  color: #b00020 !important;
+  font-family: $roboto;
+  font-size: 12px !important;
+  margin-left: 5%;
+  padding: 10px 16px;
+  margin-bottom: 24px !important;
+  border-radius: 10px;
+  span {
+    font-weight: 700;
+    color: #b00020 !important;
+  }
+  p {
+    margin-bottom: 0px !important;
+    color: #b00020 !important;
+  }
+}

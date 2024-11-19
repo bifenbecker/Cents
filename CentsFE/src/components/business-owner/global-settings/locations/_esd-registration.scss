@@ -1,0 +1,126 @@
+.registration-container {
+  padding: 15% 8%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.registration-header {
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5%;
+}
+
+.registration-form-container {
+  align-items: flex-start;
+  justify-content: center;
+
+  p {
+    font-size: 14px;
+  }
+}
+
+.address-subtitle {
+  font-size: 10px;
+}
+
+.cash-card-payment-label {
+  font-weight: 600;
+}
+
+.center-alignment {
+  text-align: center;
+}
+
+.cash-card-toggle-container {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5%;
+  width: 100%;
+
+  span {
+    font-size: 14px;
+    width: 80%;
+  }
+}
+
+.hyperlink {
+  font-size: 14px;
+  color: #3790F4;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.exit-icon-container {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  cursor: pointer;
+}
+
+.registration-form {
+  padding: 5% 0%;
+
+  .cash-card-options {
+    
+    input {
+      display: inline-block;
+    }
+  
+    p {
+      display: inline-block;
+      padding-left: 2%;
+    }
+  }
+}
+
+.device-serial-number-input {
+  width: 60%;
+  margin-bottom: 2%;
+}
+
+.esd-location-id-input {
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.esd-registration-footer {
+  height: 83px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 30px;
+  border-top: 1px solid $color-locations-item-divider;
+
+  .go-to-button, .cancel-button{
+      font-size: 12px;
+      text-decoration: underline;
+      flex-shrink: 0;
+  }
+
+  .go-to-button {
+      font-weight: 500 !important;
+      padding: 0;
+  }
+  
+  .cancel-button {
+      font-weight: normal !important;
+      color: $black !important;
+  }
+}
+
+.esd-registration-error-message {
+  margin-left: auto;
+  color: $color-error;
+  font-size: 12px;
+  margin-bottom: 0;
+}

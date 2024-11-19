@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon_Delivery</title>
+    <g id="Cents-Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="ORDERS_Hub_Full-Panel" transform="translate(-30.000000, -1297.000000)" stroke="#000000" stroke-width="0.65">
+            <g id="SIDE-PANEL-Copy" transform="translate(-1.000000, 0.000000)">
+                <g id="PROCESSING" transform="translate(31.000000, 1297.000000)">
+                    <g id="Icon_Delivery" transform="translate(1.254545, 1.254545)">
+                        <path d="M1.48087457,18.4220023 L6.97623777e-13,18.4220023 L6.97623777e-13,-1.29189588e-13 L15.5867434,-1.29189588e-13 L15.5867434,4.62932106 L16.6583199,4.62932106 C19.347756,4.62932106 21.5279171,6.81666283 21.5279171,9.51521289 L21.5279171,18.4220023 L19.8965247,18.4220023" id="Path"></path>
+                        <line x1="14.1122209" y1="18.4220023" x2="7.09146145" y2="18.4220023" id="Path"></line>
+                        <path d="M15.5685155,11.0656847 L19.723084,11.0656847 L19.723084,9.8844649 C19.723084,7.99760644 18.1985731,6.46812428 16.3177906,6.46812428 L15.5685155,6.46812428 L15.5685155,11.0656847" id="Path"></path>
+                        <ellipse id="Oval" cx="4.2863061" cy="18.7274568" rx="2.80543153" ry="2.81454545"></ellipse>
+                        <ellipse id="Oval" cx="16.9176525" cy="18.7274568" rx="2.80543153" ry="2.81454545"></ellipse>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

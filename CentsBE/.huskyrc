@@ -1,0 +1,5 @@
+{
+  "hooks": {
+    "commit-msg": "bash scripts/hooks/commit-msg && npm run lint"
+  }
+}

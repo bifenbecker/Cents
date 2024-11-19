@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install: 
+    commands:
+      - yarn
+    runtime-versions:
+      nodejs: 12
+  build:
+    commands:
+      - yarn build
+  post_build:
+    commands:
+      aws cloudfront create-invalidation --distribution-id ${Distribution} --paths /index.html /service-worker.js
+
+artifacts:
+  files:
+    - '**/*'
+
+  base-directory: ./build

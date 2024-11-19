@@ -1,0 +1,21 @@
+.birthday-picker-container{
+    padding-left: 8px;
+    &>span{
+        display: inline;
+    }
+    .birthday-picker-dropdown{
+        display: inline;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    &.disabled{
+        pointer-events: none;
+        .birthday-picker-dropdown{
+            color: $color-dark-grey;
+        }
+        span {
+            color: $color-dark-grey;
+        }
+    }
+}

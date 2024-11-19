@@ -1,0 +1,26 @@
+@keyframes skeleton-loading {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+%skeleton-animation {
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: "";
+    animation: skeleton-loading 1.3s infinite;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX(-100%);
+    z-index: 1;
+    background: linear-gradient(90deg, transparent, hsla(0, 0%, 100%, 0.3), transparent);
+  }
+}

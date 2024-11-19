@@ -1,0 +1,40 @@
+.details-drawer {
+  [data-rsbs-header]::before {
+    height: 8px;
+    width: 48px;
+    border-radius: 31px;
+  }
+
+  [data-rsbs-backdrop] {
+    background: none;
+  }
+
+  [data-rsbs-overlay] {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.8)!important;
+  }
+
+  [data-rsbs-footer] {
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .summary-details-backdrop {
+    z-index: 3;
+    overscroll-behavior: none;
+    touch-action: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    top: 67px;
+    bottom: -60px;
+    background: none;
+    will-change: opacity;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+}

@@ -1,0 +1,26 @@
+.percent-input {
+  width: 120px;
+  height: 35px;
+  margin-top: 15px;
+  &:active {
+   border: none
+  }
+
+  .suffix {
+    font-size: 18px;
+    color: #b1b1b1;
+  }
+  textarea {
+    resize: none;
+    border: none;
+    height: 100%;
+    width: 100%;
+  }
+  &.error-field {
+    border: 1px solid #b00020 !important;
+    box-shadow: 0px 0px 1px 0.5px #b00020 !important;
+    .label {
+      color: #b00020 !important;
+    }
+  }
+}

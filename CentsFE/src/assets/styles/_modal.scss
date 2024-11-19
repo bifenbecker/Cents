@@ -1,0 +1,179 @@
+.upload-csv-modal {
+  @include flex(center, center);
+  margin: 0 !important;
+  height: 100vh;
+  max-width: 100% !important;
+
+  .modal-header-container{
+    display: flex;
+     justify-content: space-between;
+     align-items: center;
+    .header-text {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+      padding-right: 20px;
+    }
+    .download-link{
+      font-size: 10px;
+      letter-spacing: 0;
+      text-decoration: underline;
+      color: #3d98ff;
+      cursor: pointer;
+    }
+  }
+
+  .location-dropdown-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;  
+
+    .location-dropdown-selection{
+      width: 300px;
+      left:0;
+      border: 1px solid $color-locations-item-selected;
+      &:hover, &:active {
+        border: 1px solid $black;
+      }
+    }
+    .icon-select__menu-list {
+      max-height: 200px;
+    }
+  }
+  .modal-content {
+    width: 500px;
+    background-color: $white;
+    padding: 25px;
+    position: relative;
+    @media (max-width: 767px) {
+      width: calc(100% - 50px);
+    }
+
+    .loader {
+      width: calc(100% - 50px) !important;
+      height: calc(100% - 50px) !important;
+    }
+
+    .modal-body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .modal-footer {
+      border-top: 0;
+      padding: 25px 0 0;
+    }
+
+    .upload-csv-container {
+      @include flex(center, center);
+      flex-direction: column;
+      background: $color-bg-grey;
+      border: 1px dashed $color-bg;
+      border-radius: 2px;
+      width: 100%;
+      min-height: 130px;
+
+      @media (max-width: 767px) {
+        min-height: 100px;
+        padding: 15px;
+      }
+      .button-to-upload {
+        #input-file {
+          display: none;
+        }
+
+        label {
+          color: $color-theme;
+          text-decoration: underline;
+          padding: 5px;
+          cursor: pointer;
+        }
+      }
+      .message-block {
+        text-align: center;
+      }
+
+      .uploaded-file {
+        @include flex(center, center);
+
+        .icon-file {
+          font-size: 50px;
+
+          * {
+            color: $color-theme;
+          }
+        }
+
+        span {
+          font-weight: 700;
+          padding-left: 15px;
+          @media (max-width: 767px) {
+            font-size: 14px;
+          }
+        }
+      }
+      
+    }
+
+    .error-message-container {
+      background: $color-bg-grey;
+      border: 1px dashed $color-bg;
+      border-radius: 2px;
+      display:block;
+      width: 100%;
+      margin-top: 10px;
+      height: auto;
+      max-height: 125px;
+      overflow-y: auto;
+
+      div {
+        text-align: center;
+        padding: 5px 0;
+      }
+    }
+    .upload-success-container {
+      @include flex-d(center, center, column);
+      width: 100%;
+
+      .icon-success {
+        font-size: 70px;
+
+        * {
+          color: $color-theme;
+        }
+        @media (max-width: 767px) {
+          font-size: 50px;
+        }
+      }
+
+      span {
+        display: block;
+        margin: 20px 0;
+      }
+
+      button {
+        min-height: 40px;
+        width: 100%;
+        border-radius: 31px;
+        text-transform: uppercase;
+      }
+    }
+
+    .buttons-container {
+      width: 100%;
+      @include flex(center, center);
+
+      button {
+        border-radius: 31px;
+        text-transform: uppercase;
+        width: 150px;
+      }
+
+      .btn-theme:last-child {
+        margin-left: 20px;
+      }
+    }
+  }
+}

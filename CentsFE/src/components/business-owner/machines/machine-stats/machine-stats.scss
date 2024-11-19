@@ -1,0 +1,49 @@
+.machine-stats-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    p {
+      margin: 0;
+    }
+
+    .label {
+      font-size: 24px;
+      flex: 1;
+    }
+
+    .stats-error {
+        text-align: center;
+        width: 100%;
+    }
+
+    .stats-container {
+        flex: 2;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+      .stats-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .stats-value {
+          font-size: 40px;
+          font-weight: 500;
+          color: $color-theme;
+          margin-right: 10px;
+        }
+        .description {
+          max-width: 95px;
+          font-size: 14px;
+          line-height: 16px;
+        }
+      }
+    }
+}

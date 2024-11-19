@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Icon_Laundromats_Active</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Cents-Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="MACHINES-(STATE-1:-Live-&amp;-Connected)" transform="translate(-174.000000, -23.000000)" stroke="#000000">
+            <g id="TOP-NAVIGATION">
+                <g id="Group-2" transform="translate(27.000000, 12.000000)">
+                    <g id="Group-3" transform="translate(130.000000, 0.000000)">
+                        <g id="Icon_Laundromats_Active" transform="translate(17.000000, 11.000000)">
+                            <g>
+                                <rect id="Rectangle" stroke-width="0.65" x="0.514685093" y="0.390133639" width="22.8292683" height="22.8292683"></rect>
+                                <circle id="Oval" stroke-width="0.65" cx="6.16258753" cy="17.617158" r="3.15014634"></circle>
+                                <circle id="Oval" stroke-width="0.65" transform="translate(6.159841, 17.616570) rotate(-45.000000) translate(-6.159841, -17.616570) " cx="6.15984129" cy="17.6165698" r="4.35566555"></circle>
+                                <path d="M3.05488021,18.0494507 C3.05488021,18.0494507 4.48785582,16.9109141 6.43800217,17.6309141 C8.38814851,18.3509141 9.27439241,17.7924751 9.27439241,17.7924751" id="Path" stroke-width="0.65"></path>
+                                <circle id="Oval" stroke-width="0.65" cx="17.6366363" cy="17.617158" r="3.15014634"></circle>
+                                <circle id="Oval" stroke-width="0.65" transform="translate(17.640111, 17.619663) rotate(-62.684168) translate(-17.640111, -17.619663) " cx="17.6401114" cy="17.6196628" r="4.35575405"></circle>
+                                <path d="M0.697611922,11.7866214 L23.2587827,11.7866214" id="Path" stroke-width="0.65"></path>
+                                <path d="M19.209807,17.1406702 L19.209807,18.0936458" id="Path" stroke-width="0.65"></path>
+                                <circle id="Oval" stroke-width="0.65" cx="6.16258753" cy="6.16037754" r="3.15014634"></circle>
+                                <circle id="Oval" stroke-width="0.65" transform="translate(6.159981, 6.159841) rotate(-45.000000) translate(-6.159981, -6.159841) " cx="6.15998107" cy="6.15984129" r="4.35566555"></circle>
+                                <path d="M3.05488021,6.59237754 C3.05488021,6.59237754 4.48785582,5.45384096 6.43800217,6.17384096 C8.38814851,6.89384096 9.27439241,6.33540193 9.27439241,6.33540193" id="Path" stroke-width="0.65"></path>
+                                <circle id="Oval" stroke-width="0.65" cx="17.6366363" cy="6.16037754" r="3.15014634"></circle>
+                                <circle id="Oval" stroke-width="0.65" transform="translate(17.640128, 6.162712) rotate(-62.684168) translate(-17.640128, -6.162712) " cx="17.6401278" cy="6.16271207" r="4.35575405"></circle>
+                                <path d="M19.209807,5.68388974 L19.209807,6.63686535" id="Path" stroke-width="0.65"></path>
+                                <path d="M11.8441485,0.573060468 L11.8441485,22.9998897" id="Path" stroke-width="0.65"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

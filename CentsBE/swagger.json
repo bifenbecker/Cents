@@ -1,0 +1,5243 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Cents server",
+        "version": "1.0.0",
+        "title": "Swagger Cents",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/api/v1",
+    "tags": [
+        {
+            "name": "sign-in",
+            "description": "about the sign-in",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "super admin",
+            "description": "Access to super admin routes"
+        },
+        {
+            "name": "business-owner",
+            "description": "Aceess to business owner routes",
+            "externalDocs": {
+                "description": "for business owner",
+                "url": "http://swagger.io"
+            }
+        },
+        {
+            "name": "live-link",
+            "description": "Access to live link routes",
+            "externalDocs": {
+                "description": "for customers",
+                "url": "http://swagger.io"
+            }
+        }
+    ],
+    "schemes": ["http"],
+    "paths": {
+        "/business-owner/locations": {
+            "post": {
+                "tags": ["business-owner"],
+                "summary": "for adding the location info",
+                "operationId": "addLocations",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addlocation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and location info"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch locations",
+                "description": "fetch location",
+                "operationId": "fetchLocations",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "offset",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "devicecount",
+                        "in": "query",
+                        "description": "devicecount",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "fetch all locations"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["business-owner"],
+                "summary": "Updateding location",
+                "description": "for updating the location.",
+                "operationId": "updateLocation",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "locationId",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Updated location object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updatelocation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "success message and updatedstore"
+                    },
+                    "404": {
+                        "description": "location not found"
+                    }
+                }
+            }
+        },
+        "/business-owner/locations/{id}/tax-info": {
+            "patch": {
+                "tags": ["business-owner"],
+                "summary": "add/update taxRateId and dcaLicense",
+                "description": "Add taxRateId and dcaLicense to a location using location id sent through query",
+                "operationId": "updateTaxInfo",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "locationId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Updated taxInfo object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateTaxInfo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success for updating or adding the values"
+                    },
+                    "422": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/locations/{storeId}/updateStorePassword": {
+            "put": {
+                "tags": ["business-owner"],
+                "summary": "add/reset store password",
+                "description": "add or update the store password and update the passwordResetDate",
+                "operationId": "updateStorePassword",
+                "produces": ["application/json", "application/xml"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "description": "store id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "update store password object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateStorePassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success for updating or adding the values"
+                    },
+                    "422": {
+                        "description": "Invalid status value"
+                    },
+                    "400": {
+                        "description": "Passwords do not match"
+                    }
+                }
+            }
+        },
+        "/business-owner/locations/{id}/reporting-accessible": {
+            "patch": {
+                "tags": ["business-owner"],
+                "summary": "Toggle accessible for reporting with value",
+                "description": "add or update the store password and update the passwordResetDate",
+                "operationId": "updateReportingAccessible",
+                "produces": ["application/json", "application/xml"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "store id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "object with hasAppReportingAccessible key and boolean value",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updateReportingAccessible"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success for updating the value"
+                    },
+                    "422": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/locations/settings/residential/{id}": {
+            "post": {
+                "tags": ["business-owner"],
+                "summary": "Toggle residential type for a location",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "location id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "returns success"
+                    },
+                    "404": {
+                        "description": "Location Id is required"
+                    },
+                    "422": {
+                        "description": "Residential toggle can be only toggled for a intake only location"
+                    }
+                }
+            }
+        },
+        "/business-owner/locations/devices": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch devices for location",
+                "description": "fetch location",
+                "operationId": "fetchDevices",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "for add location",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "locationId",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "devices for location"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/batches": {
+            "post": {
+                "tags": ["business-owner"],
+                "summary": "for assining location to the batch",
+                "operationId": "for location assigning",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "assigning the location info to the batch",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/assignlocation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success message and bathstore info"
+                    },
+                    "500": {
+                        "description": "batch already assigned to location"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch batch list",
+                "description": "fetch batchlist",
+                "operationId": "fetchBatchList",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "businessId",
+                        "in": "query",
+                        "description": "businessId",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "fetch all batches for business"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/batches/batch": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch singlebatch",
+                "description": "fetch singleBatch",
+                "operationId": "fetchsingleBatch",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "offset",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "batchId",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "devices list and batchid"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/batches/devices": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch singlebatch",
+                "description": "fetch devices for batch",
+                "operationId": "fetchBatchDevices",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "limit",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "offset",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "batchId",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/globalsettings/accountdetails": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch accountDetails",
+                "description": "fetch accountdetails",
+                "operationId": "fetchAccountDetails",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/globalsettings/updatedetails": {
+            "put": {
+                "tags": ["business-owner"],
+                "summary": "for update accountdetails",
+                "operationId": "updateAccountDetails",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "account details",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/accountdetails"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "give token and userId and roleId"
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/devices": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch devices for machines",
+                "description": "fetch devices",
+                "operationId": "fetch devices",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "locationId",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/devices/{deviceId}/details-prices": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch devices machine configurations for machine_feature, machine_model, machine_programming API",
+                "description": "fetch devices machine configurations for machine_feature, machine_model, machine_programming API",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "deviceId",
+                        "in": "path",
+                        "description": "deviceId",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/machineModelProgrammingResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Device should be a positive integer",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Device is not found",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/devices/{deviceId}/create-machine": {
+            "post": {
+                "tags": ["business-owner"],
+                "summary": "create a networked machine by device",
+                "description": "create a networked machine by device",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "deviceId",
+                        "in": "path",
+                        "description": "deviceId",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "machine name",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/createMachineByDevice"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful response with created machine",
+                        "schema": {
+                            "$ref": "#/definitions/machineCreateResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Device should be a positive integer",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Device is offline",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Device is not found",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Device is not belonged to business",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Device is already paired",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/{machineId}/create-networked": {
+            "post": {
+                "tags": ["business-owner"],
+                "summary": "create a networked machine by existing machine",
+                "description": "create a networked machine by existing machine",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "machineId",
+                        "in": "path",
+                        "description": "machineId",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/createNetworkedMachineByExisting"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful response with created networked machine",
+                        "schema": {
+                            "$ref": "#/definitions/machineCreateResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Device should be a positive integer",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Device is offline",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Device is not found",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "Device is not belonged to business",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Device is already paired",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/machines": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch machines for location",
+                "description": "fetch machines",
+                "operationId": "fetch machines",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "LocationId",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/machinemodel": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch machinemodels for machines",
+                "description": "fetch machinemodels",
+                "operationId": "fetch machinemodels",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "machinetype",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/machineload": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "fetch machineloads for machines",
+                "description": "fetch machineloads",
+                "operationId": "fetch machineloads",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "modelId",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/pairing": {
+            "post": {
+                "tags": ["business-owner"],
+                "summary": "for assining machines to the batch",
+                "operationId": "for machine assigning",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "assigning the location info to the batch",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/assignmachines"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/business-owner/machine/price": {
+            "put": {
+                "tags": ["business-owner"],
+                "summary": "for updateMachineDetails",
+                "operationId": "updateMachineDetails",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "machine details",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/updatemachines"
+                        }
+                    }
+                ]
+            }
+        },
+        "/business-owner/team": {
+            "post": {
+                "tags": ["business-owner"],
+                "summary": "Adding a new team member with given first name, last name and email (unique).",
+                "operationId": "addTeamMember",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addTeamMember"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and team member info"
+                    },
+                    "422": {
+                        "description": "Unprocessed request."
+                    },
+                    "401": {
+                        "description": "Email id already exists."
+                    }
+                }
+            },
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "List of all the team members associated with the business.",
+                "operationId": "ListTeamMember",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and list of all team members.",
+                        "schema": {
+                            "$ref": "#/definitions/teamMembers"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/business-owner/customers": {
+            "post": {
+                "tags": ["business-owner"],
+                "summary": "Add a new customer with given name, email(unique) and phone number(unique)",
+                "operationId": "addCustomer",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addCustomer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and customer info",
+                        "schema": {
+                            "$ref": "#/definitions/singleCustomer"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessed request."
+                    },
+                    "401": {
+                        "description": "Email id  or phone number already exists."
+                    }
+                }
+            },
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "List of customer ids, names, phone numbers.",
+                "operationId": "ListAllCustomer",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and details of all the customer.",
+                        "schema": {
+                            "$ref": "#/definitions/allCustomers"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/business-owner/customers/{id}": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "Details of a single customer with given id",
+                "operationId": "ListSingleCustomer",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the customer",
+                        "required": "true",
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and details of the customer.",
+                        "schema": {
+                            "$ref": "#/definitions/singleCustomer"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/business-owner/customers/{id}/toggle-commercial": {
+            "put": {
+                "tags": ["business-owner"],
+                "summary": "Allows to toggle commercial or invoicing enabled flag, set tier id",
+                "operationId": "ListSingleCustomer",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of the customer",
+                        "required": "true",
+                        "type": "integer"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Fields for update",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "isCommercial": {
+                                    "type": "boolean",
+                                    "required": true,
+                                    "example": true
+                                },
+                                "isInvoicingEnabled": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "commercialTierId": {
+                                    "type": "integer",
+                                    "example": 3
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": true
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/business-owner/customers/search": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "Returns the list of customers with given name, email or phone number.",
+                "operationId": "Search Customers",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/searchCustomer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns success and returns the list of customers which satisfy the given search criterion.",
+                        "schema": {
+                            "$ref": "#/definitions/allCustomers"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/business-owner/account": {
+            "get": {
+                "tags": ["business-owner"],
+                "summary": "Returns current user details",
+                "operationId": "currentUserDetails",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns current user details.",
+                        "schema": {
+                            "$ref": "#/definitions/currentUserDetails"
+                        }
+                    },
+                    "403": {
+                        "description": "User not found"
+                    }
+                }
+            }
+        },
+        "/business-owner/orders/invoicingCustomerOrdersReport": {
+            "get": {
+                "tags": [
+                    "business-owner"
+                ],
+            "summary": "Returns completed invoicing orders for the customer",
+            "operationId": "invoicingOrderDetails",
+            "parameters": [
+              {
+                  "name": "authtoken",
+                  "in": "header",
+                  "description": "auth token",
+                  "required": true,
+                  "type": "string"
+              },
+              {
+                  "name": "customerId",
+                  "in": "query",
+                  "description": "customer id",
+                  "required": true,
+                  "type": "number"
+              },
+              {
+                  "name": "startDate",
+                  "in": "query",
+                  "description": "start Date",
+                  "required": true,
+                  "type": "string"
+              },
+              {
+                  "name": "endDate",
+                  "in": "query",
+                  "description": "end Date",
+                  "required": true,
+                  "type": "string"
+              },
+              {
+                  "name": "timeZone",
+                  "in": "query",
+                  "description": "current user time zone",
+                  "required": true,
+                  "type": "string"
+              }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Returns completed service and inventory orders for the customer with Invoicing payment status.",
+                    "schema": {
+                        "$ref": "#/definitions/invoicingOrderDetails"
+                    }
+                },
+                "400": {
+                    "description": "Business or customer is not found"
+                },
+                "422": {
+                    "description": "Required parameter was not passed"
+                }
+            }
+          }
+        },
+        "/live-status/customer/payment/fill-balance": {
+            "post": {
+                "tags": [
+                    "live-link"
+                ],
+                "summary": "Change store customer balance",
+                "parameters": [
+                    {
+                        "name": "customerauthtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "fill balance body parameters, autoRefillEnabled is optional for now",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/fillBalanceBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Unprocessed entity"
+                    },
+                    "200": {
+                        "description": "Successfully returned an increased balance and payment intent",
+                        "schema": {
+                            "$ref": "#/definitions/fillBalanceResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/business-owner/qr-code/create": {
+            "post": {
+                "tags": [
+                    "business-owner"
+                ],
+                "summary": "Create qr code for machine",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Create qr code body parameters",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/createQrCodeBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "qrCodeHash is required"
+                    },
+                    "200": {
+                        "description": "Successfully returned machine qrCode",
+                        "schema": {
+                            "$ref": "#/definitions/qrCodeResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/business-owner/qr-code/pair": {
+            "put": {
+                "tags": [
+                    "business-owner"
+                ],
+                "summary": "Pair qr code with machine",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Pair qr code body parameters",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/pariQrCodeBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "MachineId and qrCodeHash are required"
+                    },
+                    "404": {
+                        "description": "Qr Code does not exist"
+                    },
+                    "409": {
+                        "description": "Qr Code is already paired"
+                    },
+                    "200": {
+                        "description": "Successfully returned qrCode",
+                        "schema": {
+                            "$ref": "#/definitions/qrCodeResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/business-owner/qr-code/unpair": {
+            "put": {
+                "tags": [
+                    "business-owner"
+                ],
+                "summary": "Unpair qr code from machine",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Unpair qr code body parameters",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/unpairQrCodeBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "MachineId and id are required"
+                    },
+                    "404": {
+                        "description": "Qr Code does not exist"
+                    },
+                    "409": {
+                        "description": "Qr Code is not paired with any machine"
+                    },
+                    "200": {
+                        "description": "Successfully returned qrCode",
+                        "schema": {
+                            "$ref": "#/definitions/qrCodeResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/business-owner/qr-code/{id}": {
+            "delete": {
+                "tags": [
+                    "business-owner"
+                ],
+                "summary": "Delete qr code",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Qr Code id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Qr Code does not exist"
+                    },
+                    "200": {
+                        "description": "Successfully deleted"
+                    }
+                }
+            }
+        },
+        "/sign-in": {
+            "post": {
+                "tags": ["sign-in"],
+                "summary": "for the user signin",
+                "description": "for the sign in",
+                "operationId": "signin",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "for the user to sign in",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/signin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "give user details",
+                        "schema": {
+                            "$ref": "#/definitions/signIn"
+                        }
+                    },
+                    "403": {
+                        "description": "invalid credentials"
+                    }
+                }
+            }
+        },
+        "/sign-in/forgot": {
+            "post": {
+                "tags": ["sign-in"],
+                "summary": "Forgot password.",
+                "description": "Finds an use given email and sends password reset mail.",
+                "operationId": "forgot",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "body",
+                        "description": "user email to reset the password.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/sign-in/reset": {
+            "post": {
+                "tags": ["sign-in"],
+                "summary": "Reset password.",
+                "description": "Resets password of the user with given token.",
+                "operationId": "reset",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "User token to reset password.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/sign-in/verify": {
+            "get": {
+                "tags": ["sign-in"],
+                "summary": "Verify reset password link.",
+                "description": "Verifies whether the reset password link has expired or not.",
+                "operationId": "verify",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "User token to reset password.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/super-admin/business-owners/list": {
+            "get": {
+                "tags": ["super admin"],
+                "summary": "business owner list",
+                "description": "business owner list",
+                "operationId": "fetchBusinessOwner",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "for add location",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/super-admin/devices/list": {
+            "get": {
+                "tags": ["super admin"],
+                "summary": "devices list",
+                "description": "devices list",
+                "operationId": "fetchDevicesList",
+                "produces": ["application/xml", "application/json"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "businessId",
+                        "in": "query",
+                        "description": "businessId",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "page",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                }
+            }
+        },
+        "/super-admin/devices/create": {
+            "post": {
+                "tags": ["super admin"],
+                "summary": "for uploading the devices",
+                "operationId": "for upload devices",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "upload csv file",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addlocation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "give token and userId and roleId"
+                    }
+                }
+            }
+        },
+        "/super-admin/business/{id}/get": {
+            "get": {
+                "tags": ["super admin"],
+                "summary": "Fetch an individual business",
+                "operationId": "fetchIndividualBusiness",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "businessId",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return success and business details",
+                        "schema": {
+                            "$ref": "#/definitions/business"
+                        }
+                    }
+                }
+            }
+        },
+        "/super-admin/stripe-account/update-statement-descriptor": {
+            "post": {
+                "tags": ["super admin"],
+                "summary": "for updating stripe account statement descriptor",
+                "operationId": "updateStripeAccountStatementDescriptor",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Contains a new value of the statement descriptor and account id",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "acc_ssef4Wep12WWs67"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "example": "TRYCENTS.COM"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success result",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "statementDescriptor": {
+                                    "type": "string",
+                                    "example": "TRYCENTS.COM"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "child \"value\" fails because [\"value\" length must be at least 5 characters long]"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Stripe validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "Access to a resource is not allowed."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/super-admin/service-orders/{id}": {
+            "get": {
+                "tags": ["super admin"],
+                "summary": "Fetch the service order by id",
+                "operationId": "fetchSuperAdminServiceOrder",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "service order id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return success and service order",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "serviceOrder": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/serviceOrder"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/super-admin/service-orders/{id}/live-link": {
+            "get": {
+                "tags": ["super admin"],
+                "summary": "Fetch a live link",
+                "operationId": "fetchLiveLink",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "order Id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return success and url",
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "url": {
+                                    "type": "string",
+                                    "example": "https://fe-testing-cents.ngrok.io/order-summary/eyJhbGciOiJIUzI1NiIscCI6IkpXVCJ9.eyJpZCI6IjE1"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/super-admin/payments": {
+            "get": {
+                "tags": ["super admin"],
+                "summary": "Fetch payments",
+                "operationId": "fetchPayments",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNumber",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "searchTerm",
+                        "in": "query",
+                        "description": "Search term",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return success, total and payment list",
+                        "schema": {
+                            "$ref": "#/definitions/paymentListResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/super-admin/payments/{id}": {
+            "get": {
+                "tags": ["super admin"],
+                "summary": "Fetch payment details",
+                "operationId": "fetchPaymentDetails",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "authtoken",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Payment id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Return success and payment details",
+                        "schema": {
+                            "$ref": "#/definitions/paymentDetailsResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/residential-order/get-customer": {
+            "get": {
+                "tags": ["residentialOrder"],
+                "summary": "customer Information",
+                "operationId": "getCustomers",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token for authorization.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "phoneNumber",
+                        "in": "query",
+                        "description": "phoneNumber",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and customer information.",
+                        "schema": {
+                            "$ref": "#/definitions/getCustomer"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    },
+                    "404": {
+                        "description": "customer doesnt exist"
+                    }
+                }
+            }
+        },
+        "/residential-order/request-otp": {
+            "post": {
+                "tags": ["residentialOrder"],
+                "summary": "Requesting the OTP for residentialOrder type",
+                "parameters": [
+                    {
+                        "name": "phoneNumber",
+                        "in": "body",
+                        "description": "customer phoneNumber",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OTP sent successfully"
+                    }
+                }
+            }
+        },
+        "/residential-order/verify-otp": {
+            "post": {
+                "tags": ["residentialOrder"],
+                "summary": "Verifying the OTP for residentialOrder type by phoneNumber and return the customerAuthToken and if phoneNumber already exists returning the cusomter info",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "phoneNumber",
+                        "in": "body",
+                        "description": "customer phoneNumber",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "otp",
+                        "in": "body",
+                        "description": "OTP",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OTP is verified",
+                        "customerAuthToken": "customerAuthToken",
+                        "customerDetails": {
+                            "fullName": "string",
+                            "phoneNumber": "string",
+                            "language": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Entered OTP is incorrect"
+                    }
+                }
+            }
+        },
+        "/employee-tab/customers/search": {
+            "get": {
+                "tags": ["employee-tab"],
+                "summary": "Returns the list of customers with given name, email or phone number.",
+                "operationId": "Search Customers",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Currently there is no mechanism for logging in to the tab, so authtoken can be ignored.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "keyword",
+                        "description": "Keyword to be searched for.",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/searchCustomer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns success and returns the list of customers which satisfy the given search criterion.",
+                        "schema": {
+                            "$ref": "#/definitions/allCustomers"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/employee-tab/customers": {
+            "post": {
+                "tags": ["employee-tab"],
+                "summary": "Add a new customer with given name, email(unique) and phone number(unique)",
+                "operationId": "addCustomer",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token for authorization.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addCustomerEmployeeTab"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and customer info",
+                        "schema": {
+                            "$ref": "#/definitions/singleCustomerEmployeeTab"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessed request."
+                    },
+                    "409": {
+                        "description": "Email id or phone number already exists."
+                    }
+                }
+            }
+        },
+        "/employee-tab/home": {
+            "get": {
+                "tags": ["employee-tab"],
+                "summary": "List of services provided by the store or hub.",
+                "operationId": "listServices",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token for authorization.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and home screen information.",
+                        "schema": {
+                            "$ref": "#/definitions/employeeTabHome"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    }
+                }
+            }
+        },
+        "/employee-tab/home/notify": {
+            "post": {
+                "tags": ["employee-tab"],
+                "summary": "Notifying the customer using the twilio SMS integration",
+                "operationId": "notify",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "customer phonNumber and orderId",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/customerDetails"
+                        }
+                    }
+                ],
+                "responses": {
+                    "responses": {
+                        "200": {
+                            "description": "return success"
+                        }
+                    },
+                    "422": {
+                        "description": "orderId and PhoneNumber is required"
+                    }
+                }
+            }
+        },
+        "/employee-tab/home/orders": {
+            "post": {
+                "tags": ["employee-tab"],
+                "summary": "Add a new order with given employee code and customer information",
+                "operationId": "createOrder",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addOrder"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and order info",
+                        "schema": {
+                            "$ref": "#/definitions/singleOrder"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessed request."
+                    },
+                    "401": {
+                        "description": "employeeCode is required"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["employee-tab"],
+                "summary": "List of active order details",
+                "operationId": "ListAllOrders",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "auth token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and details of all the orders.",
+                        "schema": {
+                            "$ref": "#/definitions/orderDetails"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    }
+                }
+            }
+        },
+        "/employee-tab/wash-and-fold/price": {
+            "get": {
+                "tags": ["employee-tab"],
+                "summary": "Price of laundry at that particular store.",
+                "operationId": "regularLaundryPrice",
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token for authorization.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "return success and pricing info",
+                        "schema": {
+                            "$ref": "#/definitions/employeeTabWashAndFoldRegular"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    }
+                }
+            }
+        },
+        "/employee-tab/sign-in": {
+            "post": {
+                "tags": ["employee-tab"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/employeeTabSignIn"
+                        }
+                    }
+                ],
+                "summary": "Sign in to the employee tab with store Id and store password.",
+                "operationId": "tabSignIn",
+                "responses": {
+                    "200": {
+                        "description": "return success and authtoken.",
+                        "schema": {
+                            "$ref": "#/definitions/employeeTabSignInResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    },
+                    "422": {
+                        "description": "Unprocessable data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "storeId type number is required."
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "FORBIDDEN as credentials were incorrect.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "storeId not found."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/employee-tab/home/check-in": {
+            "post": {
+                "tags": ["employee-tab"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token for authorization.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/employeeTabCheckIn"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "returns success.",
+                        "schema": {
+                            "$ref": "#/definitions/employeeTabCheckInResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    },
+                    "400": {
+                        "description": "Unauthorized to check-in at the store."
+                    },
+                    "409": {
+                        "description": "User is already checked-in.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "You are already checked-in."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "employeeCode type number is required."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/employee-tab/home/location": {
+            "get": {
+                "tags": ["employee-tab"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token for authorization.",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success message, details about the location and list of checked-in employees.",
+                        "schema": {
+                            "$ref": "#/definitions/employeeTabHomeLocation"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    },
+                    "401": {
+                        "description": "Unauthorized."
+                    }
+                }
+            }
+        },
+        "/employee-tab/home/check-out": {
+            "post": {
+                "tags": ["employee-tab"],
+                "parameters": [
+                    {
+                        "name": "authtoken",
+                        "in": "header",
+                        "description": "Auth token for authorization.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/employeeTabCheckIn"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "id",
+                        "description": "Check-in id of the employee.",
+                        "required": "true",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "returns success.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": true
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error."
+                    },
+                    "400": {
+                        "description": "Unauthorized to check-out in at the store."
+                    },
+                    "409": {
+                        "description": "User is already checked-in.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "You are already checked-in."
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable data.",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "employeeCode type number is required."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/live-status/machine/{barcode}/details-by-barcode": {
+            "get": {
+                "tags": ["live-link"],
+                "summary": "Get the machine details by scanning a barcode",
+                "parameters": [
+                    {
+                        "name": "customerauthtoken",
+                        "in": "header",
+                        "description": "Customer auth token for authorization.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "barcode",
+                        "in": "path",
+                        "description": "Machine's barcode value",
+                        "required": true,
+                        "type": "string",
+                        "minLength": 3
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Machine barcode param is required",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Machine is not found",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully returned machine details by scanning barcode",
+                        "schema": {
+                            "$ref": "#/definitions/machineDetailsByBarcodeResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/live-status/machine/turns/{turnId}/details": {
+            "get": {
+                "tags": ["live-link"],
+                "summary": "Get the machine turn details with order",
+                "parameters": [
+                    {
+                        "name": "customerauthtoken",
+                        "in": "header",
+                        "description": "Customer auth token for authorization.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "turnId",
+                        "in": "path",
+                        "description": "Turn's id value",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Turn id param is required",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Turn is not found",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Store customer does not exist",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "403": {
+                        "description": "You are not allowed to see the resource",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully returned turn details with order",
+                        "schema": {
+                            "$ref": "#/definitions/turnDetailsWithTurnOrderResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/live-status/customer/{storeId}/info": {
+            "get": {
+                "tags": ["live-link"],
+                "summary": "Get customer info by store with available credits in business",
+                "parameters": [
+                    {
+                        "name": "storeId",
+                        "in": "path",
+                        "description": "Store's id value",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "customerauthtoken",
+                        "in": "header",
+                        "description": "Customer auth token for authorization.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Store id param is required",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Store is not found",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully returned cents customer info with available credits, addresses and store customers",
+                        "schema": {
+                            "$ref": "#/definitions/customerInfoResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/live-status/machine/{barcode}/business-theme-by-barcode": {
+            "get": {
+                "tags": ["live-link"],
+                "summary": "Get business theme by scan QR code",
+                "parameters": [
+                    {
+                        "name": "barcode",
+                        "in": "path",
+                        "description": "machine's barcode",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "barcode param is required and contains minimum 2 letters",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Machine is not found",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "200": {
+                        "description": "Successfully returned a business theme by scan QR code",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "theme": {
+                                    "$ref": "#/definitions/businessTheme"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/live-status/machine/{machineId}/run": {
+            "post": {
+                "tags": ["live-link"],
+                "summary": "Remote runs a machine by machineId, gets created a turn and order",
+                "parameters": [
+                    {
+                        "name": "machineId",
+                        "in": "path",
+                        "description": "Machine's id value",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Body to run the machine",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "quantity": {
+                                    "type": "number",
+                                    "format": "integer",
+                                    "minimum": 0,
+                                    "example": 120,
+                                    "description": "Calculated price to run the machine"
+                                },
+                                "promoCode": {
+                                    "type": ["null", "string"],
+                                    "example": "sahdakhdak83",
+                                    "description": "The feature will be implemented in the out of MVP version"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "name": "customerauthtoken",
+                        "in": "header",
+                        "description": "Customer auth token for authorization.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "422": {
+                        "description": "Machine id param is required",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Machine is not found",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Not enough credits",
+                        "schema": {
+                            "$ref": "#/definitions/validationErrorResponse"
+                        }
+                    },
+                    "202": {
+                        "description": "Successfully returned cents customer info with available credits, addresses and store customers",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "orderId": {
+                                    "type": "number",
+                                    "example": 345,
+                                    "description": "Id of the created Order entity"
+                                },
+                                "turnId": {
+                                    "type": "number",
+                                    "example": 234,
+                                    "description": "Id of the created Turn entity"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "token",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "updateTaxInfo": {
+            "type": "object",
+            "properties": {
+                "taxRateId": {
+                    "type": "integer",
+                    "example": 12
+                },
+                "dcaLicense": {
+                    "type": "string",
+                    "example": "234094"
+                }
+            }
+        },
+        "getCustomer": {
+            "type": "object",
+            "properties": {
+                "fullName": {
+                    "type": "string",
+                    "example": "john archer"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "112345789"
+                },
+                "language": {
+                    "type": "string",
+                    "example": "english"
+                }
+            }
+        },
+        "updateStorePassword": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "example": "password"
+                },
+                "confirmPassword": {
+                    "type": "string",
+                    "example": "password"
+                }
+            }
+        },
+        "updatelocation": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "MT001"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "+1(301)999-1111"
+                },
+                "address": {
+                    "type": "string",
+                    "example": "1234 Belle Ave"
+                },
+                "city": {
+                    "type": "string",
+                    "example": "Brooklyn"
+                },
+                "state": {
+                    "type": "string",
+                    "example": "New York"
+                },
+                "zipCode": {
+                    "type": "string",
+                    "example": "65787"
+                }
+            }
+        },
+        "customerDetails": {
+            "type": "object",
+            "properties": {
+                "phoneNumber": "integer",
+                "example": 123456789
+            },
+            "orderId": {
+                "type": "integer",
+                "example": 1
+            }
+        },
+        "addOrder": {
+            "type": "object",
+            "properties": {
+                "storeId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "employeeCode": {
+                    "type": "string",
+                    "example": "20"
+                },
+                "fullName": {
+                    "type": "string",
+                    "example": "john archer"
+                },
+                "service": {
+                    "type": "string",
+                    "example": "wash"
+                }
+            }
+        },
+        "singleOrder": {
+            "type": "object",
+            "properties": {
+                "orderId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "employee": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "Type": "string",
+                            "example": "john archer"
+                        }
+                    }
+                },
+                "customer": {
+                    "type": "object",
+                    "properties": {
+                        "fullName": {
+                            "type": "string",
+                            "Example": "john archer"
+                        },
+                        "phoneNumber": {
+                            "type": "number",
+                            "example": 1234567890
+                        },
+                        "email": {
+                            "type": "email",
+                            "example": "john@trycents.com"
+                        }
+                    }
+                },
+                "service": {
+                    "type": "string",
+                    "example": "wash"
+                },
+                "price": {
+                    "type": "integer",
+                    "example": 14
+                }
+            }
+        },
+        "orderDetails": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "john archer"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "active"
+                    }
+                }
+            }
+        },
+        "assignlocation": {
+            "type": "object",
+            "properties": {
+                "batchId": {
+                    "type": "integer",
+                    "example": "1"
+                },
+                "storeId": {
+                    "type": "integer",
+                    "example": "1"
+                }
+            }
+        },
+        "assignmachines": {
+            "type": "object",
+            "properties": {
+                "storeId": {
+                    "type": "integer",
+                    "example": "1"
+                },
+                "modelId": {
+                    "type": "integer",
+                    "example": "1"
+                },
+                "deviceId": {
+                    "type": "integer",
+                    "example": "1"
+                },
+                "pricing": {
+                    "type": "integer",
+                    "example": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "9"
+                    }
+                }
+            }
+        },
+        "updatemachines": {
+            "type": "object",
+            "properties": {
+                "machineId": {
+                    "type": "integer",
+                    "example": "1"
+                },
+                "prices": {
+                    "type": "object",
+                    "example": {
+                        "priceId": "1",
+                        "loadId": "1",
+                        "price": "12"
+                    }
+                }
+            }
+        },
+        "accountdetails": {
+            "type": "object",
+            "properties": {
+                "firstname": {
+                    "type": "string",
+                    "example": "john"
+                },
+                "lastname": {
+                    "type": "string",
+                    "example": "laura"
+                },
+                "companyName": {
+                    "type": "string",
+                    "example": "MT001"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "+1(301)999-1111"
+                },
+                "address": {
+                    "type": "string",
+                    "example": "1234 Belle Ave"
+                },
+                "city": {
+                    "type": "string",
+                    "example": "Brooklyn"
+                },
+                "state": {
+                    "type": "string",
+                    "example": "New York"
+                },
+                "zipCode": {
+                    "type": "string",
+                    "example": "56789"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "owner@email.com"
+                }
+            }
+        },
+        "signin": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "example": "owner@email.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "admin"
+                }
+            }
+        },
+        "addlocation": {
+            "type": "object",
+            "properties": {
+                "businessId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "example": "MT001"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "MT001"
+                },
+                "address": {
+                    "type": "string",
+                    "example": "MT001"
+                },
+                "state": {
+                    "type": "string",
+                    "example": "newyork"
+                },
+                "city": {
+                    "type": "string",
+                    "example": "brooklyn"
+                },
+                "zipCode": {
+                    "type": "string",
+                    "example": "59890"
+                }
+            }
+        },
+        "Order": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "petId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Order Status",
+                    "enum": ["placed", "approved", "delivered"]
+                },
+                "complete": {
+                    "type": "boolean",
+                    "default": false
+                }
+            },
+            "xml": {
+                "name": "Order"
+            }
+        },
+        "addTeamMember": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "example": "Dan"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Brown"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "dan@email.com"
+                }
+            },
+            "xml": {
+                "name": "Team Member"
+            }
+        },
+        "teamMembers": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Dan Brown"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "dan@email.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "0987654321"
+                    },
+                    "birthday": {
+                        "type": "date",
+                        "nullable": true,
+                        "example": "2019-12-03T08:08:02.682Z"
+                    },
+                    "role": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "locations": {
+                        "type": "array",
+                        "nullable": true,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "1"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "1234 Belle Ave"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "xml": {
+                "name": " List Team Member"
+            }
+        },
+        "addCustomer": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string",
+                    "example": "Dan"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Brown"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "dan@email.com"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "+1(301)999-1111"
+                }
+            },
+            "xml": {
+                "name": "Customer"
+            }
+        },
+        "addCustomerEmployeeTab": {
+            "type": "object",
+            "properties": {
+                "fullName": {
+                    "type": "string",
+                    "example": "Dan"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "dan@email.com"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "+1(301)999-1111"
+                }
+            },
+            "xml": {
+                "name": "Customer"
+            }
+        },
+        "singleCustomer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "fullName": {
+                    "type": "string",
+                    "example": "Dan Brown"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "dan@email.com"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "+1(301)999-1111"
+                },
+                "openTickets": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "revenue": {
+                    "type": "float",
+                    "example": 150.06
+                },
+                "openOrders": {
+                    "type": "integer",
+                    "example": 3
+                },
+                "secondaryDetails": {
+                    "type": "object",
+                    "nullable": true,
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "fullName": {
+                            "type": "string",
+                            "example": "Secondary Name"
+                        },
+                        "email": {
+                            "type": "string",
+                            "example": "secondary@email.com"
+                        },
+                        "phone": {
+                            "type": "string",
+                            "example": "+1(301)999-1111"
+                        }
+                    }
+                },
+                "locations": {
+                    "type": "array",
+                    "nullable": true,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "1"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "1234 Belle Ave"
+                            }
+                        }
+                    }
+                },
+                "isCommercial": {
+                    "type": "boolean",
+                    "example": false
+                },
+                "isInvoicingEnabled": {
+                    "type": "boolean",
+                    "example": false
+                }
+            },
+            "xml": {
+                "name": "Customer"
+            }
+        },
+        "singleCustomerEmployeeTab": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "fullName": {
+                    "type": "string",
+                    "example": "Dan Brown"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "dan@email.com"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "+1(301)999-1111"
+                },
+                "secondaryDetails": {
+                    "type": "object",
+                    "nullable": true,
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "fullName": {
+                            "type": "string",
+                            "example": "Secondary Name"
+                        },
+                        "email": {
+                            "type": "string",
+                            "example": "secondary@email.com"
+                        },
+                        "phone": {
+                            "type": "string",
+                            "example": "+1(301)999-1111"
+                        }
+                    }
+                }
+            },
+            "xml": {
+                "name": "Customer"
+            }
+        },
+        "allCustomers": {
+            "type": "array",
+            "nullable": true,
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Dan Brown"
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "example": "+1(301)999-1111"
+                    }
+                }
+            },
+            "xml": {
+                "name": "Customers"
+            }
+        },
+        "searchCustomer": {
+            "type": "string",
+            "minLength": 1,
+            "example": "Dan",
+            "xml": {
+                "name": "Search Customer"
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "userStatus": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "User Status"
+                }
+            },
+            "xml": {
+                "name": "User"
+            }
+        },
+        "employeeTabHome": {
+            "type": "object",
+            "properties": {
+                "services": {
+                    "type": "array",
+                    "nullable": true,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "1"
+                            },
+                            "service": {
+                                "type": "string",
+                                "example": "Wash & Fold"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "employeeTabWashAndFoldRegular": {
+            "type": "object",
+            "properties": {
+                "laundryPrice": {
+                    "type": "object",
+                    "properties": {
+                        "laundryType": {
+                            "type": "string",
+                            "example": "Per Bag"
+                        },
+                        "price": {
+                            "type": "number",
+                            "example": "7.5"
+                        },
+                        "priceId": {
+                            "type": "integer",
+                            "example": 1
+                        }
+                    }
+                }
+            }
+        },
+        "employeeTabSignInResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "authtoken": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTg0OTQzNjgzfQ.5vh9CgDGCqY7z_1spryyfDapQaB3q_FFJhFhJs5aovQ"
+                }
+            }
+        },
+        "employeeTabSignIn": {
+            "type": "object",
+            "properties": {
+                "storeId": {
+                    "type": "number",
+                    "nullable": false,
+                    "example": 19
+                },
+                "password": {
+                    "type": "string",
+                    "nullable": false,
+                    "example": "qwerty123"
+                }
+            }
+        },
+        "employeeTabCheckIn": {
+            "type": "object",
+            "properties": {
+                "employeeCode": {
+                    "type": "number",
+                    "example": 1
+                },
+                "time": {
+                    "type": "date-time ",
+                    "example": "2020-03-24T14:04:03.832Z"
+                }
+            }
+        },
+        "employeeTabCheckInResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "example": "true"
+                },
+                "fullName": {
+                    "type": "string",
+                    "example": "Full Name"
+                },
+                "checkInId": {
+                    "type": "number",
+                    "example": 1
+                }
+            }
+        },
+        "employeeTabHomeLocation": {
+            "type": "object",
+            "properties": {
+                "store": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "example": "Name"
+                        },
+                        "address": {
+                            "type": "string",
+                            "example": "Store Address"
+                        },
+                        "city": {
+                            "type": "string",
+                            "example": "City"
+                        },
+                        "state": {
+                            "type": "string",
+                            "example": "State"
+                        },
+                        "zipCode": {
+                            "type": "string",
+                            "example": "12345"
+                        },
+                        "phoneNumber": {
+                            "type": "string",
+                            "example": "0987654321"
+                        },
+                        "stripeTerminalId": {
+                            "type": "string",
+                            "example": "12341"
+                        },
+                        "stripeLocationId": {
+                            "type": "string",
+                            "example": "124231"
+                        }
+                    }
+                },
+                "region": {
+                    "type": "object",
+                    "nullable": true,
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "businessId": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "Region Name"
+                        },
+                        "district": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "example": 1
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "District Name"
+                                }
+                            }
+                        }
+                    }
+                },
+                "business": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "userId": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "Business Name"
+                        },
+                        "address": {
+                            "type": "string",
+                            "example": "Business address."
+                        },
+                        "city": {
+                            "type": "string",
+                            "example": "City"
+                        },
+                        "state": {
+                            "type": "string",
+                            "example": "State"
+                        },
+                        "zipCode": {
+                            "type": "string",
+                            "example": "12345"
+                        },
+                        "phoneNumber": {
+                            "type": "string",
+                            "example": "0987654321"
+                        },
+                        "merchantId": {
+                            "type": "string",
+                            "example": "12341"
+                        },
+                        "needsRegions": {
+                            "type": "boolean",
+                            "example": true
+                        }
+                    }
+                },
+                "employees": {
+                    "type": "array",
+                    "nullable": true,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "fullName": {
+                                "type": "string",
+                                "example": "Full Name"
+                            },
+                            "checkInId": {
+                                "type": "number",
+                                "example": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "createQrCodeBody": {
+            "type": "object",
+            "properties": {
+                "qrCodeHash": {
+                    "type": "string",
+                    "example": "er12"
+                }
+            }
+        },
+        "pariQrCodeBody": {
+            "type": "object",
+            "properties": {
+                "machineId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "qrCodeHash": {
+                    "type": "string",
+                    "example": "er12"
+                }
+            }
+        },
+        "unpairQrCodeBody": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                }
+            }
+        },
+        "deleteQrCodeBody": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Machine Id"
+                }
+            }
+        },
+        "qrCodeResponse": {
+            "type": "object",
+            "description": "Unpair qr Code from machine result",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "hash": {
+                    "type": "string",
+                    "example": "er12"
+                },
+                "machineId": {
+                    "type": "number",
+                    "example": 2
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2020-04-04 12:24:53.983 +0400"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2020-04-04 12:24:53.983 +0400"
+                }
+            }
+        },
+        "fillBalanceResponse": {
+            "type": "object",
+            "description": "Fill balance result",
+            "properties": {
+                "availableCredits": {
+                    "type": "integer",
+                    "example": 5
+                },
+                "paymentIntent": {
+                    "type": "object",
+                    "description": "According to Stripe Documentation for payment intent",
+                    "example": {
+                        "id": "mockedPaymentIntentId",
+                        "object": "payment_intent",
+                        "amount": 600,
+                        "amount_capturable": 0,
+                        "amount_details": {
+                            "tip": {}
+                        },
+                        "amount_received": 600,
+                        "application": null,
+                        "application_fee_amount": 24,
+                        "automatic_payment_methods": null,
+                        "canceled_at": null,
+                        "cancellation_reason": null,
+                        "capture_method": "automatic",
+                        "charges": {},
+                        "client_secret": "pi_mockedClient_secret",
+                        "confirmation_method": "automatic",
+                        "created": 1655369018,
+                        "currency": "usd",
+                        "customer": "cus_mockedCustomerId",
+                        "description": null,
+                        "invoice": null,
+                        "last_payment_error": null,
+                        "livemode": false,
+                        "metadata": {},
+                        "next_action": null,
+                        "on_behalf_of": "greMockedData",
+                        "payment_method": "fgrMockedData",
+                        "payment_method_options": {},
+                        "payment_method_types": [
+                            "card"
+                        ],
+                        "processing": null,
+                        "receipt_email": null,
+                        "review": null,
+                        "setup_future_usage": null,
+                        "shipping": null,
+                        "source": null,
+                        "statement_descriptor": null,
+                        "statement_descriptor_suffix": null,
+                        "status": "succeeded",
+                        "total_details": {
+                        },
+                        "transfer_data": {
+                        },
+                        "transfer_group": "group_pi_mockedData"
+                    }
+                },
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "fillBalanceBody": {
+            "type": "object",
+            "properties": {
+                "paymentMethodToken": {
+                    "type": "string",
+                    "description": "Stripe payment method"
+                },
+                "credits": {
+                    "description": "Quantity of credits to fill up the balance",
+                    "type": "number",
+                    "example": 5
+                },
+                "storeId": {
+                    "description": "Id of the current store",
+                    "type": "string"
+                },
+                "autoRefillEnabled": {
+                    "description": "Flag to enable auto refill of balance",
+                    "default": false,
+                    "type": "boolean"
+                }
+            }
+        },
+        "validationErrorResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string",
+                    "example": "Not found error"
+                }
+            }
+        },
+        "machineDetailsByBarcodeResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 2324
+                },
+                "store": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 2324
+                        },
+                        "address": {
+                            "type": "string",
+                            "example": "432 Fishers Creek Rd"
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "Automation Hub 1"
+                        }
+                    }
+                },
+                "business": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 2324
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "example": "LG20"
+                },
+                "prefix": {
+                    "type": "string",
+                    "example": "W",
+                    "description": "The first letter of the machine's type, 'W' for WASHERS, 'D' for DRYERS"
+                },
+                "serialNumber": {
+                    "type": "string",
+                    "example": "e9574fdd-4d67-4035-b757-4579975b3605",
+                    "description": "A barcode hash of the machine"
+                },
+                "pricePerTurnInCents": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "example": 123
+                },
+                "turnTimeInMinutes": {
+                    "type": ["integer", "null"],
+                    "minimum": 0,
+                    "example": 12,
+                    "description": "For DRYERS only, for WASHERS would be null"
+                },
+                "model": {
+                    "type": "object",
+                    "properties": {
+                        "capacity": {
+                            "type": "string",
+                            "example": "15LB"
+                        },
+                        "modelName": {
+                            "type": "string",
+                            "example": "T900"
+                        },
+                        "manufacturer": {
+                            "type": "string",
+                            "example": "Philips"
+                        },
+                        "type": {
+                            "type": "string",
+                            "example": "WASHER"
+                        }
+                    }
+                },
+                "device": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 45
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "f8:f0:05:5f:f9:b2",
+                            "description": "Mac address"
+                        },
+                        "isPaired": {
+                            "type": "boolean",
+                            "example": true,
+                            "description": "Flag means if a machine is paired with the device"
+                        },
+                        "status": {
+                            "type": "string",
+                            "example": "ONLINE",
+                            "description": "Can be ONLINE, OFFLINE, IN_USE values for now"
+                        }
+                    }
+                },
+                "activeTurn": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 45
+                        },
+                        "serviceType": {
+                            "$ref": "#/definitions/serviceTypeEnum"
+                        },
+                        "storeCustomerId": {
+                            "type": "integer",
+                            "example": 34
+                        }
+                    }
+                },
+                "isAvailable": {
+                    "type": "boolean",
+                    "example": true,
+                    "description": "Depends on device's status and active turn"
+                }
+            }
+        },
+        "turnDetailsWithTurnOrderResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 2324
+                },
+                "code": {
+                    "type": "string",
+                    "format": "integer",
+                    "example": "1001"
+                },
+                "status": {
+                    "$ref": "#/definitions/turnStatusEnum"
+                },
+                "serviceType": {
+                    "$ref": "#/definitions/serviceTypeEnum"
+                },
+                "createdAt": {
+                    "$ref": "#/definitions/formattedTimeType"
+                },
+                "startedAt": {
+                    "$ref": "#/definitions/formattedTimeType"
+                },
+                "completedAt": {
+                    "$ref": "#/definitions/formattedTimeType"
+                },
+                "enabledAt": {
+                    "$ref": "#/definitions/formattedTimeType"
+                },
+                "netOrderTotalInCents": {
+                    "type": "integer",
+                    "example": 345,
+                    "description": "Total price in cents"
+                },
+                "totalTurnTime": {
+                    "type": "integer",
+                    "example": 23,
+                    "description": "A value in minutes"
+                },
+                "machine": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 34
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "LG20"
+                        },
+                        "prefix": {
+                            "type": "string",
+                            "example": "W",
+                            "description": "The first letter of the machine's type, 'W' for WASHERS, 'D' for DRYERS"
+                        },
+                        "pricePerTurnInCents": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "example": 123
+                        },
+                        "type": {
+                            "type": "string",
+                            "example": "WASHER"
+                        }
+                    }
+                },
+                "store": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 2324
+                        },
+                        "address": {
+                            "type": "string",
+                            "example": "432 Fishers Creek Rd"
+                        }
+                    }
+                },
+                "business": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 2324
+                        }
+                    }
+                },
+                "storeCustomer": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 2324
+                        },
+                        "firstName": {
+                            "type": "string",
+                            "example": "Jonny"
+                        },
+                        "lastName": {
+                            "type": "string",
+                            "example": "Lebovsky"
+                        },
+                        "phoneNumber": {
+                            "type": "string",
+                            "example": "0987654321"
+                        }
+                    }
+                },
+                "order": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 34
+                        },
+                        "orderableType": {
+                            "type": "string",
+                            "enum": ["Turn", "ServiceOrder", "InventoryOrder"],
+                            "description": "'Turn' type is the most possible here"
+                        },
+                        "subtotal": {
+                            "type": "number",
+                            "example": 64.7,
+                            "description": "Full amount in dollars"
+                        },
+                        "totalPaid": {
+                            "type": "number",
+                            "example": 64.7,
+                            "description": "Full amount in dollars minus promotion value"
+                        },
+                        "promotion": {
+                            "type": "object",
+                            "description": "Will be added in future"
+                        }
+                    }
+                }
+            }
+        },
+        "serviceTypeEnum": {
+            "type": "string",
+            "enum": ["SELF_SERVICE", "FULL_SERVICE", "CUSTOMER_SERVICE", "TECHNICAL_SERVICE"]
+        },
+        "turnStatusEnum": {
+            "type": "string",
+            "enum": ["CREATED", "ENABLED", "STARTED", "RUNNING", "COMPLETED"]
+        },
+        "formattedTimeType": {
+            "type": ["string", "null"],
+            "example": "06/29/2022 09:27 AM",
+            "format": "datetime",
+            "description": "Date formatted according to timezone"
+        },
+        "customerInfoResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "customer": {
+                    "$ref": "#/definitions/customerInfo"
+                }
+            }
+        },
+        "customerInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "storeId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "businessId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "customer": {
+                    "$ref": "#/definitions/centsCustomerInfo"
+                }
+            }
+        },
+        "centsCustomerInfo": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "Hiram"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "DuBuque"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "1396413570"
+                },
+                "availableCredits": {
+                    "type": "number",
+                    "example": 10.75
+                },
+                "paymentMethods": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/paymentMethod"
+                    }
+                },
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/centsCustomerInfoAddress"
+                    }
+                },
+                "storeCustomers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/centsCustomerInfoStoreCustomer"
+                    }
+                }
+            }
+        },
+        "paymentMethod": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 323
+                },
+                "brand": {
+                    "type": "string",
+                    "example": "visa"
+                },
+                "last4": {
+                    "type": "string",
+                    "example": "8995"
+                },
+                "centsCustomerId": {
+                    "type": "number",
+                    "example": 3221
+                },
+                "provider": {
+                    "type": "string",
+                    "example": "stripe"
+                },
+                "type": {
+                    "type": "string",
+                    "example": "credit"
+                },
+                "paymentMethodToken": {
+                    "type": "string",
+                    "example": "pm_1I6UKlGuj5YLpJjFXBV2GFCo"
+                }
+            }
+        },
+        "centsCustomerInfoAddress": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 323
+                },
+                "address1": {
+                    "type": "string",
+                    "example": "11660 Mayfield Avenue"
+                },
+                "address2": {
+                    "type": "string",
+                    "example": "B-1203"
+                },
+                "city": {
+                    "type": "string",
+                    "example": "Fremont"
+                },
+                "firstLevelSubdivisionCode": {
+                    "type": "string",
+                    "example": "CA"
+                },
+                "postalCode": {
+                    "type": "string",
+                    "example": "435555"
+                },
+                "countryCode": {
+                    "type": "string",
+                    "example": "US"
+                },
+                "googlePlacesId": {
+                    "type": "string",
+                    "example": "ChIJta6INcy_j4ARCb-KM5fGeCE"
+                },
+                "instructions": {
+                    "type": "string",
+                    "example": "call upon arrival"
+                },
+                "leaveAtDoor": {
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "centsCustomerInfoStoreCustomer": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 342
+                },
+                "notes": {
+                    "type": "string",
+                    "example": "Any notes"
+                },
+                "isHangDrySelected": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "hangDryInstructions": {
+                    "type": "string",
+                    "example": "Hang it upside down"
+                },
+                "availableCredits": {
+                    "type": "number",
+                    "example": 65.78
+                },
+                "businessCustomer": {
+                    "type": "object",
+                    "properties": {
+                        "isCommercial": {
+                            "type": "boolean",
+                            "example": true
+                        }
+                    }
+                }
+            }
+        },
+        "businessTheme": {
+            "type": "object",
+            "description": "Business styles settings",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "businessId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "primaryColor": {
+                    "type": "string",
+                    "example": "#3D98FF",
+                    "default": "#3D98FF"
+                },
+                "secondaryColor": {
+                    "type": "string",
+                    "example": "#FFFFFF",
+                    "default": "#FFFFFF"
+                },
+                "borderRadius": {
+                    "type": "string",
+                    "example": "31px",
+                    "default": "31px"
+                },
+                "logoUrl": {
+                    "type": "string",
+                    "example": "https://cents-product-images.s3.us-east-2.amazonaws.com/Cents+LOGO.png",
+                    "default": "https://cents-product-images.s3.us-east-2.amazonaws.com/Cents+LOGO.png"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "format": "timestamp",
+                    "example": "2022-06-24T09:39:17.332Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "format": "timestamp",
+                    "example": "2022-06-24T09:39:17.332Z"
+                },
+                "normalFont": {
+                    "type": "string",
+                    "example": "Roboto Regular",
+                    "default": "Roboto Regular"
+                },
+                "boldFont": {
+                    "type": "string",
+                    "example": "Roboto Bold",
+                    "default": "Roboto Bold"
+                },
+                "active": {
+                    "type": "boolean",
+                    "example": true,
+                    "default": true
+                }
+            }
+        },
+        "business": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "userId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "name": {
+                    "type": "string",
+                    "example": "Business Name"
+                },
+                "address": {
+                    "type": "string",
+                    "example": "Business address."
+                },
+                "city": {
+                    "type": "string",
+                    "example": "City"
+                },
+                "state": {
+                    "type": "string",
+                    "example": "State"
+                },
+                "zipCode": {
+                    "type": "string",
+                    "example": "12345"
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "example": "0987654321"
+                },
+                "merchantId": {
+                    "type": "string",
+                    "example": "12341"
+                },
+                "needsRegions": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "statementDescriptor": {
+                    "type": "string",
+                    "example": "TRYCENTS.COM"
+                }
+            }
+        },
+        "currentUserDetails": {
+            "type": "object",
+            "description": "Current user details",
+            "properties": {
+                "userId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "Cents Team"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Testing"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "gilli@trycents.com"
+                },
+                "isGlobalVerified": {
+                    "type": "boolean",
+                    "example": "true"
+                },
+                "intercomHash": {
+                    "type": "string",
+                    "example": "8b4197dd8c97d83d5a0e85bddf486237e76a5"
+                },
+                "uuid": {
+                    "type": "string",
+                    "example": "01f4bbaa-cb2-944894517234"
+                },
+                "business": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "Make Cents"
+                        },
+                        "uuid": {
+                            "type": "string",
+                            "example": "bc060a88-9395-48be"
+                        }
+                    }
+                }
+            }
+        },
+        "invoicingOrderDetails": {
+            "type": "object",
+            "description": "Invoicing Order response",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "example": "true"
+                },
+                "orders": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "Invoice Number": {
+                                "type": "string",
+                                "description": "always empty",
+                                "example": ""
+                            },
+                            "Customer Name": {
+                                "type": "string",
+                                "example": "Tom Cat"
+                            },
+                            "Invoice Date": {
+                                "type": "string",
+                                "description": "contains today date",
+                                "example": "08/18/22"
+                            },
+                            "Due Date": {
+                                "type": "string",
+                                "description": "always empty",
+                                "example": ""
+                            },
+                            "Item": {
+                                "type": "string",
+                                "description": "always contains \"Services\" value",
+                                "example": "Services"
+                            },
+                            "Item Description": {
+                                "type": "string",
+                                "description": "order code",
+                                "example": "DWF-1453"
+                            },
+                            "Service Date": {
+                                "type": "string",
+                                "description": "Intake Date for Order",
+                                "example": "05/12/22"
+                            },
+                            "Item Amount": {
+                                "type": "number",
+                                "description": "Order Total",
+                                "example": 10.99
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "signIn": {
+            "type": "object",
+            "description": "Sign in response",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "example": "true"
+                },
+                "user": {
+                    "type": "object",
+                    "properties": {
+                        "userId": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "firstName": {
+                            "type": "string",
+                            "example": "Cents Team"
+                        },
+                        "lastName": {
+                            "type": "string",
+                            "example": "Testing"
+                        },
+                        "email": {
+                            "type": "string",
+                            "example": "gilli@trycents.com"
+                        },
+                        "intercomHash": {
+                            "type": "string",
+                            "example": "8b4197dd8c97d83d5a0e85bddf486237e76a5"
+                        },
+                        "uuid": {
+                            "type": "string",
+                            "example": "01f4bbaa-cb2-944894517234"
+                        },
+                        "isGlobalVerified": {
+                            "type": "boolean",
+                            "example": "true"
+                        },
+                        "roleId": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "roleName": {
+                            "type": "string",
+                            "example": "owner"
+                        },
+                        "teamMemberId": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "token": {
+                            "type": "string",
+                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9"
+                        }
+                    }
+                },
+                "business": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "Make Cents"
+                        },
+                        "uuid": {
+                            "type": "string",
+                            "example": "bc060a88-9395-48be"
+                        }
+                    }
+                }
+            }
+        },
+        "serviceOrder": {
+            "type": "object",
+            "properties": {
+                "activityLog": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "balanceDue": {
+                    "type": "integer"
+                },
+                "completedAt": {
+                    "type": "string"
+                },
+                "convenienceFee": {
+                    "type": "integer"
+                },
+                "convenienceFeeId": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "creditAmount": {
+                    "type": "integer"
+                },
+                "employeeCode": {
+                    "type": "integer"
+                },
+                "hasDryCleaning": {
+                    "type": "boolean"
+                },
+                "hubId": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "isAdjusted": {
+                    "type": "boolean"
+                },
+                "isBagTrackingEnabled": {
+                    "type": "boolean"
+                },
+                "isProcessedAtHub": {
+                    "type": "boolean"
+                },
+                "netOrderTotal": {
+                    "type": "integer"
+                },
+                "notes": {
+                    "type": "string"
+                },
+                "notificationLogs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "order": {
+                    "type": "object"
+                },
+                "orderCode": {
+                    "type": "string"
+                },
+                "orderItems": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "orderTotal": {
+                    "type": "integer"
+                },
+                "orderType": {
+                    "type": "string",
+                    "example": "SERVICE"
+                },
+                "paymentStatus": {
+                    "type": "string",
+                    "example": "BALANCE_DUE"
+                },
+                "paymentTiming": {
+                    "type": "string",
+                    "example": "PRE-PAY"
+                },
+                "paymentToken": {
+                    "type": "string"
+                },
+                "pickupDeliveryFee": {
+                    "type": "integer"
+                },
+                "pickupDeliveryTip": {
+                    "type": "integer"
+                },
+                "placedAt": {
+                    "type": "string",
+                    "example": "2022-07-22T13:22:10.555Z"
+                },
+                "promotionAmount": {
+                    "type": "integer"
+                },
+                "promotionId": {
+                    "type": "integer"
+                },
+                "rack": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "integer"
+                },
+                "recurringDiscountInCents": {
+                    "type": "integer"
+                },
+                "refundableAmount": {
+                    "type": "integer"
+                },
+                "returnDeliveryFee": {
+                    "type": "integer"
+                },
+                "returnDeliveryTip": {
+                    "type": "integer"
+                },
+                "returnMethod": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string",
+                    "example": "SUBMITTED"
+                },
+                "store": {
+                    "type": "object"
+                },
+                "storeCustomer": {
+                    "type": "object"
+                },
+                "storeCustomerId": {
+                    "type": "integer"
+                },
+                "storeId": {
+                    "type": "integer"
+                },
+                "taxAmountInCents": {
+                    "type": "integer"
+                },
+                "tier": {
+                    "type": "object"
+                },
+                "tierId": {
+                    "type": "integer"
+                },
+                "tipAmount": {
+                    "type": "integer"
+                },
+                "tipOption": {
+                    "type": "string"
+                },
+                "turnAroundInHours": {
+                    "type": "integer"
+                },
+                "turnAroundInHoursSetManually": {
+                    "type": "boolean"
+                },
+                "updatedAt": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "integer"
+                },
+                "uuid": {
+                    "type": "string"
+                },
+                "weightLogs": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "paymentListResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "example": "true"
+                },
+                "total": {
+                    "type": "integer",
+                    "example": "16543"
+                },
+                "payments": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "createdAt": {
+                                "type": "string",
+                                "example": "2022-06-15T10:10:59.668Z"
+                            },
+                            "id": {
+                                "type": "integer",
+                                "example": 1
+                            },
+                            "paymentProcessor": {
+                                "type": "string",
+                                "example": "stripe"
+                            },
+                            "paymentTiming": {
+                                "type": "string",
+                                "example": "POST-PAY"
+                            },
+                            "status": {
+                                "type": "string",
+                                "example": "requires_confirmation"
+                            },
+                            "storeName": {
+                                "type": "string",
+                                "example": "Pearl Street Diner, 40 N Pearl St, Albany, NY, 122"
+                            },
+                            "totalAmount": {
+                                "type": "string",
+                                "example": "$150.00"
+                            },
+                            "orderCode": {
+                                "type": "string",
+                                "example": "5000"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "paymentDetails": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "serviceOrderId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "customerId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "storeId": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "status": {
+                    "type": "string",
+                    "example": "requires_confirmation"
+                },
+                "totalAmount": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "transactionFee": {
+                    "type": "integer",
+                    "example": 1
+                },
+                "tax": {
+                    "type": "integer",
+                    "example": 0
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2022-06-15T10:10:59.668Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2022-06-15T10:10:59.668Z"
+                },
+                "paymentToken": {
+                    "type": "string",
+                    "example": "pi_3LUnWtCQ"
+                },
+                "stripeClientSecret": {
+                    "type": "string",
+                    "example": "pi_3LAtBgGuj5YLpJjF0VUnWtCQ_se"
+                },
+                "currency": {
+                    "type": "string",
+                    "example": "usd"
+                },
+                "destinationAccount": {
+                    "type": "string",
+                    "example": "acct_DG5WS6"
+                },
+                "paymentProcessor": {
+                    "type": "string",
+                    "example": "stripe"
+                },
+                "appliedAmount": {
+                    "type": "integer",
+                    "example": 14
+                },
+                "unappliedAmount": {
+                    "type": "integer",
+                    "example": 2
+                },
+                "esdReceiptNumber": {
+                    "type": "integer",
+                    "example": 0
+                },
+                "orderId": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "storeCustomerId": {
+                    "type": "integer",
+                    "example": 10
+                },
+                "parentId": {
+                    "type": "integer",
+                    "example": null
+                },
+                "changeDue": {
+                    "type": "integer",
+                    "example": 0
+                },
+                "paymentRefunds": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "order": {
+                    "type": "object"
+                }
+            }
+        },
+        "paymentDetailsResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "example": "true"
+                },
+                "payment": {
+                    "$ref": "#/definitions/paymentDetails"
+
+                }
+            }
+        },
+        "machineModelProgrammingResponse": {
+            "type": "object",
+            "description": "Machine Model, Programming Device's API response",
+            "properties": {
+                "machineFeature": {
+                    "$ref": "#/definitions/machineFeatureApiDevices"
+                },
+                "machineModel": {
+                    "$ref": "#/definitions/machineModelApiDevices"
+                },
+                "machineProgramming": {
+                    "$ref": "#/definitions/machineProgrammingApiDevices"
+                }
+            }
+        },
+        "machineFeatureApiDevices": {
+            "type": "object",
+            "description": "Machine Feature Device's API response",
+            "properties": {
+                "PennyID": {
+                    "type": "string",
+                    "format": "mac address",
+                    "example": "00:ff:55:44"
+                },
+                "LaundryMachineID": {
+                    "type": "string",
+                    "format": "integer",
+                    "example": 34
+                },
+                "LMID": {
+                    "type": "string",
+                    "format": "integer",
+                    "example": 34
+                },
+                "LaundryMachineType": {
+                    "type": "string",
+                    "enum": ["SERIAL", "PULSE"],
+                    "example": "PULSE"
+                },
+                "LaundryMachineModel": {
+                    "type": "object",
+                    "properties": {
+                        "Model": {
+                            "type": "string",
+                            "example": "ACA H7 Topload"
+                        },
+                        "Washer_enable": {
+                            "type": "string",
+                            "format": "integer",
+                            "example": "1",
+                            "description": "For dryers '0', for washers '1'"
+                        },
+                        "CycleTime": {
+                            "type": "string",
+                            "format": "integer",
+                            "description": "For dryers only",
+                            "example": "300"
+                        }
+                    }
+                }
+            }
+        },
+        "machineModelApiDevices": {
+            "type": "object",
+            "description": "Machine Model Device's API response",
+            "properties": {
+                "PennyID": {
+                    "type": "string",
+                    "format": "mac address",
+                    "example": "00:ff:55:44"
+                },
+                "LaundryMachineID": {
+                    "type": "string",
+                    "format": "integer",
+                    "example": 34
+                },
+                "LMID": {
+                    "type": "string",
+                    "format": "integer",
+                    "example": 34
+                },
+                "LMManufacturer": {
+                    "type": "string",
+                    "example": "LG"
+                },
+                "LMControlType": {
+                    "type": "string"
+                },
+                "LMControlTierModel": {
+                    "type": "string"
+                },
+                "LMSize": {
+                    "type": "string",
+                    "example": "15lb"
+                },
+                "LMControlSerial": {
+                    "type": "string"
+                },
+                "LMSerial": {
+                    "type": "string",
+                    "description": "Serial manufacture number",
+                    "example": "ACANJD9909809-XXX0-GEN-99"
+                },
+                "LMTierType": {
+                    "type": "string"
+                }
+            }
+        },
+        "machineProgrammingApiDevices": {
+            "type": "object",
+            "description": "Machine Programming Device API response with prices",
+            "properties": {
+                "PennyID": {
+                    "type": "string",
+                    "format": "mac address",
+                    "example": "00:ff:55:44"
+                },
+                "LaundryMachineID": {
+                    "type": "string",
+                    "format": "integer",
+                    "example": 34
+                },
+                "LMID": {
+                    "type": "string",
+                    "format": "integer",
+                    "example": 34
+                },
+                "MachineType": {
+                    "type": "string",
+                    "example": "ACA H7 Topload"
+                },
+                "MachineModel": {
+                    "type": "string",
+                    "example": "A11"
+                },
+                "DeviceName": {
+                    "type": "string",
+                    "example": "W-46",
+                    "description": "W-xxxxxx for washers, D-xxxxxx for dryers"
+                },
+                "DeviceLocation": {
+                    "type": "string",
+                    "example": "3672, Skco Avenu"
+                },
+                "MachineVendPrices": {
+                    "type": "object",
+                    "properties": {
+                        "BaseCyclePrices": {
+                            "type": "object",
+                            "format": "dictionary",
+                            "description": "Dictionary type, with dynamically options of keys/values depending on machine model",
+                            "example": {
+                                "Normal Hot": "0.25",
+                                "Normal Warm": "0.75"
+                            }
+                        },
+                        "ModifierCyclePrices": {
+                            "type": "object",
+                            "format": "dictionary",
+                            "description": "Dictionary type, with dynamically options of keys/values depending on machine model",
+                            "example": {
+                                "Light": "0.25",
+                                "Deluxe": "0.75"
+                            }
+                        }
+                    }
+                },
+                "TopoffData": {
+                    "type": "object",
+                    "description": "Only for dryers to add top off time",
+                    "properties": {
+                        "TopOff_price": {
+                            "type": "string",
+                            "format": "float",
+                            "example": "0.75",
+                            "description": "value of price rounded to a quarter of a dollar"
+                        },
+                        "TopOff_Time": {
+                            "type": "string",
+                            "format": "integer",
+                            "example": "600",
+                            "description": "time in seconds"
+                        }
+                    }
+                },
+                "TopoffData_fullCycle": {
+                    "type": "object",
+                    "description": "Only for dryers to add top off time",
+                    "properties": {
+                        "TopOff_price": {
+                            "type": "string",
+                            "format": "float",
+                            "example": "0.75",
+                            "description": "value of price rounded to a quarter of a dollar"
+                        },
+                        "TopOff_Time": {
+                            "type": "string",
+                            "format": "integer",
+                            "example": "600",
+                            "description": "time in seconds"
+                        }
+                    }
+                }
+            }
+        },
+        "machineCreateResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean",
+                    "example": true
+                },
+                "machine": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "example": 34
+                        },
+                        "storeId": {
+                            "type": "integer",
+                            "example": 64
+                        },
+                        "modelId": {
+                            "type": "integer",
+                            "example": 89
+                        },
+                        "name": {
+                            "type": "string",
+                            "example": "Afrodita",
+                            "minLength": 1,
+                            "maxLength": 8,
+                            "description": "Machine's name is unique for a store"
+                        },
+                        "serialNumber": {
+                            "type": "string",
+                            "example": "747jdjhe84"
+                        },
+                        "isActive": {
+                            "type": "boolean",
+                            "example": true
+                        },
+                        "createdAt": {
+                            "type": "string",
+                            "format": "timestamp",
+                            "example": "2022-06-24T09:39:17.332Z"
+                        },
+                        "updatedAt": {
+                            "type": "string",
+                            "format": "timestamp",
+                            "example": "2022-06-24T09:39:17.332Z"
+                        },
+                        "turnTimeInMinutes": {
+                            "type": ["integer", "null"],
+                            "minimum": 0,
+                            "description": "For DRYERS only, for WASHERS will be null"
+                        },
+                        "origin": {
+                            "type": "string",
+                            "example": "BUSINESS_MANAGER"
+                        },
+                        "userId": {
+                            "type": "integer",
+                            "example": 46
+                        }
+                    }
+                }
+            }
+        },
+        "createMachineByDevice": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Afrodita",
+                    "minLength": 1,
+                    "maxLength": 8,
+                    "description": "Unique in a single store"
+                }
+            }
+        },
+        "createNetworkedMachineByExisting": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "Afrodita",
+                    "minLength": 1,
+                    "maxLength": 8,
+                    "description": "Unique in a single store"
+                },
+                "deviceId": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "example": 1,
+                    "description": "Id of an unpaired online device"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Add jira link here",
+        "url": "http://swagger.io"
+    }
+}

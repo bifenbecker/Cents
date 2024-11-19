@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeliveryScheduledPopup Component When deliveryProvider is ON DEMAND should match snaphot 1`] = `
+<div>
+  <div
+    style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 99999999;"
+  >
+    <div
+      style="position: fixed; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; opacity: 1; transition: opacity 0.2s ease-out; background: white;"
+    />
+    <div
+      style="position: fixed; z-index: 1; box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); background: white; left: 25%; top: 0px; width: 50%; height: 768px; transition: left 0.2s ease-out,top 0.2s ease-out,width 0.2s ease-out,height 0.2s ease-out;"
+    >
+      <div
+        style="position: absolute; z-index: 2; opacity: 0; top: -5px; height: 10px; left: 0px; width: 100%; cursor: row-resize;"
+      />
+      <div
+        style="width: 100%; height: 100%; overflow: auto;"
+      >
+        <div
+          class="sc-bczRLJ sc-gsnTZi hootTa hzPtvw"
+        >
+          <div
+            class="sc-bczRLJ sc-gsnTZi guItVf hzPtvw"
+          >
+            <div
+              class="sc-bczRLJ haqESh"
+              color="CENTS_BLUE"
+              font-size="18px"
+              font-weight="700"
+            >
+              Your laundry is ready!
+            </div>
+            <div
+              class="sc-bczRLJ sc-gsnTZi JBpjR hzPtvw"
+            >
+              <div
+                class="sc-bczRLJ sc-gsnTZi iIJBxE hzPtvw"
+              >
+                <div
+                  class="sc-bczRLJ eVqmpI"
+                  color="BLACK"
+                  font-size="24px"
+                  font-weight="700"
+                >
+                  Delivery scheduled for
+                </div>
+                <div
+                  class="sc-bczRLJ eVqmpI"
+                  color="BLACK"
+                  font-size="24px"
+                  font-weight="700"
+                >
+                  08:00AM
+                   - 
+                  08:30AM
+                </div>
+                <div
+                  class="sc-bczRLJ fhewhz"
+                  color="BLACK"
+                  font-family="secondary"
+                  font-size="18px"
+                >
+                  Friday
+                  , 
+                  April
+                   
+                  22
+                </div>
+              </div>
+              <div
+                class="sc-bczRLJ kYYatg"
+              >
+                <img
+                  alt="Car Image"
+                  class="sc-bczRLJ iQjTFr"
+                  src="Delivery_Car_Half.svg"
+                />
+              </div>
+            </div>
+            <div
+              class="sc-bczRLJ dXmDhD"
+              color="CENTS_BLUE"
+              font-size="18px"
+              font-weight="500"
+            >
+              See my delivery options
+            </div>
+          </div>
+          <div
+            class="sc-bczRLJ sc-gsnTZi kpIoXT hzPtvw"
+          >
+            <button
+              class="sc-bczRLJ fgqTWn"
+            >
+              got it
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DeliveryScheduledPopup Component When deliveryProvider is OWN DRIVER should match snaphot 1`] = `
+<div>
+  <div
+    style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 99999999;"
+  >
+    <div
+      style="position: fixed; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; opacity: 1; transition: opacity 0.2s ease-out; background: white;"
+    />
+    <div
+      style="position: fixed; z-index: 1; box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); background: white; left: 25%; top: 0px; width: 50%; height: 768px; transition: left 0.2s ease-out,top 0.2s ease-out,width 0.2s ease-out,height 0.2s ease-out;"
+    >
+      <div
+        style="position: absolute; z-index: 2; opacity: 0; top: -5px; height: 10px; left: 0px; width: 100%; cursor: row-resize;"
+      />
+      <div
+        style="width: 100%; height: 100%; overflow: auto;"
+      >
+        <div
+          class="sc-bczRLJ sc-gsnTZi hootTa hzPtvw"
+        >
+          <div
+            class="sc-bczRLJ sc-gsnTZi guItVf hzPtvw"
+          >
+            <div
+              class="sc-bczRLJ haqESh"
+              color="CENTS_BLUE"
+              font-size="18px"
+              font-weight="700"
+            >
+              Your laundry is ready!
+            </div>
+            <div
+              class="sc-bczRLJ sc-gsnTZi JBpjR hzPtvw"
+            >
+              <div
+                class="sc-bczRLJ sc-gsnTZi iIJBxE hzPtvw"
+              >
+                <div
+                  class="sc-bczRLJ eVqmpI"
+                  color="BLACK"
+                  font-size="24px"
+                  font-weight="700"
+                >
+                  Delivery scheduled for
+                </div>
+                <div
+                  class="sc-bczRLJ eVqmpI"
+                  color="BLACK"
+                  font-size="24px"
+                  font-weight="700"
+                >
+                  09:00AM
+                   - 
+                  02:00PM
+                </div>
+                <div
+                  class="sc-bczRLJ fhewhz"
+                  color="BLACK"
+                  font-family="secondary"
+                  font-size="18px"
+                >
+                  Thursday
+                  , 
+                  April
+                   
+                  21
+                </div>
+              </div>
+              <div
+                class="sc-bczRLJ kYYatg"
+              >
+                <img
+                  alt="Van Image"
+                  class="sc-bczRLJ iQjTFr"
+                  src="Blue_Van_Half.svg"
+                />
+              </div>
+            </div>
+            <div
+              class="sc-bczRLJ dXmDhD"
+              color="CENTS_BLUE"
+              font-size="18px"
+              font-weight="500"
+            >
+              See my delivery options
+            </div>
+          </div>
+          <div
+            class="sc-bczRLJ sc-gsnTZi kpIoXT hzPtvw"
+          >
+            <button
+              class="sc-bczRLJ fgqTWn"
+            >
+              got it
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

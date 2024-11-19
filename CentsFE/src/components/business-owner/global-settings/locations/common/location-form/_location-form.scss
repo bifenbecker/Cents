@@ -1,0 +1,14 @@
+.location-form-screen-content {
+  .location-form-container {
+    .district-select {
+      grid-column: 1 / span 2;
+      position: relative;
+
+      .districts-spinner {
+        position: absolute;
+        top: calc(50% - 8px);
+        right: -26px;
+      }
+    }
+  }
+}

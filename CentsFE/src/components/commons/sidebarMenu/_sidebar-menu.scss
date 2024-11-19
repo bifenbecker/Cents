@@ -1,0 +1,41 @@
+.sidebar-menu {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: $color-bg-grey;
+    padding-top: 150px;
+    .sidebar.nav {
+        .nav-item {
+            width: 100%;
+
+            .nav-link {
+                @include flex(center, center);
+                width: 100%;
+                padding: 10px 5px;
+                border-left: 2px solid $color-theme;
+
+                span {
+                    @include flex(center, center);
+                    width: 25px;
+                    height: 25px;
+                    background-color: $color-theme;
+
+                    * {
+                        color: $white;
+                    }
+                }
+
+                &:hover,
+                &:focus,
+                &:active,
+                &.active {
+                    background-color: rgba($color-theme, 0.4);
+                    border-color: transparent;
+                }
+            }
+        }
+    }
+}

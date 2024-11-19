@@ -1,0 +1,26 @@
+.pickup-delivery-multi-select-dropdown {
+  width: 165px;
+
+  .suffix {
+    cursor: default;
+  }
+}
+
+.pickup-delivery-multi-select-dropdown input {
+  cursor: default;
+}
+
+.pickup-delivery-dropdown {
+  width: 165px !important;
+  padding-right: 10px;
+  left: 4px !important;
+
+  .option-with-checkbox {
+    padding: 4px 10px !important;
+  }
+}
+
+.error {
+  border-color: $color-error;
+  box-shadow: 0 0 1px 0.5px $color-error;
+}

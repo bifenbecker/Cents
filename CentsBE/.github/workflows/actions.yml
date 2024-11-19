@@ -1,0 +1,100 @@
+name: Run unit tests
+on: push
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: '14'
+                  check-latest: true
+            - run: npm ci
+            - run: npm run lint
+    test:
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        strategy:
+            matrix:
+                test_dir: ['unit', 'integration']
+        services:
+            postgres_db:
+                image: postgres:12
+                ports: ['5432:5432']
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: postgres
+                options: >-
+                    --health-cmd pg_isready --health-interval 10s --health-timeout 5s
+                    --health-retries 5
+            mongo_db:
+                image: mongo:5.0.7-focal
+                ports: ['27017:27017']
+        env:
+            DB_USERNAME: postgres
+            DB_PASSWORD: postgres
+            DB_HOST: localhost
+            DB_NAME: cents_test
+            JWT_SECRET_TOKEN: test
+            TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+            TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+            TWILIO_phoneNumber: ${{ secrets.TWILIO_PHONENUMBER}}
+            ELASTICSEARCH_HOST: http://localhost:9200
+            MONGODB_URL: mongodb://localhost:27017
+            REDIS_URL: redis://localhost:6379/0
+            SCANDIT_KEY: n0bp6f62OgeecULZCsuGzyoFcJVkRPCaYUuFvZcP8vphNYubh3Gk8nXJbA2A5zcYdL0eeyjjoDvVW8mTlDQWTKVco5NxSOBelXqhHcthyQB4OxAbwXfiE6JE3JYd5HZZHc8Lc7a6PuH0JTznHytsULqugAqROSX5qN22vuWLMgRg0DwtalMoPdFLCfQ5Dk2EJzQmo76IBrAj6eRbZhTFV8K8QwdaiCQFuWvnWOSvPjJuXhAKAjU58o2YXG7Us00nOtTjVzQaXA4o2byyitDH04kCOLvMDiEgkA4eO4tEwsjBzoFwTeB8yUZUTLIW0puWv6rjyGiMfHAptutxhzWoCCcSwFOjHaBJpqMbAeCD6NPuVF24dLXIfkL7lTnF0VRwTKxEAdjAKLHPRPNP62khYunbhPhs8sFufM94B5pysXrRSQeUAqv552B7GGWIqmTGR1FpQ1fO236rWHtDniY5f4xl3zhsFeiAUQUG4gzRcBzUpJpoQhTKZ73kdLUX3SdZCd5Xlz62dd4PBBPKLmeJJB05HDl4XZGsbEK6fqQTwND0xYY11Sf8LFIype5EaYfpFFbMWt0oDjZu5BfsBdbwLKGDPlq7t08P76ULUoKQwoMM2JKVjja91BoFx5DxOL9ToahicCMnUbhTrbIEbBWkhs6B553PE2Vlu6XKKXYX5Tn5NJoCL8zEt1hb2YVPmk4AV84IBMa8adfeDtjnUW0EFdmrntfZtamandeSBYQy2rPj654KX1lwrmkjhsCREycb5LtTXJxl8fx4hhKy5GUXcCVpM8BLOmEZpWUUx4ax2HiV8VBvXgapDEwsGw==
+        steps:
+            - name: Configure sysctl limits
+              run: |
+                  sudo swapoff -a
+                  sudo sysctl -w vm.swappiness=1
+                  sudo sysctl -w fs.file-max=262144
+                  sudo sysctl -w vm.max_map_count=262144
+            - uses: getong/elasticsearch-action@v1.2
+              with:
+                  elasticsearch version: '7.6.1'
+                  host port: 9200
+                  container port: 9200
+                  host node port: 9300
+                  node port: 9300
+                  discovery type: 'single-node'
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: '14'
+                  check-latest: true
+            - name: Start Redis
+              uses: supercharge/redis-github-action@1.2.0
+              with:
+                  redis-version: ${{ matrix.redis-version }}
+            - run: npm ci
+            - run: npm run test-setup
+            - name: 'Run unit tests and upload coverage results'
+              run: |
+                  npm run ci-test -- --spec "test/${{ matrix.test_dir }}" \
+                  --reporter "mocha-simple-html-reporter" \
+                  --reporter-options "output=${{ matrix.test_dir }}-test-results.html"
+            - uses: actions/upload-artifact@v3
+              if: always()
+              with:
+                  name: ${{ matrix.test_dir }}-test-results
+                  path: |
+                      ./${{ matrix.test_dir }}-test-results.html
+                      ./coverage/lcov.info
+    upload-coverage-to-codacy:
+        needs: test
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+        env:
+            CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/download-artifact@v3
+              with:
+                  path: test-results
+            - name: Upload test coverage reports
+              run: |
+                  bash <(curl -Ls https://coverage.codacy.com/get.sh) \
+                         report -r test-results/integration-test-results/coverage/lcov.info \
+                         report -r test-results/unit-test-results/coverage/lcov.info;

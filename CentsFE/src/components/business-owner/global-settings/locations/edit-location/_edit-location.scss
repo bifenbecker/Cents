@@ -1,0 +1,17 @@
+.locations-card-header {
+  &.edit-location {
+    position: relative;
+    border-bottom: none !important;
+    > img {
+      cursor: pointer;
+      position: absolute;
+      right: 30px;
+      top: 30px;
+    }
+  }
+}
+.edit-location-header {
+  margin-bottom: 0;
+  text-align: center;
+  font-weight: 450;
+}

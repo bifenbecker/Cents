@@ -1,0 +1,98 @@
+.icon-date-picker{
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  padding: 6px 13px;
+  position: relative;
+  left: -13px;
+  width: 205px;
+  height: 36px;
+  border: 1px solid transparent;
+  transition: width ease 0.2s;
+
+  &.hasEndDate{
+    width: 255px;
+  }
+
+  &.open, &:hover{
+    border: 1px solid black;
+    border-radius: 30px;
+    .custom-indicator{
+      opacity: 1;
+    }
+  }
+
+  .icon{
+    flex: 0;
+    margin-right: 7px;
+  }
+
+  .custom-indicator{
+    margin: 0 0 0 5px;
+    transition: transform 0.2s ease;
+    opacity: 0;
+  }
+
+  &.open{
+    .custom-indicator{
+      transform: rotate(90deg);
+    }
+  }
+
+  .calendar-container{
+    position: absolute;
+    z-index: 10;
+    top: calc(100% + 10px);
+    min-height: 390px;
+
+    .DayPicker{
+      &:active{
+        box-shadow: 0 2px 6px rgba(0,0,0,.05), 0 0 0 1px rgba(0,0,0,.07) !important;
+      }
+    }
+
+    .DayPickerKeyboardShortcuts_buttonReset{
+      display: none;
+    }
+
+    .CalendarDay__selected{
+      background: $color-theme;
+      border-color: $color-theme;
+    }
+
+    .CalendarDay__selected_span, .CalendarDay__hovered_span{
+      background: $dropdown-item-hover;
+      border-color: $light-color-theme;
+      color: $color-theme;
+    }
+    
+    .calendar-footer{
+      width: 100%;
+      background: white;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      top: -2px;
+      position: relative;
+      box-shadow: 0 2px 6px rgba(0,0,0,.05), 0 0 0 1px rgba(0,0,0,.07) !important;
+
+      .toggle-switch{
+        margin-right: 10px;
+      }
+
+      p{
+        margin: 0;
+        font-size: 14px;
+      }
+    }
+  }
+
+
+  .date-text{
+    margin: 0;
+    flex-grow: 1;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}

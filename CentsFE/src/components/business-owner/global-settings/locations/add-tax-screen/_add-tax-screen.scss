@@ -1,0 +1,41 @@
+.locations-card-content {
+  &.add-tax-content {
+    .add-taxrate-form {
+      height: calc(100% - 100px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .tax-rate-heading {
+        margin-bottom: 15px;
+      }
+      .tax-rate-input {
+        margin: 10px 0px;
+      }
+      .text-field-with-icons {
+        display: flex;
+        .spacer {
+          height: auto;
+          width: 25px;
+        }
+      }
+    }
+    .add-taxrate-ui-footer {
+      height: 100px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 30px;
+      border-top: 1px solid $fifty-percent-grey;
+      .cancel-text {
+        font-size: 12px;
+        text-decoration: underline;
+        margin-right: 15px;
+        cursor: pointer;
+      }
+      .save-button {
+        min-height: 0px;
+      }
+    }
+  }
+}

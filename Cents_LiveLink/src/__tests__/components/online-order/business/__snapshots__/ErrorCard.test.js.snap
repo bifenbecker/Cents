@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing ErrorCard Component Test errorCard UI snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="sc-bczRLJ hhoFwm"
+      >
+        <div
+          class="sc-bczRLJ sc-gsnTZi bNSgyd hzPtvw"
+          height="92px"
+        >
+          <div
+            class="sc-bczRLJ sc-gsnTZi hsphLw hzPtvw"
+            font-size="18px"
+          >
+            <div
+              class="sc-bczRLJ eQobRH"
+              font-size="18px"
+            >
+              Sorry, we can't pick-up from this address :(
+            </div>
+          </div>
+          <div
+            class="sc-bczRLJ sc-gsnTZi hdFran hzPtvw"
+          >
+            <img
+              class="sc-bczRLJ kHAieo"
+              height="80%"
+              src="Pile_Of_Clothes.svg"
+            />
+          </div>
+        </div>
+        <div
+          class="sc-bczRLJ sc-gsnTZi evAOmX hzPtvw"
+          width="100%"
+        >
+          <div
+            class="sc-bczRLJ fjmcRP"
+            font-family="secondary"
+          >
+            Your address is not in our delivery service area. If you'd like to drop off your laundry at our laundromat, we'll be happy to serve you!
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="sc-bczRLJ hhoFwm"
+    >
+      <div
+        class="sc-bczRLJ sc-gsnTZi bNSgyd hzPtvw"
+        height="92px"
+      >
+        <div
+          class="sc-bczRLJ sc-gsnTZi hsphLw hzPtvw"
+          font-size="18px"
+        >
+          <div
+            class="sc-bczRLJ eQobRH"
+            font-size="18px"
+          >
+            Sorry, we can't pick-up from this address :(
+          </div>
+        </div>
+        <div
+          class="sc-bczRLJ sc-gsnTZi hdFran hzPtvw"
+        >
+          <img
+            class="sc-bczRLJ kHAieo"
+            height="80%"
+            src="Pile_Of_Clothes.svg"
+          />
+        </div>
+      </div>
+      <div
+        class="sc-bczRLJ sc-gsnTZi evAOmX hzPtvw"
+        width="100%"
+      >
+        <div
+          class="sc-bczRLJ fjmcRP"
+          font-family="secondary"
+        >
+          Your address is not in our delivery service area. If you'd like to drop off your laundry at our laundromat, we'll be happy to serve you!
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

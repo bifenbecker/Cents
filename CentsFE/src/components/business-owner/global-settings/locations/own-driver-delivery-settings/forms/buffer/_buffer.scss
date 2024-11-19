@@ -1,0 +1,25 @@
+.pill-container {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  margin-top: 5%;
+}
+
+.custom-turnaround-input {
+  margin-top: 10%;
+}
+
+.custom-turnaround-error {
+  color: $color-error;
+  font-size: 12px;
+  margin-top: 3%;
+}
+
+.custom-turnaround-input-container {
+  width: 100%;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}

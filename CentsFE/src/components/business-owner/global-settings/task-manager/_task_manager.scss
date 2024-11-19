@@ -1,0 +1,331 @@
+.bo-tasks-layout-container{
+    .bo-global-settings-content-left-column{
+        .locations-card-container{
+            .locations-card-content{
+                // padding-top: 10px;
+                .error-message{
+                    padding: 5px 10px 5px 25px;
+                }
+                .common-list-item{
+                    .checkbox-circle-icon{
+                        margin-right: 10px;
+                    }
+                    p{
+                        margin: 0px;
+                        font-size: 14px;
+                    }
+
+                    &.new-task{
+                        p{
+                            font-size: 22px !important;
+                            width: 18px !important;
+                            text-align: center !important;
+                            font-weight: 100;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .bo-global-settings-content-right-column{
+        .locations-card-container.info-card-container{
+            .locations-card-content{
+                .section{
+                    padding: 15px 30px;
+                    border-bottom: 1px solid $fifty-percent-grey;
+                    &.no-border{
+                        border-bottom: 0px;
+                        margin: 0px 20px;
+                    }
+
+                    .field-container{
+                        display: flex;
+                        align-items: center;
+                        padding: 7px 0;
+                        min-height: 49px;
+                        margin: 0px 20px;
+                        
+                        &.clickable{
+                            border: 1px solid transparent;
+                            border-radius: 50px;
+                            width: 250px;
+                            padding: 7px 20px;
+                            min-height: 0;
+                            margin-bottom: 5px;
+                            position: relative;
+                            left: -20px;
+                            cursor: pointer;
+                            user-select: none;
+
+                            .tasks-assign-card{
+                                display: flex;
+                                flex-direction: column;
+                                width: 200px;
+                                max-height: 300px;
+                                min-height: 250px;
+                                position: absolute;
+                                right: -85%;
+                                background: white;
+                                padding: 5px 0;
+                                z-index: 100;
+                                border-radius: 10px;
+                                box-shadow: 0 5px 10px 0px #80808082;
+                                overflow-y: auto;
+
+                                &:focus, &:active{
+                                    box-shadow: 0 5px 10px 0px #80808082 !important;
+                                }
+                                cursor: default;
+                                .header{
+                                    display: flex;
+                                    align-items: center;
+                                    border-bottom: 1px solid $fifty-percent-grey;
+                                    padding: 10px;
+                                    margin-bottom: 10px;
+
+                                    .back{
+                                        font-size: 16px;
+                                        cursor: pointer;
+                                        path{
+                                            color: $color-theme;
+                                        }
+                                    }
+
+                                    p{
+                                        color: $color-theme;
+                                        display: inline;
+
+                                        span{
+                                            color: $fifty-percent-grey;
+                                            font-style: italic;
+                                            font-size: .95em;
+                                            display: inline;
+                                        }
+                                    }
+                                }
+
+                                .common-list-item{
+                                    margin: 0;
+                                    border-bottom: 0px;
+                                    padding: 4px 10px;
+                                    p{
+                                        margin: 0px 5px;
+                                        span{
+                                            color: $fifty-percent-grey;
+                                            font-style: italic;
+                                            font-size: .90em;
+                                            display: inline;
+                                        }
+                                    }
+                                    .checkbox-circle-icon{
+                                        margin: 0 4px;
+                                        width: 18px;
+                                        flex-shrink: 0;
+                                        flex-grow: 0;
+                                    }
+
+                                    &.hover-arrow{
+                                        &:hover{
+                                            &:after{
+                                                content: ">";
+                                                display: block;
+                                                margin-left: auto;
+                                                font-family: 'Times New Roman', Times, serif;
+                                                font-size: 12px;
+                                            }
+                                        }
+                                    }
+
+                                    &:hover{
+                                        background: #EAF4FF;
+                                    }
+                                }
+                            }
+
+                            &:hover, &.active{
+                                border-color: $black;
+                                &:after{
+                                    content: ">";
+                                    display: block;
+                                    position: absolute;
+                                    right: 15px;
+                                    transform: none;
+    
+                                }
+                            }
+                        }
+
+                        img{
+                            margin-right: 7px;
+                            width: 22px;
+                        }
+
+                        p{
+                            margin: 0px 15px;
+                            font-size: 14px;
+                        }
+
+                        .task-field{
+                            input{
+                                padding-left: 5px;
+                            }
+
+                            textarea{
+                                border: 0px;
+                                width: 100%;
+                                min-height: 23px;
+                                height: 23px;
+                                max-height: 85px;
+                                font-size: 14px;
+                                padding: 1px 1px 1px 5px;
+                                resize: vertical;
+                                overflow: auto;
+                                
+                            }
+                        }
+    
+                    }
+                }
+            }
+        }
+    }
+}
+.tasks-download-button {
+    margin-left: auto;
+    margin-right: 40px;
+    cursor: pointer;
+}
+.tasks-plus-button {
+    margin-left: 0 !important;
+}
+
+.archive-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 175px;
+    width: 600px;
+
+    .button-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .button-spacing {
+            padding: 0px 8px;
+
+            .secondary-button {
+                background-color: #FFFFFF;
+                color: $color-theme;
+
+                &:hover {
+                    background-color: $color-theme;
+                    color: #FFFFFF;
+                }
+            }
+    
+            .primary-button {
+                background-color: $color-theme;
+                color: #FFFFFF;
+
+                &:hover {
+                    background-color: #FFFFFF !important;
+                    color: $color-theme;
+                }
+            }
+        }
+    }
+}
+
+.task-header-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .archive-label {
+        margin-left: 10px;
+        text-align: center;
+        line-height: 24px;
+        height: 24px;
+        width: 90px;
+        font-size: 14px;
+        border-radius: 12px;
+        background-color:$color-locations-item-selected-background;
+        color: $color-status-blue;
+        cursor: default;
+      }
+}
+
+.task-filters-row {
+    margin: 20px 44px 10px;
+    display: flex;
+    justify-content: flex-end;
+
+    div {
+        transition: 1s all ease;
+        height: 35px;
+        padding-bottom: 10px;
+        display: flex;
+    }
+
+    img {
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+    }
+
+    .task-filters-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        .filter-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .filter-row-item {
+            padding: 5px 5px 5px 30px !important;
+            font-size: 14px;
+        }
+    }
+}
+
+.popover-body {
+    text-transform: capitalize !important;
+    color: $color-locations-item !important;
+    font-size: 10px;
+    padding: 5px 5px 5px 30px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.popover-body span {
+    color: #000000;
+    text-transform: none;
+    padding-right: 6px;
+    font-size: 14px;
+}
+
+.archived-text {
+    color: $disabled-grey;
+}
+
+.task-item-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.archived-tag {
+    font-size: 10px;
+    font-weight: 500;
+}

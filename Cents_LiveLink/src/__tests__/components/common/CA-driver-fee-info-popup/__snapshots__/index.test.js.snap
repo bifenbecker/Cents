@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CADriverFeeInfoPopup Component should match snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body
+    style="overflow: hidden;"
+  >
+    <div>
+      <div
+        style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 99999999;"
+      >
+        <div
+          style="position: fixed; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; opacity: 1; transition: opacity 0.2s ease-out; background: white;"
+        />
+        <div
+          style="position: fixed; z-index: 1; box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); background: white; left: 25%; top: 0px; width: 50%; height: 768px; transition: left 0.2s ease-out,top 0.2s ease-out,width 0.2s ease-out,height 0.2s ease-out;"
+        >
+          <div
+            style="position: absolute; z-index: 2; opacity: 0; top: -5px; height: 10px; left: 0px; width: 100%; cursor: row-resize;"
+          />
+          <div
+            style="width: 100%; height: 100%; overflow: auto;"
+          >
+            <div
+              class="sc-bczRLJ sc-gsnTZi iFtaFA hzPtvw"
+            >
+              <div
+                class="sc-bczRLJ sc-gsnTZi iIJBxE hzPtvw"
+              >
+                <div
+                  class="sc-bczRLJ cUdnpS"
+                  color="BLACK"
+                  font-size="18px"
+                  font-weight="700"
+                >
+                  What is the CA Driver Fee?
+                </div>
+                <div
+                  class="sc-bczRLJ egcaZu"
+                  color="BLACK"
+                  font-family="secondary"
+                  font-size="18px"
+                >
+                  Our on-demand delivery partner charges an additional fee each way for pickup and delivery in California. This fee helps cover benefits like health insurance and guaranteed earnings for on-demand pickup and delivery drivers.
+                </div>
+                <div
+                  class="sc-bczRLJ sc-gsnTZi eBiytq hzPtvw"
+                >
+                  <button
+                    class="sc-bczRLJ fkzSit"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 99999999;"
+    >
+      <div
+        style="position: fixed; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; opacity: 1; transition: opacity 0.2s ease-out; background: white;"
+      />
+      <div
+        style="position: fixed; z-index: 1; box-shadow: 0 0 4px rgba(0, 0, 0, 0.3); background: white; left: 25%; top: 0px; width: 50%; height: 768px; transition: left 0.2s ease-out,top 0.2s ease-out,width 0.2s ease-out,height 0.2s ease-out;"
+      >
+        <div
+          style="position: absolute; z-index: 2; opacity: 0; top: -5px; height: 10px; left: 0px; width: 100%; cursor: row-resize;"
+        />
+        <div
+          style="width: 100%; height: 100%; overflow: auto;"
+        >
+          <div
+            class="sc-bczRLJ sc-gsnTZi iFtaFA hzPtvw"
+          >
+            <div
+              class="sc-bczRLJ sc-gsnTZi iIJBxE hzPtvw"
+            >
+              <div
+                class="sc-bczRLJ cUdnpS"
+                color="BLACK"
+                font-size="18px"
+                font-weight="700"
+              >
+                What is the CA Driver Fee?
+              </div>
+              <div
+                class="sc-bczRLJ egcaZu"
+                color="BLACK"
+                font-family="secondary"
+                font-size="18px"
+              >
+                Our on-demand delivery partner charges an additional fee each way for pickup and delivery in California. This fee helps cover benefits like health insurance and guaranteed earnings for on-demand pickup and delivery drivers.
+              </div>
+              <div
+                class="sc-bczRLJ sc-gsnTZi eBiytq hzPtvw"
+              >
+                <button
+                  class="sc-bczRLJ fkzSit"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

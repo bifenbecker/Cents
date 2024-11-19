@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing PickupCard Component Test pickupcard UI snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="sc-bczRLJ fZSXOh"
+      >
+        <div
+          class="sc-bczRLJ sc-gsnTZi dnioTF hzPtvw"
+        >
+          <div
+            class="sc-bczRLJ sc-gsnTZi wLkkK hzPtvw"
+            font-size="16px,18px"
+          >
+            <div
+              class="sc-bczRLJ jITePI"
+            >
+              <img
+                class="sc-bczRLJ dBPgxL"
+                src="Icon_Delivery_Available.svg"
+                width="16px,18px"
+              />
+               We can pickup from this address!
+            </div>
+          </div>
+          <img
+            class="sc-bczRLJ cRGuKH"
+            src="Blue_Van.svg"
+            width="120px"
+          />
+        </div>
+        <div
+          class="sc-bczRLJ sc-gsnTZi jIxXay hzPtvw"
+          width="100%"
+        >
+          <button
+            class="sc-bczRLJ iElVFP"
+            font-size="16px"
+            height="48px"
+            width="100%"
+          >
+            Schedule Pickup
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="sc-bczRLJ fZSXOh"
+    >
+      <div
+        class="sc-bczRLJ sc-gsnTZi dnioTF hzPtvw"
+      >
+        <div
+          class="sc-bczRLJ sc-gsnTZi wLkkK hzPtvw"
+          font-size="16px,18px"
+        >
+          <div
+            class="sc-bczRLJ jITePI"
+          >
+            <img
+              class="sc-bczRLJ dBPgxL"
+              src="Icon_Delivery_Available.svg"
+              width="16px,18px"
+            />
+             We can pickup from this address!
+          </div>
+        </div>
+        <img
+          class="sc-bczRLJ cRGuKH"
+          src="Blue_Van.svg"
+          width="120px"
+        />
+      </div>
+      <div
+        class="sc-bczRLJ sc-gsnTZi jIxXay hzPtvw"
+        width="100%"
+      >
+        <button
+          class="sc-bczRLJ iElVFP"
+          font-size="16px"
+          height="48px"
+          width="100%"
+        >
+          Schedule Pickup
+        </button>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

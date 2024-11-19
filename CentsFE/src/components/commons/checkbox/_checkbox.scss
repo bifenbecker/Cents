@@ -1,0 +1,60 @@
+.visually-hidden {
+    //visually hide native checkbox
+    //cross-browser solution
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);    
+  }
+
+.checkbox-input {
+    display: flex;
+    align-self: center;
+    margin: 0; //reset bootstrap default label margin
+    &:not(:disabled):hover{
+        cursor: pointer;
+    }
+    .checkbox-circle-icon {
+        display: inline-block;
+        width: 18px !important;
+        height: 18px !important;
+        border-radius: 50%;
+        font-size: 18px !important;
+    }
+    input[type="checkbox"] + .checkbox-circle-icon {
+        user-select: none;
+    }
+    //checked === true, disabled === true
+    input[type="checkbox"]:not(:checked):not(:disabled) + .checkbox-circle-icon {
+        border: 1px solid $black;
+        cursor: pointer;
+    }
+    //checked === true, disabled ===false
+    input[type="checkbox"]:checked + .checkbox-circle-icon {
+        content:url("assets/images/checkbox_selected.svg");
+    }
+    //checked === false, disabled === true
+    input[type="checkbox"]:not(:checked):disabled + .checkbox-circle-icon {
+        border: 1px solid $disabled-grey;
+        cursor: not-allowed;
+    }
+    //checked === true, disabled === true
+    input[type="checkbox"]:checked:disabled + .checkbox-circle-icon {
+        content: url("assets/images/checkbox_disabled.svg");
+        cursor: not-allowed;
+    }
+    input[type="checkbox"]:focus + .checkbox-circle-icon {
+        -webkit-box-shadow: 0px 0px 1px 1px $color-theme-sec;
+        -moz-box-shadow: 0px 0px 1px 1px $color-theme-sec;
+        box-shadow: 0px 0px 1px 1px $color-theme-sec;
+    }
+    .checkbox-label {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+}

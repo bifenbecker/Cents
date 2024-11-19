@@ -1,0 +1,5 @@
+version: '3'
+
+services:
+    main-app:
+        image: ${MAIN_APP_IMAGE}

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+FILE='.git/COMMIT_EDITMSG';
+MESSAGE=$(cat "$FILE");
+
+get_ticket () {
+   # This sets the TICKET variable globally throughout this file.
+   TICKET=$(grep -o "[A-Z]\{2,7\}-[0-9]\+" <<< "$1");
+}
+
+get_ticket "$MESSAGE";
+
+# If the JIRA ticket is not in the commit message, try to get it from the branch name
+if [ -z "$TICKET" ] ;
+   then
+      BRANCH=$(git rev-parse --abbrev-ref HEAD);
+      BRANCH_TICKET=$(echo $BRANCH | cut -d '/' -f 2);
+
+      get_ticket "$BRANCH_TICKET";
+
+      if [ -z "$TICKET" ]; then
+         echo "No ticket number (ex: CDO-123) found in commit or branch. Aborting...";
+         exit 1;
+      fi
+
+      # If a ticket number is found in the branch it will be prepended to the commit msg.
+      echo "$TICKET $MESSAGE" > "$FILE";
+fi

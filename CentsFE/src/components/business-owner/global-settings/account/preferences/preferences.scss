@@ -1,0 +1,163 @@
+.preference-configurator-container {
+
+  padding: 32px 0;
+
+  .add-new-button {
+    width: 300px;
+  }
+
+  .delete-cta {
+    cursor: pointer;
+    padding: 0 16px 0 16px;
+    user-select: none;
+
+    &:hover {
+      font-weight: bolder;
+    }
+
+  }
+
+  .add-new-button {
+    margin-top: 16px;
+
+    &, &:hover {
+      border: none;
+    }
+
+    &:hover {
+      p {
+        color: $color-theme;
+        transition: color 300ms;
+      }
+    }
+
+  }
+
+  .config-section-container {
+
+    margin-bottom: 16px;
+
+    .account-settings-input {
+      min-width: 200px;
+      margin-bottom: 0;
+
+      input {
+        text-transform: capitalize;
+      }
+    }
+
+    .material-like-text-field {
+      width: auto;
+    }
+
+    .config-section-head-container {
+
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 544px;
+
+      .config-section-select {
+        cursor: pointer;
+        min-width: 170px;
+        border: 1px solid black;
+        .custom-indicator{
+          opacity: 1;
+        }
+      }
+
+    }
+
+    .options-list-container {
+      padding-top: 16px;
+      padding-left: 32px;
+      display: flex;
+      flex-direction: column;
+
+      .option-container {
+        height: 42px;
+        padding: 8px 0 8px 32px;
+        display: flex;
+        align-items: center;
+
+        .info-flag {
+          color: #B1B1B1;
+        }
+
+        .btn-make-default {
+          padding-left: 0;
+        }
+
+        .btn-make-default, .info-flag {
+          font-style: italic;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .cents-modal {
+    border-radius: 20px;
+    overflow-y: hidden;
+    max-height: 450px;
+    min-width: 450px;
+  }
+
+  .add-section-popup-container {
+    display: flex;
+    flex-direction: column;
+
+    .add-section-header {
+      padding: 32px 0;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .add-section-content {
+      max-height: 250px;
+      padding-top: 16px;
+      overflow: auto;
+    }
+
+    .add-section-error {
+      color: $color-error;
+      padding: 16px;
+      font-size: 12px;
+    }
+
+    .add-section-footer {
+      display: flex;
+      border-top: 2px solid #efefef;
+      margin-bottom: auto;
+      align-items: center;
+      justify-content: end;
+      padding: 16px 0;
+
+      button {
+        margin: 0;
+      }
+
+      .form-save-button {
+        text-transform: uppercase;
+        margin: 0 16px;
+      }
+
+      .btn-cancel {
+        color: black;
+        text-decoration: underline;
+        font-size: 12px;
+        cursor: pointer;
+        text-transform: capitalize;
+        margin: 0;
+      }
+
+    }
+
+  }
+}
+
+.no-bottom-margin {
+  margin-bottom: 0 !important;
+}

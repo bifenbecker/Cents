@@ -1,0 +1,6 @@
+{
+    "recursive": true,
+    "timeout": 99999,
+    "exit": true,
+    "file": ["test/setup/truncateDB.js", "test/setup/restoreSinon.js", "test/setup/setupMongoDB.js"]
+}

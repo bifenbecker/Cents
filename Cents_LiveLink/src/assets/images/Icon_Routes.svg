@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="26px" viewBox="0 0 18 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Icon_Routes</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ORDER-FORM" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="DRIVER_Drop-Off-&amp;-Pick-Up-Locations-Copy-9" transform="translate(-18.000000, -414.000000)" stroke="#000000">
+            <g id="Address" transform="translate(18.000000, 414.000000)">
+                <g id="Icon_Routes">
+                    <g transform="translate(0.710526, 0.481481)">
+                        <path d="M16.4591952,8.49928176 C16.4591952,14.6175096 8.26249167,24.8877656 8.26249167,24.8877656 C8.26249167,24.8877656 0.0657881412,14.1224735 0.0657881412,8.49928176 C0.0657881412,3.89785466 3.73558161,0.167653071 8.26249167,0.167653071 C12.7894017,0.167653071 16.4591952,3.89785466 16.4591952,8.49928176 Z" id="Path"></path>
+                        <ellipse id="Oval" transform="translate(8.259270, 8.234878) rotate(-27.820718) translate(-8.259270, -8.234878) " cx="8.25926971" cy="8.23487848" rx="2.96140892" ry="2.98882097"></ellipse>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

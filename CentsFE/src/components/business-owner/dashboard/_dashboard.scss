@@ -1,0 +1,59 @@
+.bo-dashboard-content-container {
+  position: relative;
+  top: 70px;
+  left: 62px;
+  width: calc(100vw - 62px);
+  height: calc(100vh - 70px);
+  overflow: auto;
+}
+
+.dashboard-full-page-error-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  p {
+    margin: 0;
+  }
+  img {
+    width: 100px;
+    margin: 25px 5px;
+  }
+  a {
+    text-decoration: none !important;
+  }
+}
+
+.locations-dropdown-container {
+  display: flex;
+  justify-content: center;
+  padding-left: 24px;
+
+  img {
+    margin-right: 8px;
+    margin-top: -2px;
+  }
+
+  .react-select__indicator-separator {
+    display: none;
+  }
+
+  .react-select__control,
+  .react-select__control--is-focused {
+    border: 0px solid transparent;
+    box-shadow: 0 0 transparent;
+    width: 190px;
+  }
+
+  * {
+    border-width: 0px;
+  }
+}
+
+.sub-header-dropdown {
+  border-bottom: 1px solid #80808080;
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+}

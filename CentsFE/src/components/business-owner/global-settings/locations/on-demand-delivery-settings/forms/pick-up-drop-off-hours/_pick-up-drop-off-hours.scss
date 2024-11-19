@@ -1,0 +1,88 @@
+.edit-pickup-dropoff-hours-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pick-up-drop-off-hours {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 24px;
+   }
+
+   &__header {
+        color: #000000;
+        font-family: $roboto;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 0;
+        text-align: center;
+   }
+
+   &__timing-container {
+        display: flex;
+        align-items: center;
+   }
+
+    &__label {
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+        font-family: $roboto;
+        width: 35%;
+        margin-top: 15px;
+        margin-left: 55px;
+    }
+
+    &__shift-timing {
+        display: flex;
+        flex: auto;
+        z-index: inherit;
+    }
+
+    &__radio-container{
+        display: flex;
+        margin-top: 22px;
+        align-self: center;
+    }
+
+    &__radio-button{
+        box-sizing: border-box;
+        height: 18.65px;
+        width: 18.65px;
+        border: 0.65px solid #000000;
+    }
+
+    &__set-radio-text{
+        font-size: 12px;
+        margin-left: 10px;
+        color: #000000;
+        font-family: $roboto;
+        font-weight: 500;
+    }
+
+    &__timings{
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+}
+
+.day-slection-popup{
+    display: flex;
+    flex-direction: column;
+}
+
+.close-icon{
+   display: flex; 
+   align-self: flex-end;
+}
+
+.shifts{
+    margin-top: 25px;
+}

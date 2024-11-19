@@ -1,0 +1,50 @@
+.time-picker-with-input-dropdown-container {
+  display: flex;
+  flex-direction: column;
+  .dropdown.time-picker-with-input-dropdown {
+    &.small {
+      width: 150px;
+      .dropdown-menu {
+        .dropdown-menu-container {
+          max-height: 140px;
+          .dropdown-item.active {
+            background-color: $color-theme;
+          }
+          .dropdown-item,
+          .dropdown-header {
+            padding: 2px 16px;
+            span {
+              font-size: 80%;
+            }
+          }
+        }
+      }
+    }
+    // Need to add styles for normal size inputs and items
+    .time-input-toggle-container {
+      .time-input {
+        width: auto;
+        .suffix {
+          display: flex;
+          align-items: center;
+        }
+        &.disabled {
+          cursor: not-allowed;
+          input {
+            cursor: not-allowed;
+          }
+        }
+      }
+    }
+    .dropdown-menu {
+      .dropdown-menu-container {
+        position: relative;
+        max-height: 200px;
+        overflow: auto;
+      }
+    }
+  }
+  .error-message.small {
+    font-size: 70%;
+  }
+}

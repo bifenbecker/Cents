@@ -1,0 +1,245 @@
+.global-settings-container-doublenav {
+  position: relative;
+  top: 70px;
+  display: flex;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+
+  &* {
+    z-index: 1;
+  }
+
+  .left-section {
+    grid-column: 1;
+    .global-settings-menu {
+      list-style-type: none;
+      text-align: right;
+      padding-left: 0px;
+      a {
+        text-decoration: none;
+      }
+      li {
+        text-decoration: none;
+        user-select: none;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 1px 0;
+      }
+
+      li:hover {
+        cursor: pointer;
+      }
+
+      li.active {
+        font-weight: 700;
+      }
+    }
+  }
+  .right-section {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 15px;
+    padding-top: 35px;
+    overflow-y: auto;
+    margin: 0% 2%;
+
+    .content-header {
+      grid-row: 1;
+      font-size: 24px;
+      font-weight: 400;
+      padding-left: 15px;
+      text-transform: capitalize;
+    }
+    .content {
+      grid-row: 2;
+      position: relative;
+      display: flex;
+      flex: 1;
+      .bo-global-settings-content-2-column-layout {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+      }
+
+      .bo-global-settings-content-left-column {
+        flex-direction: column;
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+        padding: 5px 0px 5px 0px;
+        width: 50%;
+        grid-template-columns: minmax(382px, 520px) minmax(449px, 610px);
+      }
+      .bo-global-settings-content-right-column {
+        flex-direction: column;
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+        padding: 5px 0px 5px 0px;
+        width: 50%;
+        border-left: 1px solid #bbbbbb;
+      }
+
+      .bo-global-settings-content-column {
+        flex-direction: column;
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+        padding: 5px 0px 5px 0px;
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -194px;
+    left: -192px;
+    width: 390px;
+    height: 390px;
+    border-radius: 50%;
+    border: 3px solid $color-bg-graphic-dark-blue;
+    z-index: -10;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -35px;
+    right: -245px;
+    width: 490px;
+    height: 490px;
+    border-radius: 50%;
+    background: $color-bg-graphic-light-blue;
+    z-index: -10;
+  }
+
+  .cents-card {
+    overflow: hidden;
+  }
+}
+.global-settings-container-singlenav {
+  position: relative;
+  top: 70px;
+  display: flex;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+  &* {
+    z-index: 1;
+  }
+  .left-section {
+    grid-column: 1;
+    .global-settings-menu {
+      list-style-type: none;
+      text-align: right;
+      padding-left: 0px;
+      a {
+        text-decoration: none;
+      }
+      li {
+        text-decoration: none;
+        user-select: none;
+        font-size: 14px;
+        line-height: 24px;
+        padding: 1px 0;
+      }
+
+      li:hover {
+        cursor: pointer;
+      }
+
+      li.active {
+        font-weight: 700;
+      }
+    }
+  }
+  .right-section {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-top: 35px;
+    overflow-y: auto;
+    margin: 0% 2%;
+
+    .content-header {
+      grid-row: 1;
+      font-size: 24px;
+      font-weight: 400;
+      padding-left: 15px;
+      text-transform: capitalize;
+    }
+    .content {
+      grid-row: 2;
+      position: relative;
+      display: flex;
+      flex: 1;
+      .bo-global-settings-content-2-column-layout {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+      }
+      .bo-global-settings-content-left-column {
+        flex-direction: column;
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+        padding: 5px 0px 5px 0px;
+        width: 50%;
+        grid-template-columns: minmax(382px, 520px) minmax(449px, 610px);
+      }
+      .bo-global-settings-content-right-column {
+        flex-direction: column;
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+        padding: 5px 0px 5px 0px;
+        width: 50%;
+        border-left: 1px solid #bbbbbb;
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -194px;
+    left: -192px;
+    width: 390px;
+    height: 390px;
+    border-radius: 50%;
+    border: 3px solid $color-bg-graphic-dark-blue;
+    z-index: -10;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -35px;
+    right: -245px;
+    width: 490px;
+    height: 490px;
+    border-radius: 50%;
+    background: $color-bg-graphic-light-blue;
+    z-index: -10;
+  }
+
+  .cents-card {
+    overflow: hidden;
+  }
+}

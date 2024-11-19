@@ -1,0 +1,17 @@
+name: Deploy to itrex Green
+on:
+  push:
+    branches:
+      - itrex
+
+jobs:
+  deploy_itrex:
+    if : endsWith(github.ref, '/itrex')
+    uses: make-cents/Cents_LiveLink/.github/workflows/deploy_template_v2.yml@itrex
+    name: Deploy to itrex
+    with:
+      ENV: 'itrex'
+      APP: 'live-link'
+      SUBDOMAIN: 'itrex-app'
+      AWS_ACCOUNT_ID: '221161078051'
+      APP_DNS_DOMAIN: 'trycents.dev'

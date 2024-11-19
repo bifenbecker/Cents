@@ -1,0 +1,103 @@
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        description: 'The version of node to use for yarn build'
+        default: '14.4.0'
+        type: string
+        required: false
+      deployment_bucket_name:
+        description: 'The name of the S3 bucket to deploy resources'
+        type: string
+        required: true
+      aws_region:
+        description: 'The AWS region where you will deploy resources'
+        default: 'us-east-2'
+        type: string
+        required: false
+      iam_role_name:
+        description: 'The name of the iam role you are using for deployment'
+        type: string
+        required: true
+      env_secret_name:
+        description: 'The name of the secretsmanager secret where the env variables are stored'
+        type: string
+        required: true
+      stripe_secret_name:
+        description: 'The name of the secretsmanager secret where the stripe key is stored'
+        type: string
+        required: true
+    secrets:
+      aws_account_id:
+        description: 'The AWS account id where you will deploy resources'
+        required: true
+      cfd_id:
+        description: 'The cloudformation distribution id of the site.'
+        required: true
+
+concurrency:
+  group: ${{ github.ref }}-group
+  cancel-in-progress: false
+
+jobs:
+  deploy_frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v2
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.aws_account_id }}:role/${{ inputs.iam_role_name }}
+          mask-aws-account-id: true
+          aws-region: ${{ inputs.aws_region }}
+
+      - name: Build .env file from input values
+        run: |
+          get_secret() {
+            aws secretsmanager get-secret-value --secret-id "$1" \
+            --query SecretString --output text
+          }
+
+          # Get Stripe key from stripe key secret
+          echo "REACT_APP_STRIPE_KEY=$(get_secret ${{ inputs.stripe_secret_name }} \
+                | jq '.REACT_APP_STRIPE_KEY')" >> .env
+
+          secret_env_vars=$(get_secret ${{ inputs.env_secret_name }})
+          get_env_secret(){ echo "$secret_env_vars" | jq ".$1"; }
+
+          # Get other env secrets
+          echo "REACT_APP_BASE_URL=$(get_env_secret 'REACT_APP_BASE_URL')" >> .env
+          echo "REACT_APP_ENV=$(get_env_secret 'REACT_APP_ENV')" >> .env
+          echo "REACT_APP_INTERCOM_APP_ID=$(get_env_secret 'REACT_APP_INTERCOM_APP_ID')" >> .env
+          echo "REACT_APP_PUSHER_APP_CLUSTER=$(get_env_secret 'REACT_APP_PUSHER_APP_CLUSTER')" >> .env
+          echo "REACT_APP_PUSHER_APP_KEY=$(get_env_secret 'REACT_APP_PUSHER_APP_KEY')" >> .env
+          echo "REACT_APP_LAUNCHDARKLY_KEY=$(get_env_secret 'REACT_APP_LAUNCHDARKLY_KEY')" >> .env
+          echo "REACT_APP_LAUNCHDARKLY_USER=$(get_env_secret 'REACT_APP_LAUNCHDARKLY_USER')" >> .env
+          echo "REACT_APP_LIVE_LINK_URL=$(get_env_secret 'REACT_APP_LIVE_LINK_URL')" >> .env
+          echo "REACT_APP_SENTRY_KEY=$(get_env_secret 'REACT_APP_SENTRY_KEY')" >> .env
+
+      - name: Install deps and build artifacts
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ inputs.node_version }}
+          cache: 'yarn'
+      - run: |
+          yarn install --frozen-lockfile
+          CI="" yarn build
+          ls -a
+
+      - name: Sync build files to S3 bucket
+        run: |
+          aws s3 sync build s3://${{ inputs.deployment_bucket_name }} \
+             --acl public-read --delete
+
+      - name: Create new CloudFront Invalidation
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.cfd_id }} \
+             --paths "/*"

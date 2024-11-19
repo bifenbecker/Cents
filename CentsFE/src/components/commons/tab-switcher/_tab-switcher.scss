@@ -1,0 +1,28 @@
+.tab-switcher{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid $color-locations-item-divider;
+  .tab{
+    padding: 10px 15px 8px;
+    position: relative;
+    top: 1px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+
+    p{
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: $color-sixty-percent-black;
+      user-select: none;
+    }
+
+    &.active{
+      border-bottom: 2px solid $color-theme;
+      p{
+        color: $color-theme;
+      }
+    }
+  }
+}

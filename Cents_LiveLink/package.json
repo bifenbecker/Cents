@@ -1,0 +1,136 @@
+{
+  "name": "live-link",
+  "version": "2.0.0",
+  "private": true,
+  "dependencies": {
+    "@hookstate/core": "^3.0.6",
+    "@material-ui/core": "^4.11.2",
+    "@material-ui/icons": "^4.11.3",
+    "@rebass/forms": "^4.0.6",
+    "@rebass/preset": "^4.0.5",
+    "@reduxjs/toolkit": "^1.8.1",
+    "@sentry/react": "^6.17.6",
+    "@sentry/tracing": "^6.17.6",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.11.0",
+    "@types/jest": "^27.5.0",
+    "@types/lodash": "^4.14.182",
+    "@types/node": "^17.0.31",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.3",
+    "@types/react-gtm-module": "^2.0.1",
+    "@types/styled-components": "^5.1.25",
+    "atob": "^2.1.2",
+    "axios": "^0.26.0",
+    "classnames": "^2.3.1",
+    "emotion-theming": "^10.0.27",
+    "i": "^0.3.7",
+    "launchdarkly-react-client-sdk": "^2.24.0",
+    "lodash.merge": "^4.6.2",
+    "luxon": "^1.26.0",
+    "npm": "^8.17.0",
+    "query-string": "^7.1.1",
+    "react": "^16.13.1",
+    "react-dock": "^0.3.0",
+    "react-dom": "^16.13.1",
+    "react-google-recaptcha-v3": "^1.7.1",
+    "react-gtm-module": "^2.0.11",
+    "react-input-mask": "^2.0.4",
+    "react-places-autocomplete": "^7.3.0",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "5.0.0",
+    "react-spring-bottom-sheet": "^3.4.0",
+    "react-toastify": "^6.2.0",
+    "react-transition-group": "^4.4.5",
+    "rebass": "^4.0.7",
+    "sass": "^1.49.9",
+    "styled-components": "^5.2.0",
+    "styled-system": "^5.1.5",
+    "swiper": "^6.8.4"
+  },
+  "devDependencies": {
+    "@redux-devtools/core": "^3.12.0",
+    "@testing-library/dom": "^8.12.0",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/react-input-mask": "^3.0.1",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/rebass": "^4.0.10",
+    "@types/rebass__forms": "^4.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "dotenv": "^8.0.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^3.0.0",
+    "lint-staged": "12.3.5",
+    "msw": "^0.39.2",
+    "prettier": "^2.7.1",
+    "redux-mock-store": "^1.5.4",
+    "typescript": "^4.6.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "lint:prettier": "prettier -c \"src/**/*.+(js|jsx|json|css|md)\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "plugin:prettier/recommended"
+    ]
+  },
+  "prettier": {
+    "printWidth": 90,
+    "bracketSpacing": false,
+    "trailingComma": "es5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx|ts|tsx)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|css|md)": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$','^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "transform": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/fileTransformer.js"
+    }
+  },
+  "msw": {
+    "workerDirectory": "public"
+  }
+}

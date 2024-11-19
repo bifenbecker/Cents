@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Icon_Delivery Tracking_Status Complete</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ORDER-FORM" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DRIVER_Drop-Off-&amp;-Pick-Up-Locations-Copy-47" transform="translate(-38.000000, -561.000000)">
+            <g id="Group" transform="translate(19.000000, 539.000000)">
+                <g id="Icon_Delivery-Tracking_Status-Complete" transform="translate(19.000000, 22.000000)">
+                    <g transform="translate(10.000000, 9.875000) rotate(-90.000000) translate(-10.000000, -9.875000) translate(0.000000, -0.125000)">
+                        <circle id="Oval" fill="#3790F4" cx="9.87341772" cy="9.99841772" r="9.87341772"></circle>
+                        <polyline id="Path" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(9.514388, 10.288819) rotate(-270.000000) translate(-9.514388, -10.288819) " points="4.16666667 10.4598312 7.61780591 13.9109705 14.8621097 6.66666667"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

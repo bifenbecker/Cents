@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Icon_Delivery Tracking_Status Complete</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Customer-LIVE-LINK" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Live-Link_Delivery-Tracking_Picking-Up-your-Order" transform="translate(-96.000000, -180.000000)">
+            <g id="Tracking" transform="translate(187.500000, 192.000000) rotate(-90.000000) translate(-187.500000, -192.000000) translate(169.500000, 22.500000)">
+                <g id="Icon_Delivery-Tracking_Status-Complete" transform="translate(17.500000, 90.500000) rotate(-270.000000) translate(-17.500000, -90.500000) translate(5.500000, 78.500000)">
+                    <g transform="translate(12.150000, 12.150000) rotate(-90.000000) translate(-12.150000, -12.150000) translate(0.150000, 0.150000)">
+                        <circle id="Oval" fill="#3790F4" cx="11.8481013" cy="11.8481013" r="11.8481013"></circle>
+                        <polyline id="Path" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(11.417266, 12.346582) rotate(-270.000000) translate(-11.417266, -12.346582) " points="5 12.5517975 9.14136709 16.6931646 17.8345316 8"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

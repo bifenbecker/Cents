@@ -1,0 +1,142 @@
+.header-container {
+    @include flex(space-between, center);
+    position: absolute;
+    left: 100px;
+    top: 0;
+    width: calc(100% - 100px);
+    height: 80px;
+    background-color: $color-bg-grey;
+    padding: 5px 30px;
+    .title-main {
+        text-transform: uppercase;
+        margin-bottom: 0 !important;
+        margin-left: calc(50% - 85px);
+        font-weight: 500 !important;
+    }
+    @media (max-width: 767px) {
+        width: 100%;
+        left: 0;
+        height: 60px;
+        padding: 5px 15px;
+        .title-main {
+            margin-left: 0;
+        }
+    }
+    .user-options {
+        .btn.btn-user-options {
+            padding: 0;
+            background: none;
+            border: none;
+            span {
+                @include flex(center, center);
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: rgba($color-theme, 0.5);
+                border: 1px solid $color-theme;
+                * {
+                    color: $color-theme;
+                }
+                @media (max-width: 767px) {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+            &:hover, &:focus, &:active {
+                background: none !important;
+            }
+        }
+        .dropdown-menu {
+            width: 200px;
+            top: calc(100% + 14px) !important;
+            right: calc(100% - 50px) !important;
+            transform: none !important;
+            left: auto !important;
+            z-index: 1000;
+            background-color: $color-theme;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            margin: 0;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                top: 0;
+                right: 0;
+                border: 7px solid $color-theme;
+                border-color: transparent transparent $color-theme $color-theme;
+                transform-origin: 0 0;
+                transform: rotate(135deg);
+            }
+            .dropdown-item {
+                background-color: $color-theme;
+                color: $white;
+                font-size: 18px;
+                padding: 10px 15px;
+            }
+            @media (max-width: 767px) {
+                width: 150px;
+                .dropdown-item {
+                    font-size: 15px;
+                    padding: 8px 10px;
+                }
+            }
+        }
+    }
+
+    .dropdown-mobile-menu {
+        .dropdown-toggle {
+            padding: 3px;
+            position: relative;
+            background: none !important;
+            border: none !important;
+            span {
+                background-color: $color-theme !important;
+                content: '';
+                display: block;
+                height: 3px;
+                margin: 5px 0;
+                transition: all .2s ease-in-out;
+                width: 25px;
+            }
+            &:before, &:after {
+                display: none;
+            }
+        }
+        .dropdown-menu {
+            width: 100vw;
+            height: 100vh;
+            left: -15px !important;
+            top: -15px !important;
+            transform: translate3d(0, 0, 0) !important;
+            border: none;
+            padding: 80px 30px 20px;
+            opacity: 0.98;
+            background: $color-theme;
+            border-radius: 0;
+            .dropdown-item, .nav-item a {
+                color: $white;
+                font-size: 25px;
+                padding: 0;
+                margin-bottom: 25px;
+                &:nth-last-of-type(1) {
+                    margin-bottom: 0;
+                }
+                &:hover, &:focus {
+                    background: none;
+                    color: $white;
+                }
+            }
+            .close-menu {
+                color: $white;
+                top: 20px;
+                right: 20px;
+                position: absolute;
+                cursor: pointer;
+                font-size: 30px;
+            }
+        }
+    }
+}

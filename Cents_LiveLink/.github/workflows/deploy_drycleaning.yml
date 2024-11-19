@@ -1,0 +1,19 @@
+name: Deploy to dry-cleaning
+on:
+  push:
+    branches:
+      - feature/dry-cleaning
+
+jobs:
+  deploy_dry-cleaning:
+    if : endsWith(github.ref, '/feature/dry-cleaning')
+    uses: make-cents/Cents_LiveLink/.github/workflows/deploy_template.yml@feature/dry-cleaning
+    name: Deploy to dry-cleaning
+    with:
+      deployment_bucket_name: 'live-link-drycleaning'
+      iam_role_name: 'deploy-live-link-drycleaning'
+      env_secret_name: 'drycleaning/live-link/env'
+      stripe_secret_name: 'dev/react_app/stripe_key'
+    secrets:
+      aws_account_id: ${{ secrets.DEV_AWS_ACCOUNT_ID }}
+      cfd_id: ${{ secrets.DRYCLEANING_CLOUDFRONT_DISTRO_ID }}

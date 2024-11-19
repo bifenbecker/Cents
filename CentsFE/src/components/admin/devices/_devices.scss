@@ -1,0 +1,117 @@
+.devices-container {
+    .devices-list-container {
+        padding: 30px 30px 0;
+        // background-color: $color-bg-grey;
+        height: calc(100vh - 210px);
+        overflow-y: auto;
+        @media (max-width: 767px) {
+            height: auto;
+            padding: 20px 15px;
+        }
+
+        .batch-wise-device-count{
+            padding: 15px;
+            border-left: 2px solid $fifty-percent-grey;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+
+        .batch-assigned-on{
+            font-size: 14px;
+            margin-left: 30px;
+        }
+        .arrow-circle-down-icon{
+            margin-left: auto;
+            width: 1.5em;
+            height: 1.5em;
+            path{
+                color: $color-dark-grey;
+            }
+        }
+
+        .wal-acc-exp-body{
+            background: $color-theme-sec;
+        }
+
+    }
+    .counts-with-left-seperator{
+        padding-left : 15px;
+        margin-left : 15px;
+        border-left : 2px solid $fifty-percent-grey;
+        // border-left : 2px solid $color-bg-grey;
+    }
+    .device-customer-details-container{
+        padding: 30px 30px 0px 30px;
+    }
+    .selected-customer-details {
+        width:100%;
+        padding: 25px;
+        background-color: $color-bg-grey;
+        // border-bottom: 2px solid #cfd1d3;
+        @media (max-width: 767px) {
+            flex-direction: column;
+            align-items: flex-start !important;
+        }
+    }
+    .devices-batch-details{
+
+        .folder-icon{
+            position: relative;
+            top: -1px;
+            margin-right: 5px;
+        }
+        p{
+            margin: 0;
+            span{
+                color: $color-theme;
+            }
+        }
+    }
+    .devices-list {
+        padding-bottom: 20px;
+        .no-customers-container  {
+            padding: 50px;
+            @media (max-width: 767px) {
+                padding: 20px 0 0;
+            }
+        }
+        .table-devices-list-container {
+            margin: 20px 0 0;
+            &.table-devices-list-container-with-pagination {
+                height: calc(100vh - 420px);
+                overflow-y: auto;
+                @media (max-width: 900px) {
+                    height: calc(100vh - 440px);
+                }
+                @media (max-width: 767px) {
+                    height: auto;
+                }
+            }
+        }
+        .table-devices-list {
+            background-color: $white;
+            margin-bottom: 0;
+            thead, tbody {
+                border: 1px solid #cfd1d3;
+                th, td {
+                    border-color: #cfd1d3;
+                    vertical-align: middle;
+                    text-align: center;
+                    border-width: 1px;
+                    padding: 8px 10px;
+                    font-size: 15px;
+                    &:first-child {
+                        border-right: 1px solid #cfd1d3;
+                    }
+                    @media (max-width: 767px) {
+                        font-size: 14px;
+                    }
+                }
+                th {
+                    background-color: $color-theme;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+name: Deploy to preprod
+on:
+  push:
+    branches:
+      - pre-prod
+
+jobs:
+  deploy_preprod:
+    if : endsWith(github.ref, '/pre-prod')
+    uses: make-cents/CentsFE/.github/workflows/deploy_template.yml@pre-prod
+    name: Deploy to preprod
+    with:
+      deployment_bucket_name: 'cents-pre-prod-fe'
+      iam_role_name: 'deploy-cents-fe-preprod'
+      env_secret_name: 'preprod/centsfe/env'
+      stripe_secret_name: 'prod/react_app/stripe_key'
+    secrets:
+      aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+      cfd_id: ${{ secrets.PREPROD_CLOUDFRONT_DISTRO_ID }}

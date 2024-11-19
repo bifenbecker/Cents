@@ -1,0 +1,72 @@
+.locations-card-content {
+  &.edit-time-log {
+    .close-icon {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      cursor: pointer;
+    }
+    .edit-time-log-form-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      .edit-time-log-heading {
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+      .edit-time-log-date {
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+      .edit-time-log-form {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        .input-container {
+          align-items: center;
+          display: flex;
+          margin-bottom: 10px;
+          .time-picker-with-input-dropdown-container {
+            width: 250px;
+            .time-picker-with-input-dropdown.dropdown {
+              margin-bottom: 4px;
+            }
+          }
+        }
+      }
+    }
+    .dropdown-menu.show {
+      transform: translate3d(0px,35px,0px) !important;
+    }
+  }
+}
+
+.locations-card-footer {
+  &.edit-time-log-footer {
+    height: 68px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    border-top: 1px solid $fifty-percent-grey;
+    .error-message {
+      margin: 0 auto;
+    }
+    .flex{
+      display: flex;
+      align-items: center;
+      .cancel-text {
+        font-size: 12px;
+        text-decoration: underline;
+        margin-right: 15px;
+        cursor: pointer;
+      }
+      .save-button {
+        min-height: 0px;
+      }
+    }
+  }
+}

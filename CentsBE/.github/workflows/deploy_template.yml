@@ -1,0 +1,100 @@
+on:
+  workflow_call:
+    inputs:
+      application_name:
+        description: 'The name of the code deploy application to deploy to'
+        type: string
+        required: true
+      deployment_group_name:
+        description: 'The name of the code deploy deployment group name'
+        type: string
+        required: true
+      iam_role_name:
+        description: 'The name of the iam role you are using for deployment'
+        type: string
+        required: true
+      aws_region:
+        description: 'The AWS region where you will deploy resources'
+        default: 'us-east-2'
+        type: string
+        required: false
+    secrets:
+      aws_account_id:
+        description: 'The AWS account id where you will deploy resources'
+        required: true
+
+concurrency:
+  group: ${{ github.ref }}-group
+  cancel-in-progress: false
+
+jobs:
+  deploy_backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v2
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.aws_account_id }}:role/${{ inputs.iam_role_name }}
+          mask-aws-account-id: true
+          aws-region: ${{ inputs.aws_region }}
+
+      - name: Stop any currently running deployments in the current deployment group
+        run: |
+             IN_PROGRESS=$(aws deploy list-deployments \
+                           --deployment-group-name ${{ inputs.deployment_group_name }} \
+                           --application-name ${{ inputs.application_name }} \
+                           --include-only-statuses 'InProgress' \
+                           --output json --query 'length(deployments)');
+
+             [[ "$IN_PROGRESS" != 0 ]] && aws deploy stop-deployment --deployment-id "$IN_PROGRESS";
+
+             sleep 1;
+             IN_PROGRESS=$(aws deploy list-deployments \
+                           --deployment-group-name ${{ inputs.deployment_group_name }} \
+                           --application-name ${{ inputs.application_name }} \
+                           --include-only-statuses 'InProgress' \
+                           --output json --query 'length(deployments)');
+
+             if [[ "$IN_PROGRESS" != 0 ]]
+             then
+               echo "Deployment $IN_PROGRESS cant be stopped. aborting..." && exit 1;
+             fi
+
+      - name: Create code deploy deployment
+        run: |
+             DEPLOY_ID=$(aws deploy create-deployment \
+                         --application-name ${{ inputs.application_name }} \
+                         --deployment-group-name ${{ inputs.deployment_group_name }} \
+                         --deployment-config-name CodeDeployDefault.OneAtATime \
+                         --ignore-application-stop-failures \
+                         --file-exists-behavior OVERWRITE \
+                         --github-location repository="$GITHUB_REPOSITORY",commitId="$GITHUB_SHA" \
+                         --output text --query 'deploymentId');
+
+             DEPLOYMENT_URL="https://${{ inputs.aws_region }}.console.aws.amazon.com/\
+             codesuite/codedeploy/deployments/$DEPLOY_ID?region=${{ inputs.aws_region }}";
+
+             echo "Waiting for deployment to finish... Visit progress at: $DEPLOYMENT_URL";
+             echo "DEPLOY_ID=$DEPLOY_ID" >> $GITHUB_ENV;
+
+      - name: Polling status of deployment for Success
+        run: |
+             echo "Polling deployment status until deployment is complete...";
+             sleep 30;
+
+             STATUS="InProgress";
+             while [ "$STATUS" = "InProgress" ]; do
+                STATUS=$(aws deploy get-deployment --deployment-id "${{ env.DEPLOY_ID }}" \
+                         --output text --query 'deploymentInfo.status');
+                sleep 5;
+             done
+
+             if [[ "$STATUS" == "Failed" ]]; then echo "Deployment failed"; exit 1; fi
+             if [[ "$STATUS" == "Succeeded" ]]; then echo "Deployment succeeded!!" && exit 0; fi

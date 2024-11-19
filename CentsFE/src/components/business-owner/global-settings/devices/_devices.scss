@@ -1,0 +1,154 @@
+.devices-card-content{
+    
+    .batch-list{
+        padding-top: 10px;
+        position: relative;
+        margin: 0px 20px;
+        &:after{
+            content: "";
+            display: block;
+            position: relative;
+            width: calc(100% - 50px);
+            height: 2px;
+            background: $fifty-percent-grey;
+            margin: 10px auto;
+        }
+
+        .loader{
+            position: relative !important;
+        }
+        
+        .devices-batch-list-item{
+            display: flex;
+            padding: 10px 30px;
+            align-items: flex-start;
+        
+            &:hover, &.active{
+                background: $color-locations-item-selected-background;
+            }
+        
+            &>img{
+                margin-right : 15px;
+            }
+        
+            &>div{
+                display: flex;
+                flex-direction: column;
+        
+                p{
+                    margin: 0;
+                }
+        
+                & p:first-child{
+                    font-size:14px;
+                    font-weight: 500;
+                }
+                & p:nth-child(2){
+                    font-size: 12px;
+                    font-style: italic;
+                    font-weight: 100;   
+                }
+            }
+        
+            span{
+                font-size: 12px;
+                margin-left: auto;
+                display: block;
+                align-self: center;
+                color: $color-dark-grey;
+                font-style: italic; 
+        
+                &.active{
+                    color: green;
+                }
+            }
+        
+        }
+    }
+}
+
+
+.batch-info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 65%;
+    margin: auto 0;
+    position: relative;
+
+    .error-message{
+        margin-top: auto;
+        margin-bottom: 10px;
+    }
+
+    .save-button{
+        margin-bottom: 20px;
+        min-height: 20px;
+        z-index: 0 !important;
+    }
+    
+}
+
+
+.location-accordions-list{
+
+    .wal_acc_exp_container{
+        margin:0 !important;
+    }
+
+    .wal_acc_exp_body {
+        padding-top: 0px;
+    }
+
+    .device-location-accordion-header{
+        display: flex;
+        align-items: center;
+        padding: 10px 30px;
+        div{
+            display: flex;
+            flex-direction: column;
+            p{
+                margin: 0;
+            }
+            p:first-child{
+                font-size: 14px;
+            }
+            p:nth-child(2){
+                font-size: 12px;
+                font-style: italic;
+            }
+        }
+        svg{
+            margin-left: auto;
+        }
+    }
+
+    .loader{
+        position: relative !important;
+    }
+}
+
+.bo-gs-devices-list-item{
+    position: relative;
+    
+    p {
+        margin: 0 0 0 14px;
+        color: $color-locations-item;
+        font-size: 12px;
+        padding: 1px 10px;
+        white-space: nowrap;
+        max-width: calc(100% - 32px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .status-indicator{
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+    &.no-border{
+        border: 0px;
+    }
+}
+

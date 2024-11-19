@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="52px" height="83px" viewBox="0 0 52 83" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Illustration_Phone</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ORDER-FORM" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="DRIVER_Drop-Off-&amp;-Pick-Up-Locations-Copy-15" transform="translate(-286.000000, -278.000000)">
+            <g id="Group" transform="translate(20.000000, 253.000000)">
+                <g id="Illustration_Phone" transform="translate(266.385542, 25.000000)">
+                    <g transform="translate(0.000000, 0.000000)">
+                        <path d="M35.0078918,75 L3.54142016,75 C1.58666479,75 0,73.3938667 0,71.4151105 L0,3.58490235 C0,1.60614614 1.58666479,0 3.54142016,0 L35.0078918,0 C36.9626471,0 38.5492992,1.60614614 38.5492992,3.58490235 L38.5492992,71.4151105 C38.5492992,73.3938667 36.9626471,75 35.0078918,75 Z" id="Path" fill="#1773C6" fill-rule="nonzero"></path>
+                        <path d="M35.0897467,83 C35.0897467,67.0412209 48.4337349,62.5 48.4337349,62.5 C48.4337349,62.5 35.0897467,57.9587791 35.0897467,42 C35.0897467,57.9587791 21.7457585,62.5 21.7457585,62.5 C21.7457585,62.5 35.0897467,67.0412209 35.0897467,83 Z" id="Path" stroke="#3790F4" stroke-width="1.9824" fill="#FFFFFF" fill-rule="nonzero"></path>
+                        <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="3.95377428" y="6" width="30.6417507" height="10"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

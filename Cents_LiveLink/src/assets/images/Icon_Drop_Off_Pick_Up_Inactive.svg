@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Icon_Drop Off &amp; Pick Up_Inactive</title>
+    <desc>Created with Sketch.</desc>
+    <g id="ORDER-FORM" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="DRIVER_Drop-Off-&amp;-Pick-Up-Locations-Copy-9" transform="translate(-18.000000, -673.000000)" stroke="#000000">
+            <g id="Delivery-Instructions" transform="translate(18.000000, 655.000000)">
+                <g id="Icon_Drop-Off-&amp;-Pick-Up_Inactive" transform="translate(0.000000, 18.000000)">
+                    <g transform="translate(0.625926, 0.625926)">
+                        <path d="M1.69934927,21.1398162 L5.75539616e-13,21.1398162 L5.75539616e-13,-1.0658141e-13 L17.8862691,-1.0658141e-13 L17.8862691,5.3122888 L19.1159362,5.3122888 C22.2021472,5.3122888 24.7039494,7.82233099 24.7039494,10.9190005 L24.7039494,21.1398162 L22.8318762,21.1398162" id="Path"></path>
+                        <path d="M16.1942091,21.1398162 L8.13767089,21.1398162" id="Path"></path>
+                        <path d="M17.8653521,12.6982147 L22.6328476,12.6982147 L22.6328476,11.3427286 C22.6328476,9.17750023 20.8834243,7.42237225 18.7251683,7.42237225 L17.8653521,7.42237225 L17.8653521,12.6982147" id="Path"></path>
+                        <ellipse id="Oval" cx="4.91866854" cy="21.4903347" rx="3.21931927" ry="3.22977778"></ellipse>
+                        <ellipse id="Oval" cx="19.4135284" cy="21.4903347" rx="3.21931927" ry="3.22977778"></ellipse>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

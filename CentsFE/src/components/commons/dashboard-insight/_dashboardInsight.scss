@@ -1,0 +1,18 @@
+.dashboard-insight {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  .number {
+    font-size: 40px;
+    font-weight: 500;
+    color: $color-theme;
+    margin-right: 10px;
+  }
+  .description {
+    max-width: 110px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+}

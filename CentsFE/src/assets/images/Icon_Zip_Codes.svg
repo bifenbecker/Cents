@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="20px" viewBox="0 0 14 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Icon_Routes</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Cents-Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="ADMIN_LOCATIONS_Details-Copy-30" transform="translate(-644.000000, -399.000000)" stroke="#000000">
+            <g id="SIDE-PANEL" transform="translate(546.000000, 99.000000)">
+                <g id="Icon_Routes" transform="translate(98.000000, 300.000000)">
+                    <g transform="translate(0.552632, 0.407407)">
+                        <path d="M12.8015963,6.53790905 C12.8015963,11.2442382 6.42638241,19.1444351 6.42638241,19.1444351 C6.42638241,19.1444351 0.0511685543,10.8634412 0.0511685543,6.53790905 C0.0511685543,2.99834974 2.90545237,0.128963901 6.42638241,0.128963901 C9.94731246,0.128963901 12.8015963,2.99834974 12.8015963,6.53790905 Z" id="Path"></path>
+                        <ellipse id="Oval" transform="translate(6.423876, 6.334522) rotate(-27.820718) translate(-6.423876, -6.334522) " cx="6.42387644" cy="6.33452191" rx="2.29768597" ry="2.30453912"></ellipse>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

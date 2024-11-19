@@ -1,0 +1,6 @@
+**/node_modules
+.*
+Dockerfile
+*.MD
+*.yml
+*.log

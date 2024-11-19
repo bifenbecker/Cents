@@ -1,0 +1,24 @@
+.icon-insight {
+  display: flex;
+  max-width: 117px;
+  div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      p {
+          margin:0;
+          margin-left: 8px;
+
+          &:first-child {
+              font-size: 24px;
+              font-weight: 500;
+              color: $color-theme;
+          }
+          &:nth-child(2) {
+              font-size: 14px;
+              font-weight: 100;
+              line-height: 1.1;
+          }
+      }
+  }
+}

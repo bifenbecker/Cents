@@ -1,0 +1,314 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing pickup and delivery order summary Component Should render relevant child components based on combinations of pickup and delivery providers Case - Pickup - No, Delivery - Not Own Driver 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ cYXLjH"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ sc-gsnTZi kaLzzZ hzPtvw"
+      color="TEXT_GREY"
+      font-family="secondary"
+      font-size="1,2"
+      font-weight="normal"
+      width="100%"
+    >
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        On-Demand 
+        Delivery
+      </div>
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        $0.00
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing pickup and delivery order summary Component Should render relevant child components based on combinations of pickup and delivery providers Case - Pickup - No, Delivery - Own Driver 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ sc-gsnTZi dyCyXN hzPtvw"
+    color="TEXT_GREY"
+    font-family="secondary"
+    font-size="1,2"
+    font-weight="normal"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ sc-gsnTZi jITePI hzPtvw"
+    >
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        Delivery
+      </div>
+    </div>
+    <div
+      class="sc-bczRLJ jITePI"
+    >
+      FREE
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing pickup and delivery order summary Component Should render relevant child components based on combinations of pickup and delivery providers Case - Pickup - Not Own Driver, Delivery - No 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ cYXLjH"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ cYXLjH"
+      width="100%"
+    >
+      <div
+        class="sc-bczRLJ sc-gsnTZi kaLzzZ hzPtvw"
+        color="TEXT_GREY"
+        font-family="secondary"
+        font-size="1,2"
+        font-weight="normal"
+        width="100%"
+      >
+        <div
+          class="sc-bczRLJ jITePI"
+        >
+          On-Demand 
+          Pickup
+        </div>
+        <div
+          class="sc-bczRLJ jITePI"
+        >
+          $0.00
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing pickup and delivery order summary Component Should render relevant child components based on combinations of pickup and delivery providers Case - Pickup - Not Own Driver, Delivery - Not Own Driver 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ cYXLjH"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ sc-gsnTZi kaLzzZ hzPtvw"
+      color="TEXT_GREY"
+      font-family="secondary"
+      font-size="1,2"
+      font-weight="normal"
+      width="100%"
+    >
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        On-Demand Pickup & Delivery
+      </div>
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        $0.00
+      </div>
+    </div>
+    <div
+      class="sc-bczRLJ sc-gsnTZi hasscr hzPtvw"
+      color="TEXT_GREY"
+      font-family="secondary"
+      font-size="1,0"
+      font-style="italic"
+      font-weight="normal"
+    >
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        Trip cost: 
+        $0.00
+      </div>
+      <div
+        class="sc-bczRLJ cTiMdd"
+        font-style="italic"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing pickup and delivery order summary Component Should render relevant child components based on combinations of pickup and delivery providers Case - Pickup - Not Own Driver, Delivery - Own Driver 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ cYXLjH"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ cYXLjH"
+      width="100%"
+    >
+      <div
+        class="sc-bczRLJ sc-gsnTZi kaLzzZ hzPtvw"
+        color="TEXT_GREY"
+        font-family="secondary"
+        font-size="1,2"
+        font-weight="normal"
+        width="100%"
+      >
+        <div
+          class="sc-bczRLJ jITePI"
+        >
+          On-Demand 
+          Pickup
+        </div>
+        <div
+          class="sc-bczRLJ jITePI"
+        >
+          $0.00
+        </div>
+      </div>
+    </div>
+    <div
+      class="sc-bczRLJ sc-gsnTZi dyCyXN hzPtvw"
+      color="TEXT_GREY"
+      font-family="secondary"
+      font-size="1,2"
+      font-weight="normal"
+      width="100%"
+    >
+      <div
+        class="sc-bczRLJ sc-gsnTZi jITePI hzPtvw"
+      >
+        <div
+          class="sc-bczRLJ jITePI"
+        >
+          Delivery
+        </div>
+      </div>
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        FREE
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing pickup and delivery order summary Component Should render relevant child components based on combinations of pickup and delivery providers Case - Pickup - Own Driver, Delivery - No 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ sc-gsnTZi dyCyXN hzPtvw"
+    color="TEXT_GREY"
+    font-family="secondary"
+    font-size="1,2"
+    font-weight="normal"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ sc-gsnTZi jITePI hzPtvw"
+    >
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        Pickup
+      </div>
+    </div>
+    <div
+      class="sc-bczRLJ jITePI"
+    >
+      FREE
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing pickup and delivery order summary Component Should render relevant child components based on combinations of pickup and delivery providers Case - Pickup - Own Driver, Delivery - Not Own Driver 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ cYXLjH"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ sc-gsnTZi dyCyXN hzPtvw"
+      color="TEXT_GREY"
+      font-family="secondary"
+      font-size="1,2"
+      font-weight="normal"
+      width="100%"
+    >
+      <div
+        class="sc-bczRLJ sc-gsnTZi jITePI hzPtvw"
+      >
+        <div
+          class="sc-bczRLJ jITePI"
+        >
+          Pickup
+        </div>
+      </div>
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        FREE
+      </div>
+    </div>
+    <div
+      class="sc-bczRLJ cYXLjH"
+      width="100%"
+    >
+      <div
+        class="sc-bczRLJ sc-gsnTZi kaLzzZ hzPtvw"
+        color="TEXT_GREY"
+        font-family="secondary"
+        font-size="1,2"
+        font-weight="normal"
+        width="100%"
+      >
+        <div
+          class="sc-bczRLJ jITePI"
+        >
+          On-Demand 
+          Delivery
+        </div>
+        <div
+          class="sc-bczRLJ jITePI"
+        >
+          $0.00
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Testing pickup and delivery order summary Component Should render relevant child components based on combinations of pickup and delivery providers Case - Pickup - Own Driver, Delivery - Own Driver 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ sc-gsnTZi dyCyXN hzPtvw"
+    color="TEXT_GREY"
+    font-family="secondary"
+    font-size="1,2"
+    font-weight="normal"
+    width="100%"
+  >
+    <div
+      class="sc-bczRLJ sc-gsnTZi jITePI hzPtvw"
+    >
+      <div
+        class="sc-bczRLJ jITePI"
+      >
+        Pickup & Delivery
+      </div>
+    </div>
+    <div
+      class="sc-bczRLJ jITePI"
+    >
+      FREE
+    </div>
+  </div>
+</div>
+`;

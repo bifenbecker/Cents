@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReturnDeliveryConfirmationContent Component should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ sc-gsnTZi cNLHOo hzPtvw"
+  >
+    <img
+      class="sc-bczRLJ fpnpAl"
+      src="TurnaroundTime.svg"
+    />
+    <div
+      class="sc-bczRLJ jITePI"
+    >
+      <div
+        class="sc-bczRLJ ibigaf"
+      >
+        We’ll text you when it’s ready.
+      </div>
+      <div
+        class="sc-bczRLJ sc-gsnTZi hIKzOH hzPtvw"
+      >
+        <div
+          class="sc-bczRLJ IWDFp"
+          color="BLACK"
+          font-family="secondary"
+          font-size="16px"
+        >
+          Your laundry should be ready by 
+          12
+           at 
+          30
+          . We will text you when it’s ready so you can schedule your return delivery at your convenience.
+        </div>
+      </div>
+      <div
+        class="sc-bczRLJ IWDFp"
+        color="BLACK"
+        font-family="secondary"
+        font-size="16px"
+      >
+        Prefer to preschedule your return delivery?
+      </div>
+      <div
+        class="sc-bczRLJ sc-gsnTZi cdIXbE hzPtvw"
+      >
+        <div
+          class="sc-bczRLJ IWDFp"
+          color="BLACK"
+          font-family="secondary"
+          font-size="16px"
+        >
+          No problem.
+        </div>
+        <div
+          class="sc-bczRLJ dXFBAw"
+          color="primary"
+          font-weight="500"
+        >
+          Click here
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,78 @@
+@import "../../../../assets/styles/_colors.scss";
+
+$refer-window-lr-padding: 67px;
+
+.modal.fade.show {
+  backdrop-filter: blur(7px);
+}
+.refer-link-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto !important;
+  height: 100vh;
+  max-width: 600px !important;
+  .modal-content {
+    border-radius: 20px;
+    box-shadow: 0 5px 25px #00000040, 0 2px 7px #00000050;
+    .modal-body {
+      padding: 5px $refer-window-lr-padding 35px;
+      p {
+        margin: 0;
+        &.modal-plane-content-header {
+          font-size: 24px;
+          margin-bottom: 24px;
+        }
+        &.modal-plane-content-addition {
+          font-size: 12px;
+          color: $header-button-inactive-text;
+          margin-top: 15px;
+          a {
+            font-weight: bold;
+            color: inherit;
+            font-size: inherit;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+    .modal-close-button {
+      margin: 20px 20px 0 auto;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      opacity: .8;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+  .modal-footer {
+    padding: 0 $refer-window-lr-padding 40px;
+    border: none;
+    justify-content: space-between;
+    input.refer-link-input {
+      text-align: center;
+      clear: both;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 20px;
+      border: 1px solid $color-locations-item-divider;
+      width: 100%;
+      max-width: 280px;
+      color: $header-button-inactive-text;
+      background: #F7F7F7;
+    }
+    button.btn-transparent {
+      padding: 0 15px;
+      border-radius: 20px;
+      svg {
+        display: inline-block;
+        margin: 0 10px 0 0;
+        path {
+          fill: $color-theme;
+        }
+      }
+    }
+  }
+}

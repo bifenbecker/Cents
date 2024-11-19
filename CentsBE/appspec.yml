@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+ - source: .
+   destination: /app/CentsBE
+hooks:
+  ApplicationStop:
+   - location: scripts/codedeploy/stop_app.sh
+     timeout: 500
+  AfterInstall:
+   - location: scripts/codedeploy/deploy_app.sh
+     timeout: 500
+  ApplicationStart:
+   - location: scripts/codedeploy/start_app.sh
+     timeout: 500

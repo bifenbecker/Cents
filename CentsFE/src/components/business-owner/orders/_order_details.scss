@@ -1,0 +1,245 @@
+.order-details-message-text {
+  padding: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  &.error-text{
+    color: $color-error;
+    font-weight: 400;
+  }
+}
+
+.order-details-no-orders-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirm-button {
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.cancel-button {
+  font-size: 12px;
+  text-decoration: underline;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.void-order-three-dot-menu {
+  position: relative;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px;
+  &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1px;
+      height: 1px;
+      margin-left: -1px;
+      margin-top: -1px;
+      background-color: black;
+      border-radius: 50%;
+      box-shadow: -7px 0px 0 2px black, 0px 0px 0 2px black, 7px 0px 0 2px black;
+  }
+  &:hover, &.open {
+      border: 1px solid black;
+  }
+}
+
+.order-details-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .header {
+    flex-grow: 0;
+  }
+
+  .order-details-hub-label {
+    margin-left: 10px;
+    text-align: center;
+    line-height: 24px;
+    height: 24px;
+    width: 90px;
+    font-size: 14px;
+    border-radius: 12px;
+    background-color:$color-locations-item-selected-background;
+    color: $color-status-blue;
+  }
+
+  .order-details-cancel-label {
+    margin-left: 10px;
+    text-align: center;
+    line-height: 24px;
+    height: 24px;
+    width: 90px;
+    font-size: 14px;
+    border-radius: 12px;
+    background-color:$color-cancelled-order-label-bg;
+    color: $color-error;
+  }
+
+  .header {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .scroll-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 30px;
+
+    .seperation-point {
+      width: 5px;
+      height: 5px;
+      background: $black;
+      border-radius: 50%;
+      margin: 0 10px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 500;
+      color: $header-button-inactive-text;
+      line-height: 19px;
+      cursor: pointer;
+      user-select: none;
+
+
+
+      &.active, &:hover {
+        color: $color-theme;
+      }
+    }
+  }
+
+  .scrollable-content-container {
+    width: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+    position: relative;
+
+    .section {
+      padding: 27.5px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      
+      .section-icon {
+        flex-grow: 0;
+        width: 20px;
+      }
+
+      .section-content {
+        flex-grow: 1;
+        margin-left: 10px;
+        overflow: hidden;
+
+        p {
+          margin: 0;
+        }
+
+        .title {
+          font-size: 12px;
+          font-weight: 700;
+        }
+
+        .section-content-row {
+          display: flex;
+          flex-direction: row;
+          padding-top: 14px;
+
+          &>.spacer {
+            width: 30px;
+          }
+          &>.sub-section {
+            width: calc(50% - 15px);
+          } 
+        }
+
+        .sub-section {
+          .sub-section-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+          }
+          p {
+            font-size: 14px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            &.sub-section-title {
+              font-weight: 500;
+            }
+            &.sub-section-data {
+              color: $header-button-inactive-text;
+              line-height: 18px;
+
+              &.wrappable {
+                white-space: normal;
+              }
+              &.withLeftMargin{
+                margin-left: 30px;
+              }
+
+              &.margin-bottom {
+                margin-bottom: 15px;
+              }
+
+            }
+          }
+
+          .clickable-text {
+            color: $color-status-blue;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+
+          &.top-padding {
+            padding-top: 15px;
+          }
+        }
+      }
+
+      .insights-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .order-details-insight {
+          max-width: 135px;
+          flex-shrink: 0;
+          img {
+            height: 48px;
+          }
+          div {
+            p:first-child {
+              font-size: 17px;
+              font-weight: 700;
+            }
+
+            p:nth-child(2) {
+              font-size: 14px;
+              font-weight: 400;
+              
+            }
+          }
+        }
+      }
+    }
+  }
+}

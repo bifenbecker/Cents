@@ -1,0 +1,90 @@
+// import global styles
+@import "./assets/styles/_fonts.scss";
+@import "./assets/styles/_colors.scss";
+@import "./assets/styles/_mixins.scss";
+@import "./assets/styles/_common.scss";
+@import "./assets/styles/_modal.scss";
+@import "./assets/styles/pagination.scss";
+
+// Commons
+@import "./components/commons/sidebarMenu/_sidebar-menu.scss";
+@import "./components/commons/header/_header.scss";
+@import "./components/commons/card/_card.scss";
+@import "./components/password-reset/_password-reset.scss";
+@import "./components/forgot-password/_forgot-password.scss";
+@import "./components/commons/tab-bar/_tab-bar.scss";
+@import "./components/commons/checkbox/_checkbox.scss";
+@import "./components/commons/radio/_radio.scss";
+@import "./components/commons/material-input-wrapper/_material_input_wrapper.scss";
+@import "./components/commons/select/_tab_select.scss";
+@import "./components/commons//toggle-switch/_toggle_switch.scss";
+@import "./components/commons/modal/modal.scss";
+@import "./components/commons/birthday-picker/_birthday_picker.scss";
+@import "./components/commons/label-dropdown/_label_dropdowns.scss";
+@import "./components/commons/wizardRadioSelector/_wizard-radio-selector.scss";
+@import "./components/commons/plus-minus-buttons/_plusMinusButtons.scss";
+@import "./components/commons/pill-button/_pill-button.scss";
+@import "./components/commons/header-navigation-button/_header-navigation-button.scss";
+@import "./components/commons/tab-switcher/_tab-switcher.scss";
+@import "./components/commons/rounder-tab-switcher/rounded-tab-switcher.scss";
+@import "./components/commons/expandable-search-bar/expandable-search-bar.scss";
+@import "./components/commons/icon-insight/_icon_insight.scss";
+@import "./components/commons/timeline/_timeline.scss";
+@import "./components/commons/dashboard-insight/_dashboardInsight.scss";
+@import "./components/commons/icon-select/_icon_select.scss";
+@import "./components/commons/time-picker/_time-picker-with-input.scss";
+@import "./components/commons/icon-date-picker/_icon-date-picker.scss";
+@import "./components/commons/icon-days-picker/_icon-days-picker.scss";
+@import "./components/commons/icon-select/_icon_select.scss";
+@import "./components/commons/archive-modal/archive-modal.scss";
+@import "./components/commons/multi-select-with-input/_multi-select-with-input.scss";
+@import "./components/commons/left-navbar/left-navbar";
+@import "./components/commons/right-nav/right-nav";
+@import "./components/commons/double-nav/double-nav";
+@import "./components/commons/pickup-delivery-dropdown/pickup-delivery-dropdown";
+@import "./components/commons/max-stops-dropdown/max-stops-dropdown.scss";
+
+
+
+// Super Admin
+@import "./components/landing-page/_landing-page.scss";
+@import "./components/admin/dashboard/_layout.scss";
+@import "./components/admin/customers/_customers.scss";
+@import "./components/admin/devices/_devices.scss";
+
+//Business Owner
+@import "./components/business-owner/global-settings/dashboard/_layout.scss";
+@import "./components/business-owner/global-settings/account/details/_details.scss";
+@import "./components/business-owner/global-settings/account/settings/_settings.scss";
+@import "./components/business-owner/global-settings/account/taxes/_taxes.scss";
+@import "./components/business-owner/global-settings/account/_account.scss";
+@import "./components/business-owner/global-settings/locations/_locations.scss";
+@import "./components/business-owner/global-settings/locations/_esd-registration.scss";
+@import "./components/business-owner/global-settings/locations/reset-password/_reset-password.scss";
+@import "./components/business-owner/global-settings/devices/_devices.scss";
+@import "./components/business-owner/global-settings/task-manager/_task_manager.scss";
+@import "./components/business-owner/global-settings/teams/_teams.scss";
+@import "./components/business-owner/global-settings/teams/team-member-info/time-card/time-card.scss";
+@import "./components/business-owner/global-settings/services/_services.scss";
+@import "./components/business-owner/global-settings/products/products.scss";
+@import "./components/business-owner/global-settings/productsandservices/dry-cleaning/dry-cleaning.scss";
+@import "./components/business-owner/global-settings//productsandservices/categories/_categories.scss";
+@import "./components/business-owner/global-settings/products-and-services-tab-layout/_products-and-services-tab-layout.scss";
+@import "./components/business-owner/global-settings/promotions/_promotions.scss";
+@import "./components/business-owner/global-settings/legacy_services/_services.scss";
+
+@import "./components/business-owner/bo-header/_boHeader.scss";
+@import "./components/business-owner/bo-sidebar/_bo-sidebar.scss";
+@import "./components/business-owner/dashboard/_dashboard.scss";
+@import "./components/business-owner/machines/_machines.scss";
+@import "./components/business-owner/customers/_customers.scss";
+@import "./components/business-owner/three-card-layout/_three_card_layout.scss";
+@import "./components/business-owner/orders/export_orders_report_modal.scss";
+@import "./components/business-owner/orders/_orders.scss";
+@import "./components/business-owner/orders/_order_details.scss";
+@import './components/business-owner/reports/reports.scss';
+
+@import  "./components/business-owner/global-settings/promotions/_promotions.scss";
+@import "./components/business-owner/global-settings/account/payments/payments.scss";
+@import  "./components/business-owner/global-settings/pricing-tiers/_pricing_tiers.scss";
+@import "./components/business-owner/global-settings/account/preferences/preferences.scss";

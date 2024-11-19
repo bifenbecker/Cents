@@ -1,0 +1,19 @@
+name: Deploy to epic2
+on:
+  push:
+    branches:
+      - feature/tiered-pricing
+
+jobs:
+  deploy_preprod:
+    if : endsWith(github.ref, '/feature/tiered-pricing')
+    uses: make-cents/CentsFE/.github/workflows/deploy_template.yml@feature/tiered-pricing
+    name: Deploy to epic
+    with:
+      deployment_bucket_name: 'epic2-bo'
+      iam_role_name: 'deploy-bo-epic2'
+      env_secret_name: 'epic2/bo/env'
+      stripe_secret_name: 'dev/react_app/stripe_key'
+    secrets:
+      aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+      cfd_id: ${{ secrets.EPIC2_CLOUDFRONT_DISTRO_ID }}

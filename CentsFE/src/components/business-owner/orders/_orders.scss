@@ -1,0 +1,152 @@
+.orders-list-header {
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    cursor: pointer;
+  }
+}
+
+.pills-container.order-list-pills {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orders-status-switcher {
+  margin: 12px 31px;
+
+  .rounded-tab {
+    padding: 10px 20px;
+    line-height: 1.6em;
+    margin: 0;
+
+    &.active {
+      line-height: 1.7em;
+    }
+  }
+}
+
+.orders-list-content {
+  height: calc(100% - 52px - 64px);
+  overflow-y: auto;
+
+  .no-orders-text {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 30px;
+  }
+
+  .orders-list {
+    padding: 0;
+    & > div {
+      position: relative;
+    }
+  }
+
+  .order-short-row-item {
+    width: calc(100% - 62px) !important;
+    height: 67px;
+    margin: 0 31px;
+    border-bottom: 1px solid $color-locations-item-divider;
+    display: flex;
+    padding: 15px 0;
+    cursor: pointer;
+
+    &.active {
+      width: 100% !important;
+      padding: 15px 31px;
+      margin: 0;
+      background: $color-locations-item-selected-background;
+      border-bottom: 1px solid transparent;
+    }
+
+    .canceled-order-alert {
+      width: 20px;
+      height: 20px;
+      border-radius: 20px;
+      color: white;
+      text-align: center;
+      font-size: 10px;
+      margin-right: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .alert-bg {
+      background: #b00020;
+    }
+
+    .two-row-text-container {
+      &.orderNumber {
+        flex: 2;
+      }
+      display: flex;
+      flex-direction: column;
+      flex: 3;
+      overflow: hidden;
+      padding: 0 2px;
+      p {
+        margin: 0;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &.main-text {
+          font-size: 14px;
+          font-weight: 400;
+          &.order-id {
+            font-weight: 500;
+          }
+        }
+
+        &.sub-text {
+          font-size: 12px;
+          font-weight: 400;
+          font-style: italic;
+          color: $header-button-inactive-text;
+        }
+      }
+    }
+  }
+}
+
+.orders-top-card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  p {
+    margin: 0;
+  }
+
+  .label {
+    font-size: 24px;
+  }
+
+  .insight-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .number {
+      font-size: 40px;
+      font-weight: 500;
+      color: $color-theme;
+      margin-right: 10px;
+    }
+    .description {
+      max-width: 110px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+}

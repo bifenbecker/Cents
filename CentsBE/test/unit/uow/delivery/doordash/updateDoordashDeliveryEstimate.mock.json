@@ -1,0 +1,23 @@
+{
+    "pickup_address": {
+        "city": "store.city",
+        "state": "store.state",
+        "street": "store.address",
+        "unit": null,
+        "zip_code": "store.zipCode"
+    },
+    "dropoff_address": {
+        "city": "customerAddress.city",
+        "state": "customerAddress.firstLevelSubdivisionCode",
+        "street": "customerAddress.address1",
+        "unit": "customerAddress.address2",
+        "zip_code": "customerAddress.postalCode"
+    },
+    "order_value": 10000,
+    "external_business_name": "business.name",
+    "external_store_id": "store.id",
+    "delivery_time": "2022-05-27T15:45:18.000000Z",
+    "currency": "USD",
+    "id": 1408778289,
+    "fee": 999
+}

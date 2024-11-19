@@ -1,0 +1,28 @@
+.pagination {
+  margin-top: 15px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  span {
+    @include flex(center, center);
+    cursor: pointer;
+    color: $black;
+    float: left;
+    padding: 2px 0px;
+    text-decoration: none;
+    transition: color 0.3s;
+    border: 1px solid #c4c5c6;
+    min-width: 30px;
+    background: $white;
+    &.active-page {
+      background-color: $color-theme !important;
+      color: $white;
+      border-color: $color-theme;
+    }
+    &.chevron {
+      font-size: 10px;
+    }
+    &.disabled {
+      cursor: not-allowed;
+    }
+  }
+}

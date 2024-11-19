@@ -1,0 +1,19 @@
+name: Deploy to dev
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy_dev:
+    if : endsWith(github.ref, '/dev')
+    uses: make-cents/Cents_LiveLink/.github/workflows/deploy_template.yml@dev
+    name: Deploy to dev
+    with:
+      deployment_bucket_name: 'live-link-dev'
+      iam_role_name: 'deploy-live-link-dev'
+      env_secret_name: 'dev/live-link/env'
+      stripe_secret_name: 'dev/react_app/stripe_key'
+    secrets:
+      aws_account_id: ${{ secrets.DEV_AWS_ACCOUNT_ID }}
+      cfd_id: ${{ secrets.DEV_CLOUDFRONT_DISTRO_ID }}

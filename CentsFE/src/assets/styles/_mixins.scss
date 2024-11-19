@@ -1,0 +1,28 @@
+@mixin flex($value_h, $value_v){
+    display: flex;
+    align-items: $value_v;
+    justify-content: $value_h;
+}
+
+@mixin flex-d($value_h, $value_v, $direction){
+    display: flex;
+    align-items: $value_v;
+    justify-content: $value_h;
+    flex-direction: $direction;
+}
+
+@mixin custom-scroll{
+    &::-webkit-scrollbar {
+      width: 0.5em;
+    }
+
+    &::-webkit-scrollbar-track {
+      @include box-shadow(inset 0 0 6px rgba(0,0,0,0.3));
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: darkgrey;
+      outline: 1px solid slategrey;
+    }
+}
+

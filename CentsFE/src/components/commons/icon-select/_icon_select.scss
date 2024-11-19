@@ -1,0 +1,83 @@
+.icon-select{
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  padding: 0px 13px;
+  position: relative;
+  left: -13px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  .custom-indicator{
+    opacity: 0;
+    .right-icon {
+      font-size: 10px;
+    }
+  }
+
+  &.open, &:hover{
+    border: 1px solid black;
+    .custom-indicator{
+      opacity: 1;
+    }
+  }
+
+  &.disabled {
+    background: $color-bg-grey;
+    cursor: not-allowed;
+
+    &:hover{
+      border-color: transparent;
+      
+      .custom-indicator{
+        opacity: 0;
+      }
+    }
+
+    .icon-select__control--is-disabled{
+      background: transparent;
+    }
+
+  }
+
+  .icon{
+    flex: 0;
+    margin-right: 7px;
+  }
+  
+  .icon-select-react-select{
+    flex: 1;
+    
+    .icon-select__control, .icon-select__control--is-focused{
+      border: 0px;
+      box-shadow: 0 0 transparent;
+    }
+
+    .icon-select__placeholder{
+      font-size: 14px;
+    }
+
+    .icon-select__single-value{
+      font-size: 14px;
+      color: black;
+    }
+
+    .icon-select__option{
+      font-size: 14px;
+    }
+
+    .icon-select__indicators{
+      display: none;
+    }
+  }
+
+  .custom-indicator{
+    margin: 0 0 0 5px;
+    transition: transform 0.2s ease;
+  }
+
+  &.open{
+    .custom-indicator{
+      transform: rotate(90deg);
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.pill-button {
+  min-width: 80px;
+  min-height: 40px;
+  border-radius: 20px;
+  padding: 5px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 19px;
+  cursor: pointer;
+  background-color: $white;
+}
+
+.selected-pill {
+  border: $color-theme solid;
+  border-width: 4px;
+  color: $black;
+}
+
+.deselected-pill {
+  border: $disabled-grey solid;
+  border-width: 0.65px;
+  color: $header-button-inactive-text;
+}

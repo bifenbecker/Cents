@@ -1,0 +1,84 @@
+.zip-input-container {
+  display: flex;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+
+.zone-input-container {
+  display: flex;
+  width: 51%;
+  padding: 15px 0;
+  margin-top: 7px;
+}
+.add-new-zip-icon {
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  margin-top: 4px;
+  cursor: pointer;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.zone-name-input {
+  width: 149px;
+  height: 35px;
+}
+.zip-name-input {
+  width: 200px;
+  height: 35px;
+  margin: 0 5px;
+}
+
+.zip-code-input {
+  width: 115px;
+  height: 40px;
+  margin: 0 8px;
+}
+
+.zip-list-container {
+  width: 300px;
+}
+
+.zone-wise-zip-container {
+  width: 500px;
+}
+
+.pill-with-cross-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  float: left;
+  position: relative;
+  min-height: 34px;
+  min-width: 83px;
+  margin: 5px;
+}
+.TabBar-content {
+  width: 100%;
+  padding: 30px;
+}
+.zone-tab-content {
+  width: 100%;
+  padding: 0px 30px;
+}
+.zipcodes-validation-popup-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+  position: relative;
+  border-radius: 24px;
+  padding: 25px 40px 15px;
+  .header{
+    font-size: 18px;
+    font-weight: 500;
+  }
+  p{
+    font-size: 14px;
+  }
+  .modal-buttons-container{
+    display: flex;
+    justify-content: "center";
+  }
+}

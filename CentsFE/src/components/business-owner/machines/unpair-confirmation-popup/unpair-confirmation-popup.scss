@@ -1,0 +1,18 @@
+.popup-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px 40px;
+  width: 500px;
+  position: relative;
+  p {
+    text-align: center;
+  }
+
+  .modal-buttons-container {
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+}

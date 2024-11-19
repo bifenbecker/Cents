@@ -1,0 +1,17 @@
+name: Deploy to cents_be_dev
+on:
+  push:
+    branches:
+      - Dev
+
+jobs:
+  deploy_dev:
+    if : endsWith(github.ref, '/Dev')
+    uses: make-cents/CentsBE/.github/workflows/deploy_template.yml@Dev
+    name: Deploy with Code Deploy
+    with:
+      application_name: 'cents-dev'
+      deployment_group_name: 'cents-dev-dg'
+      iam_role_name: 'deploy-cents-be-dev'
+    secrets:
+      aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}

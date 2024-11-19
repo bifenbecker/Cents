@@ -1,0 +1,1367 @@
+Table "bagNoteTags" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "name" "character varying(255)" [not null]
+  "isDeleted" boolean [default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+}
+
+Table "batches" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "storeId" integer [ref: > stores.id]
+  "batchName" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "businessOrdersCount" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: - laundromatBusiness.id]
+  "totalOrders" integer
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "businessPromotionPrograms" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "name" "character varying(255)" [not null]
+  "promotionType" "character varying(255)" [not null]
+  "currency" "character varying(255)" [default: "USD"]
+  "lightrailId" "character varying(255)"
+  "pretax" boolean
+  "active" boolean
+  "balanceRule" jsonb
+  "redemptionRule" jsonb
+  "customerRedemptionLimit" integer
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "startDate" timestamp
+  "endDate" timestamp
+  "locationEligibilityType" "character varying(255)" [not null]
+  "discountValue" real [not null]
+  "activeDays" jsonb [not null]
+  "appliesToType" "character varying(255)"
+  "requirementType" "character varying(255)"
+  "requirementValue" real
+}
+
+Table "businessSettings" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: - laundromatBusiness.id]
+  "isWeightDuringIntake" boolean [default: true]
+  "isWeightBeforeProcessing" boolean [default: true]
+  "isWeightAfterProcessing" boolean [default: true]
+  "isWeightUpOnCompletion" boolean [default: true]
+  "isBagTrackingEnabled" boolean [default: false]
+  "isWeightReceivingAtStore" boolean [default: true]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "requiresEmployeeCode" boolean [default: true]
+  "requiresRack" boolean [default: true]
+  "allowInStoreTip" boolean [default: false]
+  "termsOfServiceUrl" "character varying(255)"
+  "isCustomUrl" boolean [default: false]
+  "salesWeight" "character varying(255)" [default: "DURING_INTAKE"]
+  "receiptFooterMessage" "character varying(300)" [default: "Thank you for your order."]
+  "hasConvenienceFee" boolean [default: false]
+}
+
+Table "businessSubscriptions" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: - laundromatBusiness.id]
+  "stripeSubscriptionToken" "character varying(255)"
+  "status" "character varying(255)"
+  "isDeleted" boolean
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "businessThemes" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: - laundromatBusiness.id]
+  "primaryColor" "character varying(255)" [not null, default: "#3D98FF"]
+  "secondaryColor" "character varying(255)" [not null, default: "#FFFFFF"]
+  "borderRadius" "character varying(255)" [not null, default: "31px"]
+  "logoUrl" "character varying(255)" [default: "https://cents-product-images.s3.us-east-2.amazonaws.com/Cents+LOGO.png"]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "normalFont" "character varying(255)" [default: "Roboto Regular"]
+  "boldFont" "character varying(255)" [default: "Roboto Bold"]
+}
+
+Table "inventoryCategories" {
+  "id" integer [not null,primary key]
+  "name" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "businessId" integer [not null]
+  "deletedAt" timestamp
+}
+
+Table "zones" {
+  "id" integer [not null,primary key]
+  "name" "character varying(255)"
+  "ownDeliverySettingsId" integer [not null,ref: > ownDeliverySettings.id]
+  "zipCodes" "text ARRAY"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp [default: null]
+}
+
+Table "shiftTimingZones" {
+  "id" integer [not null,primary key]
+  "timingId" integer [not null,ref: > timings.id]
+  "zoneIds" "integer ARRAY"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp [default: null]
+}
+
+Table "cashDrawerEndEvents" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "teamMemberId" integer [not null,ref: > teamMembers.id]
+  "employeeCode" "character varying(255)" [not null]
+  "employeeName" "character varying(255)"
+  "cashSalesAmount" integer [not null]
+  "cashRefundAmount" integer [not null]
+  "expectedInDrawer" integer [not null]
+  "actualInDrawer" "character varying(255)" [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "cashDrawerStartEvents" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "teamMemberId" integer [not null,ref: > teamMembers.id]
+  "employeeCode" "character varying(255)" [not null]
+  "employeeName" "character varying(255)"
+  "startingCashAmount" integer [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "cashOutEvents" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "teamMemberId" integer [not null,ref: > teamMembers.id]
+  "employeeCode" "character varying(255)" [not null]
+  "employeeName" "character varying(255)"
+  "totalCashChanged" integer [not null]
+  "amountLeftInDrawer" integer [not null]
+  "totalCashPaymentSum" integer [not null]
+  "type" "character varying(255)" [not null]
+  "paymentIds" text
+  "notes" text
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "cciSettings" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: - stores.id]
+  "username" "character varying(255)" [not null]
+  "password" "character varying(255)" [not null]
+  "cciStoreId" integer
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+  "isDeleted" boolean
+  "machineId" "character varying(255)"
+}
+
+Table "centsCustomerAddresses" {
+  "id" integer [not null,primary key]
+  "centsCustomerId" integer [not null,ref: > centsCustomers.id]
+  "address1" "character varying(255)" [not null]
+  "address2" "character varying(255)"
+  "city" "character varying(255)" [not null]
+  "firstLevelSubdivisionCode" "character varying(255)" [not null]
+  "postalCode" "character varying(255)" [not null]
+  "countryCode" country_code [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "googlePlacesId" "character varying(255)"
+  "instructions" "character varying(255)"
+  "leaveAtDoor" boolean
+  "lat" real
+  "lng" real
+}
+
+Table "centsCustomers" {
+  "id" integer [not null,primary key]
+  "firstName" "character varying(255)" [not null]
+  "lastName" "character varying(255)"
+  "email" "character varying(255)"
+  "password" "character varying(255)" [not null]
+  "phoneNumber" "character varying(255)"
+  "resetPasswordToken" "character varying(255)"
+  "passwordResetDate" timestamp
+  "languageId" integer [ref: - languages.id]
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "stripeCustomerId" "character varying(255)"
+}
+
+Table "convenienceFees" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: - laundromatBusiness.id]
+  "fee" real [not null]
+  "feeType" "character varying(255)" [default: "PERCENTAGE"]
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "creditHistory" {
+  "id" integer [not null,primary key]
+  "amount" real [not null]
+  "reasonId" integer [not null,ref: - creditReasons.id]
+  "customerId" integer [not null,ref: - centsCustomers.id]
+  "businessId" integer [not null,ref: - laundromatBusiness.id]
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "creditReasons" {
+  "id" integer [not null,primary key]
+  "reason" "character varying(255)" [not null]
+  "description" "character varying(255)"
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "detergentTypes" {
+  "id" integer [not null,primary key]
+  "detergentType" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "devices" {
+  "id" integer [not null,primary key]
+  "name" "character varying(255)"
+  "batchId" integer [ref: > batches.id]
+  "isActive" boolean [default: true]
+  "isPaired" boolean [default: false]
+  "status" "character varying(255)" [default: OFFLINE]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "capturerData" {
+  "id" integer [not null,primary key]
+  "userId" integer [ref: > users.id]
+  "teamMemberId" integer [ref: > teamMembers.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "districts" {
+  "id" integer [not null,primary key]
+  "regionId" integer [not null,ref:> regions.id]
+  "name" "character varying(255)"
+  "isDeleted" boolean [default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "esdReaders" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "esdLocationId" "character varying(255)"
+  "deviceSerialNumber" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "inventory" {
+  "id" integer [not null,primary key]
+  "categoryId" integer [not null,ref: > inventoryCategories.id]
+  "description" "character varying(255)"
+  "productName" "character varying(255)" [not null]
+  "price" real
+  "quantity" integer [not null, default: 0]
+  "productImage" "character varying(255)"
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "sku" "character varying(255)"
+  "isTaxable" boolean [default: true]
+}
+
+Table "inventoryChangeLog" {
+  "id" integer [not null,primary key]
+  "inventoryItemId" integer [not null,ref: > inventoryItems.id]
+  "teamMemberId" integer [ref: > teamMembers.id]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "storeId" integer [ref: > stores.id]
+  "orderId" integer [ref: > orders.id]
+  "startingAmount" integer [not null]
+  "amountChanged" integer [not null]
+  "endingAmount" integer [not null]
+  "reason" "character varying(255)"
+  "entryPoint" "character varying(255)" [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "inventoryItems" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "price" real [default: "0"]
+  "quantity" integer [not null, default: 0]
+  "isDeleted" boolean
+  "deletedAt" timestamp
+  "isTaxable" boolean [default: true]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "isFeatured" boolean [default: true]
+  "inventoryId" integer [ref: > inventory.id]
+}
+
+Table "inventoryOrderLineItems" {
+  "id" integer [not null,primary key]
+  "inventoryOrderId" integer [not null,ref: > inventoryOrders.id]
+  "lineItemQuantity" integer [not null]
+  "lineItemTotalCost" real
+  "lineItemTax" real
+  "inventoryItemId" integer [not null,ref: > inventoryItems.id]
+  "lineItemName" "character varying(255)"
+  "lineItemDescription" "character varying(255)"
+  "lineItemCategory" "character varying(255)"
+  "lineItemCost" real
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "taxRateId" integer [ref: > taxRates.id]
+  "lineItemTaxRate" real
+}
+
+Table "inventoryOrders" {
+  "id" integer [not null,primary key]
+  "orderCode" "character varying(255)"
+  "customerId" integer [ref: > users.id]
+  "employeeId" integer [ref: > teamMembers.id]
+  "storeId" integer [not null,ref: > stores.id]
+  "status" "character varying(255)"
+  "paymentStatus" "character varying(255)" [default: "BALANCE_DUE"]
+  "orderTotal" real
+  "salesTaxAmount" integer [default: "0"]
+  "netOrderTotal" real
+  "promotionId" integer [ref: > businessPromotionPrograms.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "tipAmount" real
+  "creditAmount" real
+  "storeCustomerId" integer [ref: > storeCustomers.id]
+  "promotionAmount" double [default: "0"]
+  "balanceDue" double [default: "0"]
+  "convenienceFee" real
+  "uuid" uuid
+}
+
+Table "itemWeights" {
+  "id" integer [not null,primary key]
+  "orderItemId" integer [not null,ref: > serviceOrderItems.id]
+  "step" integer
+  "weight" real [not null]
+  "teamMemberId" integer [ref: > teamMembers.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "bagCount" integer
+  "status" "character varying(255)"
+}
+
+Table "jakeTasksLog" {
+  "id" integer [not null,primary key]
+  "taskName" "character varying(255)" [not null]
+  "jobTimeStamp" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "knex_migrations" {
+  "id" integer [not null,primary key]
+  "name" "character varying(255)"
+  "batch" integer
+  "migration_time" timestamp
+}
+
+Table "knex_migrations_lock" {
+  "index" integer [not null,primary key]
+  "is_locked" integer
+}
+
+Table "languages" {
+  "id" integer [not null,primary key]
+  "language" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+}
+
+Table "laundromatBusiness" {
+  "id" integer [not null,primary key]
+  "userId" integer [not null,ref: - users.id]
+  "name" "character varying(255)" [not null]
+  "address" "character varying(255)"
+  "city" "character varying(255)"
+  "state" "character varying(255)"
+  "zipCode" "character varying(255)"
+  "needsRegions" boolean [default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "merchantId" "character varying(255)"
+  "stripeCustomerToken" "character varying(255)"
+  "subscriptionId" integer [ref: - businessSubscriptions.id]
+  "type" "character varying(255)" [not null, default: 'LIVE']
+}
+
+Table "laundroworksSettings" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: - stores.id]
+  "username" "character varying(255)" [not null]
+  "password" "character varying(255)" [not null]
+  "customerKey" "character varying(255)" [not null]
+  "laundroworksLocationId" "character varying(255)" [not null]
+  "laundroworksPosNumber" "character varying(255)" [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+  "isDeleted" boolean [default: false]
+}
+
+Table "washServices" {
+  "id" integer [not null,primary key]
+  "laundryType" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "category" "character varying(255)" [default: "FIXED_PRICE"]
+  "description" text
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+}
+
+Table "machineLoadTypes" {
+  "id" integer [not null,primary key]
+  "name" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "machineModelLoads" {
+  "id" integer [not null,primary key]
+  "modelId" integer [not null,ref: > machineModels.id]
+  "loadId" integer [ref: > machineLoadTypes.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "machineModels" {
+  "id" integer [not null,primary key]
+  "modelName" "character varying(255)"
+  "capacity" "character varying(255)"
+  "typeId" integer [not null,ref: > machineTypes.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "manufacturer" "character varying(255)"
+}
+
+Table "machinePricing" {
+  "id" integer [not null,primary key]
+  "machineId" integer [not null,ref: > machines.id]
+  "price" real
+  "unit" "character varying(255)"
+  "unitLot" integer
+  "unitTime" integer
+  "loadId" integer [ref: > machineModelLoads.id]
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "machineTypes" {
+  "id" integer [not null,primary key]
+  "name" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "machines" {
+  "id" integer [not null,primary key]
+  "turnTimeInMinutes" integer
+  "createdById" integer [ref: > capturerData.id]
+  "storeId" integer [not null,ref: > machineModels.id]
+  "modelId" integer [not null,ref: > stores.id]
+  "name" "character varying(255)"
+  "serialNumber" "character varying(255)"
+  "isActive" boolean
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "avgSelfServeRevenuePerDayInCents" integer
+}
+
+
+Table "machineTurnsStats" {
+  "id" integer [not null,primary key]
+  "machineId" integer [not null,ref: > machines.id]
+  "avgTurnsPerDay" integer
+  "avgSelfServeRevenuePerDay" real
+}
+
+Table "modifiers" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "name" "character varying(255)"
+  "description" text
+  "price" real
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "orderActivityLog" {
+  "id" integer [not null,primary key]
+  "orderId" integer [not null,ref: > serviceOrders.id]
+  "status" "character varying(255)"
+  "employeeCode" "character varying(255)"
+  "employeeName" "character varying(255)"
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "teamMemberId" integer [ref: > teamMembers.id]
+  "notes" text
+  "origin" "text"
+  "deletedAt" timestamp
+}
+
+Table "orderAdjustmentLog" {
+  "id" integer [not null,primary key]
+  "serviceOrderId" integer [not null,ref: > serviceOrders.id]
+  "teamMemberId" integer [ref: > teamMembers.id]
+  "notes" text
+  "previousOrderTotal" real [not null]
+  "newOrderTotal" real [not null]
+  "previousNetOrderTotal" real [not null]
+  "newNetOrderTotal" real [not null]
+  "promotionId" integer [ref: > businessPromotionPrograms.id]
+  "consumedCredits" real
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "orderDeliveries" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "orderId" integer [not null,ref: - orders.id]
+  "storeCustomerId" integer [not null,ref: > storeCustomers.id]
+  "thirdPartyDeliveryId" "character varying(255)"
+  "address1" "character varying(255)" [not null]
+  "address2" "character varying(255)"
+  "city" "character varying(255)" [not null]
+  "firstLevelSubdivisionCode" "character varying(255)" [not null]
+  "postalCode" "character varying(255)" [not null]
+  "countryCode" country_code [not null]
+  "instructions" jsonb
+  "customerName" "character varying(255)" [not null]
+  "customerPhoneNumber" "character varying(255)" [not null]
+  "customerEmail" "character varying(255)"
+  "totalDeliveryCost" real [not null]
+  "serviceFee" real
+  "courierTip" real
+  "deliveryProvider" "character varying(255)" [not null, default: 'UBER']
+  "deliveredAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "status" "character varying(255)"
+  "trackingUrl" "character varying(255)"
+  "deliveryWindow" "bigint ARRAY"
+  "cancellationReason" "character varying(255)"
+  type delivery_type
+  "timingsId" integer [ref: > timings.id]
+  "centsCustomerAddressId" integer [ref: > centsCustomerAddresses.id]
+}
+
+Table "refunds" {
+  "id" integer [not null,primary key]
+  "orderId" integer [not null,ref: > orders.id]
+  "paymentId" integer [not null,ref: > payments.id]
+  "thirdPartyRefundId" "character varying(255)"
+  "refundProvider" "character varying(255)" [not null]
+  "refundAmountInCents" integer [not null]
+  "status" "character varying(255)"
+  "currency" "character varying(255)" [not null] [default: 'usd']
+  "reason" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+enum delivery_type {
+    PICKUP
+    RETURN [note: 'default value']
+}
+
+enum service_category_type {
+    LAUNDRY
+    DRY_CLEANING
+    ALTERATIONS
+}
+
+enum country_code {
+    US
+}
+
+Table "serviceOrderItems" {
+  "id" integer [not null,primary key]
+  "orderId" integer [not null,ref: > serviceOrders.id]
+  "status" "character varying(255)"
+  "price" real
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+  "customerSelection" boolean [default: false]
+}
+
+Table "orderNotificationLogs" {
+  "id" integer [not null,primary key]
+  "orderId" integer [not null,ref: > serviceOrders.id]
+  "status" "character varying(255)"
+  "phoneNumber" "character varying(255)"
+  "notifiedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "languageId" integer [ref: > languages.id]
+}
+
+Table "orderPromoDetails" {
+  "id" integer [not null,primary key]
+  "orderId" integer [not null,ref: > orders.id]
+  "promoDetails" jsonb
+  "itemIds" integer[]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "orderableType" "character varying(255)"
+}
+
+Table "orders" {
+  "id" integer [not null,primary key]
+  "storeId" integer [ref: > stores.id]
+  "orderableId" integer [not null]
+  "orderableType" "character varying(255)" [not null]
+}
+
+Table "ownDeliverySettings"{
+  "id" integer [not null,primary key]
+  "storeId" integer [ref: - stores.id]
+   "active" boolean [default: true]
+   "zipCodes" "text ARRAY"
+   "hasZones" boolean [default: false]
+   "deliveryFeeInCents" integer [default: 0]
+   "pickupFeeInCents" integer [default: 0]
+   "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+   "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "partnerEntities" {
+  "id" integer [not null,primary key]
+  "name" "character varying(255)" [not null]
+  "logoUrl" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedat" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "partnerSubsidiaries" {
+  "id" integer [not null,primary key]
+  "partnerEntityId" integer [not null,ref: > partnerEntities.id]
+  "name" "character varying(255)" [not null]
+  "type" "character varying(255)" [not null]
+  "logoUrl" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedat" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "partnerSubsidiaryPaymentMethods" {
+  "id" integer [not null,primary key]
+  "partnerSubsidiaryId" integer [not null,ref: > partnerSubsidiaries.id]
+  "provider" "character varying(255)" [not null]
+  "type" "character varying(255)" [not null]
+  "paymentMethodToken" "character varying(255)" [not null]
+  "isDeleted" boolean [default: false]
+  "isDefault" boolean [default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+  "partnerStripeCustomerId" "character varying(255)"
+}
+
+Table "partnerSubsidiaryStores" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "partnerSubsidiaryId" integer [not null,ref: > partnerSubsidiaries.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "printerStoreSettings" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "brand" "character varying(255)" [not null]
+  "connectivityType" "character varying(255)" [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "scaleDevices" {
+  "id" integer [not null,primary key]
+  "pinNumber" "character varying(255)" [not null]
+  "deviceUuid" "character varying(255)" [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "scaleDeviceStoreMap" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "scaleDeviceId" integer [not null,ref: > stores.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "serviceOrders" {
+  "id" integer [not null,primary key]
+  "userId" integer [ref: > users.id]
+  "storeId" integer [not null,ref: > stores.id]
+  "status" "character varying(255)"
+  "orderTotal" real
+  "placedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "employeeCode" integer
+  "completedAt" timestamp
+  "paymentStatus" "character varying(255)" [default: "BALANCE_DUE"]
+  "isProcessedAtHub" boolean [default: false]
+  "hubId" integer [ref: > stores.id]
+  "rack" "character varying(255)"
+  "isBagTrackingEnabled" boolean [default: false]
+  "paymentTiming" "character varying(255)" [default: "PRE-PAY"]
+  "rating" integer
+  "orderCode" "character varying(255)"
+  "promotionId" integer [ref: > businessPromotionPrograms.id]
+  "netOrderTotal" real
+  "tipAmount" real
+  "taxAmountInCents" integer [default: 0]
+  "creditAmount" real
+  "storeCustomerId" integer [ref: > storeCustomers.id]
+  "promotionAmount" double [default: "0"]
+  "balanceDue" double [default: "0"]
+  "isAdjusted" boolean [default: false]
+  "orderType" text [default: "SERVICE"]
+  "tipOption" "character varying(255)"
+  "returnMethod" "character varying(255)"
+  "refundableAmount" "real"
+  "convenienceFee" real
+  "pickupDeliveryFee" double [default: "0"]
+  "pickupDeliveryTip" double [default: "0"]
+  "returnDeliveryFee" double [default: "0"]
+  "returnDeliveryTip" double [default: "0"]
+  "uuid" uuid
+}
+
+Table "pairing" {
+  "id" integer [not null,primary key]
+  "deviceId" integer [not null,ref: > devices.id]
+  "machineId" integer [not null,ref: > machines.id]
+  "pairedById" integer [ref: > capturerData.id]
+  "unPairedById" integer [ref: > capturerData.id]
+  "isActive" boolean [default: true]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "machinePaymentType" {
+  "id" integer [not null,primary key]
+  "type" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "serviceOrderTurns" {
+  "id" integer [not null,primary key]
+  "serviceOrderId" integer [not null,ref: > serviceOrders.id]
+  "turnId" integer [not null,ref: > turns.id]
+}
+
+Table "turns" {
+  "id" integer [not null,primary key]
+  "storeCustomerId" integer [ref: > storeCustomers.id]
+  "storeId" integer [not null,ref: > stores.id]
+  "serviceType" "character varying(255)"
+  "technicianName" "character varying(255)"
+  "note" "character varying(255)"
+  "machineId" integer [not null,ref: > machines.id]
+  "deviceId" integer [not null,ref: > devices.id]
+  "createdById" integer [not null,ref: > capturerData.id]
+  "status" "character varying(255)"
+  "deviceOrderId" integer
+  "lmCycleId" integer
+  "turnCode" "character varying(255)"
+  "netOrderTotalInCents" integer
+  "startedAt" timestamp
+  "completedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp [default: null]
+}
+
+Table "machinePayments" {
+  "id" integer [not null,primary key]
+  "paymentTypeId" integer [not null,ref: > storeCustomers.id]
+  "turnId" integer [not null,ref: > stores.id]
+  "paymentId" integer [ref: > machines.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "turnLineItems" {
+  "id" integer [not null,primary key]
+  "turnId" integer [not null,ref: > stores.id]
+  "unitPriceInCents" integer
+  "turnTime" "character varying(255)"
+  "quantity" integer 
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "paymentMethods" {
+  "id" integer [not null,primary key]
+  "centsCustomerId" integer [not null,ref: > centsCustomers.id]
+  "provider" "character varying(255)" [not null]
+  "type" "character varying(255)" [not null]
+  "paymentMethodToken" "character varying(255)" [not null]
+  "isDeleted" boolean
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+}
+
+Table "payments" {
+  "id" integer [not null,primary key]
+  "serviceOrderId" integer
+  "customerId" integer [ref: > users.id]
+  "storeId" integer [not null,ref: > stores.id]
+  "status" "character varying(255)" [not null]
+  "totalAmount" real [not null]
+  "transactionFee" real [not null]
+  "tax" real [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "paymentToken" "character varying(255)" [not null]
+  "stripeClientSecret" "character varying(255)" [not null]
+  "currency" "character varying(255)" [not null]
+  "destinationAccount" "character varying(255)" [not null]
+  "paymentProcessor" "character varying(255)" [not null]
+  "appliedAmount" real
+  "unappliedAmount" real
+  "esdReceiptNumber" "character varying(255)"
+  "orderId" integer [ref: > orders.id]
+  "storeCustomerId" integer [ref: > storeCustomers.id]
+}
+
+Table "prices" {
+  "id" integer [not null,primary key]
+  "washServiceId" integer [not null,ref: > washServices.id]
+  "detergentTypeId" integer [ref: > detergentTypes.id]
+  "price" real
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "businessId" integer [ref: > laundromatBusiness.id]
+  "storeId" integer [ref: > stores.id]
+}
+
+Table "promotionProgramItems" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "businessPromotionProgramId" integer [not null,ref: > businessPromotionPrograms.id]
+  "promotionItemId" integer [not null]
+  "promotionItemType" "character varying(255)" [not null]
+  "isDeleted" boolean [default: false]
+}
+
+Table "serviceReferenceItems" {
+  "id" integer [not null,primary key]
+  "orderItemId" integer [not null,ref: > serviceOrderItems.id]
+  "machineDetails" jsonb
+  "inventoryItemId" integer [ref: > inventoryItems.id]
+  "priceId" integer [ref: > prices.id]
+  "quantity" real
+  "startedAt" timestamp
+  "completedAt" timestamp
+  "totalPrice" real
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "servicePriceId" integer [ref: > servicePrices.id]
+  "serviceId" integer [ref: > servicePrices.id]
+  "barcode" "character varying(255)"
+  "unitCost" real [default: "0"]
+  "serviceModifierId" integer [ref: > serviceModifiers.id]
+  "deletedAt" timestamp
+}
+
+Table "regions" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "name" "character varying(255)"
+  "isDeleted" boolean [default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "roles" {
+  "id" integer [not null,primary key]
+  "userType" "character varying(255)" [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "route" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "timingsId" integer [not null,ref: > timings.id]
+  "driverId" integer [not null,ref: > teamMembers.id]
+  "status" "character varying(255)"
+  "startedAt" timestamp
+  "completedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "routeDeliveries" {
+  "id" integer [not null,primary key]
+  "routeId" integer [not null,ref: > route.id]
+  "routableId" integer
+  "routableType" "character varying(255)"
+  "status" "character varying(255)"
+  "notes" "character varying(255)"
+  "imageUrl" "character varying(255)"
+  "stopNumber" integer
+  "eta" biginteger
+  "startedAt" timestamp
+  "completedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "routeDeliveryActivityLogs" {
+  "id" integer [not null,primary key]
+  "routeDeliveryId" integer [not null,ref: > routeDeliveries.id]
+  "driverId" integer [ref: > teamMembers.id]
+  "status" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "serviceOrderRouteDeliveries" {
+  "id" integer [not null,primary key]
+  "routeDeliveryId" integer [not null,ref: > routeDeliveries.id]
+  "serviceOrderId" integer [not null,ref: > serviceOrders.id]
+  "type" "character varying(255)"
+  "overriddenScan" boolean [default: false]
+  "status" "character varying(255)"
+}
+
+Table "storeSettings" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "lat" real
+  "lng" real
+  "googlePlacesId" "character varying(255)"
+  "turnAroundInHours" integer [not null]
+  "timeZone" "character varying(255)"
+  "deliveryEnabled" boolean [default: false]
+  "hasAppReportingAccessible" boolean [default: true]
+}
+
+Table "centsDeliverySettings" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: > stores.id]
+  "active" boolean [default: true]
+  "subsidyInCents" integer [not null]
+  "minOrderAmountInCents" integer [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "secondaryDetails" {
+  "id" integer [not null,primary key]
+  "userId" integer [not null,ref: - users.id]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "fullName" "character varying(255)"
+  "phoneNumber" "character varying(255)"
+  "email" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "languageId" integer [ref: > languages.id]
+}
+
+Table "serviceCategories" {
+  "id" integer [not null,primary key]
+  "category" "character varying(255)" [not null]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "serviceCategoryTypeId" integer [not null,ref: > serviceCategoryTypes.id]
+  "imageUrl" "character varying(255)"
+  "deletedAt" timestamp
+  "turnAroundInHours" integer [not null default: 24]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "serviceCategoryTypes" {
+  "id" integer [not null,primary key]
+  "type" service_category_type
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "serviceModifiers" {
+  "id" integer [not null,primary key]
+  "modifierId" integer [not null,ref: > modifiers.id]
+  "serviceId" integer [not null,ref: > servicesMaster.id]
+  "isFeatured" boolean [default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "serviceOrderBags" {
+  "id" integer [not null,primary key]
+  "serviceOrderId" integer [not null,ref: > serviceOrders.id]
+  "description" "character varying(255)"
+  "barcode" "character varying(255)"
+  "barcodeStatus" "character varying(255)"
+  "isActiveBarcode" boolean [default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "notes" text
+}
+
+Table "serviceOrderWeights" {
+  "id" integer [not null,primary key]
+  "referenceItemId" integer [ref: > serviceReferenceItems.id]
+  "teamMemberId" integer [ref: > teamMembers.id]
+  "step" integer
+  "totalWeight" real [not null]
+  "chargeableWeight" real [not null]
+  "status" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "isEdited" boolean [default: false]
+  "editedBy" integer [ref: > teamMembers.id]
+  "editReason" text
+  "deletedAt" timestamp
+  "serviceOrderId" integer [ref: > serviceOrders.id]
+  "isAdjusted" boolean [default: false]
+  "adjustedBy" integer [ref: > teamMembers.id]
+}
+
+Table "servicePrices" {
+  "id" integer [not null,primary key]
+  "storeId" integer [ref: > stores.id]
+  "serviceId" integer [ref: > servicesMaster.id]
+  "storePrice" real [default: "0"]
+  "minQty" real
+  "minPrice" real
+  "isTaxable" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "isFeatured" boolean [default: true]
+}
+
+Table "serviceReferenceItemDetails" {
+  "id" integer [not null,primary key]
+  "serviceReferenceItemId" integer [not null,ref: - serviceReferenceItems.id]
+  "soldItemId" integer [not null]
+  "soldItemType" "character varying(255)" [not null]
+  "lineItemName" "character varying(255)" [not null]
+  "lineItemDescription" "character varying(255)"
+  "lineItemTotalCost" real [not null]
+  "lineItemQuantity" real [not null, default: "0"]
+  "lineItemUnitCost" real [not null]
+  "lineItemMinPrice" real
+  "lineItemMinQuantity" real
+  "lineItemTaxInCents" integer [default: "0"]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "customerName" "character varying(255)"
+  "customerPhoneNumber" "character varying(255)"
+  "category" "character varying(255)"
+  "deletedAt" timestamp
+}
+
+Table "serviceReferenceItemModifiers" {
+  "id" integer [not null,primary key]
+  "serviceReferenceItemId" integer [not null,ref: > serviceReferenceItems.id]
+  "serviceModifierId" integer [not null,ref: > serviceModifiers.id]
+  "modifierName" "character varying(255)"
+  "modifierPrice" real
+  "modifierDescription" text
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "servicesMaster" {
+  "id" integer [not null,primary key]
+  "serviceCategoryId" integer [not null,ref: > serviceCategories.id]
+  "description" "character varying(255)"
+  "name" "character varying(255)" [not null]
+  "defaultPrice" real
+  "minQty" real
+  "minPrice" real
+  "hasMinPrice" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+}
+
+Table "shifts" {
+  "id" integer [not null,primary key]
+  "name" "character varying(255)" [not null]
+  "storeId" integer [not null,ref: > stores.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp [default: null]
+}
+
+Table "spyderWashSettings" {
+  "id" integer [not null,primary key]
+  "storeId" integer [not null,ref: - stores.id]
+  "email" "character varying(255)" [not null]
+  "password" "character varying(255)" [not null]
+  "posId" "character varying(255)"
+  "operatorCode" "character varying(255)"
+  "locationCode" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+  "isDeleted" boolean
+}
+
+Table "storeCustomers" {
+  "id" integer [not null,primary key]
+  "firstName" "character varying(255)" [not null]
+  "lastName" "character varying(255)"
+  "email" "character varying(255)"
+  "phoneNumber" "character varying(255)"
+  "notes" text
+  "centsCustomerId" integer [not null,ref: > centsCustomers.id]
+  "storeId" integer [not null,ref: > stores.id]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "languageId" integer [ref: > languages.id]
+  "creditAmount" real
+}
+
+Table "storePromotionPrograms" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "storeId" integer [not null,ref: > stores.id]
+  "businessPromotionProgramId" integer [not null]
+}
+
+Table "storeThemes" {
+  "storeId" integer [not null]
+}
+
+Table "stores" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "name" "character varying(255)" [not null]
+  "address" "character varying(255)" [not null]
+  "city" "character varying(255)"
+  "state" "character varying(255)"
+  "zipCode" "character varying(255)"
+  "phoneNumber" "character varying(255)" [not null]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "districtId" integer [ref: > districts.id]
+  "isHub" boolean [default: false]
+  "hubId" integer
+  "stripeLocationId" "character varying(255)"
+  "password" "character varying(255)"
+  "stripeTerminalId" "character varying(255)"
+  "hasReceiptPrinter" boolean [default: false]
+  "dcaLicense" "character varying(255)"
+  "offersFullService" boolean [default: false]
+  "taxRateId" integer [ref: > taxRates.id]
+  "isBagTrackingEnabled" boolean [default: false]
+  "isIntakeOnly" boolean [default: false]
+  "hasEsdEnabled" boolean [default: false]
+  "passwordResetDate" timestamp
+  "uberStoreUuid" "character varying(255)"
+  "type" "character varying(255)"
+  "hasCciEnabled" boolean [default: false]
+  "printerConnectionType" "character varying(255)" [default: "bluetooth"]
+  "hasCashEnabled" boolean [default: false]
+  "hasCashDrawer" boolean [default: false]
+  "hasDeliveryEnabled" boolean [default: true]
+  "commercialDcaLicense" "character varying(255)"
+  "hasSpyderWashEnabled" boolean [default: false]
+}
+
+Table "subscriptionProducts" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "stripeProductId" "character varying(255)"
+  "stripePriceId" "character varying(255)"
+  "unitPrice" real
+  "billingFrequency" "character varying(255)"
+  "name" "character varying(255)"
+  "quantity" integer
+  "isDeleted" boolean [not null, default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+}
+
+Table "taskLogs" {
+  "id" integer [not null,primary key]
+  "taskDetails" jsonb
+  "notes" "character varying(255)"
+  "teamMemberId" integer [ref: > teamMembers.id]
+  "completedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "taskTimingId" integer [ref: - taskTimings.id]
+}
+
+Table "taskTimings" {
+  "id" integer [not null,primary key]
+  "taskId" integer [not null, ref: > tasks.id]
+  "timingsId" integer [not null,ref: > timings.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+}
+
+Table "tasks" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "name" "character varying(255)" [not null]
+  "description" "character varying(255)"
+  "isPhotoNeeded" boolean [default: false]
+  "url" "character varying(255)"
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "deletedAt" timestamp
+}
+
+Table "taxRates" {
+  "id" integer [not null,primary key]
+  "taxAgency" "character varying(255)"
+  "name" "character varying(255)"
+  "rate" real [not null]
+  "isDeleted" boolean [default: false]
+  "deletedAt" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+}
+
+Table "teamMemberStores" {
+  "id" integer [not null,primary key]
+  "teamMemberId" integer [not null,ref: > teamMembers.id]
+  "storeId" integer [not null,ref: > stores.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "teamMembers" {
+  "id" integer [not null,primary key]
+  "birthday" "character varying(255)"
+  "employeeCode" "character varying(255)"
+  "role" "character varying(255)"
+  "businessId" integer [not null,ref: > laundromatBusiness.id]
+  "userId" integer [not null,ref: - users.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "teamMembersCheckIn" {
+  "id" integer [not null,primary key]
+  "teamMemberId" integer [not null,ref: > teamMembers.id]
+  "storeId" integer [not null,ref: > stores.id]
+  "shiftId" integer [ref: > shifts.id]
+  "isCheckedIn" boolean [default: false]
+  "checkInTime" timestamp
+  "checkOutTime" timestamp
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "termsOfServiceLog" {
+  "id" integer [not null,primary key]
+  "businessId" integer [not null,ref: - laundromatBusiness.id]
+  "signedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "timings" {
+  "id" integer [not null,primary key]
+  "shiftId" integer [not null,ref: > shifts.id]
+  "day" text [not null]
+  "startTime" timestamp
+  "endTime" timestamp
+  "isActive" boolean [default: true]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "tipSettings" {
+  "id" integer [not null,primary key]
+  "tipDollars" jsonb
+  "tipPercentage" jsonb
+  "tipType" "character varying(255)"
+  "businessId" integer [not null,ref: - laundromatBusiness.id]
+}
+
+Table "userRoles" {
+  "id" integer [not null,primary key]
+  "roleId" integer [not null,ref: > roles.id]
+  "userId" integer [not null,ref: > users.id]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+Table "users" {
+  "id" integer [not null,primary key]
+  "firstname" "character varying(255)"
+  "lastname" "character varying(255)"
+  "email" "character varying(255)"
+  "password" "character varying(255)"
+  "phone" "character varying(255)"
+  "isVerified" boolean [default: false]
+  "resetPasswordToken" "character varying(255)"
+  "passwordResetDate" timestamp
+  "isActive" boolean [default: true]
+  "isGlobalVerified" boolean [default: false]
+  "createdAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "updatedAt" timestamp [default: `CURRENT_TIMESTAMP`]
+  "otp" "character varying(255)"
+  "otpGeneratedAt" timestamp
+  "languageId" integer [ref: > languages.id]
+}

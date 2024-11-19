@@ -1,0 +1,89 @@
+.account-settings-container.taxes-tab {
+  .cents-modal {
+    border-radius: 20px;
+    overflow-y: hidden;
+    max-height: 407px;
+    min-width: 450px;
+  }
+  .tax-popup-container {
+    padding: 15px 0;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+
+    b.header {
+      border-bottom: none !important;
+      padding-bottom: 10px;
+      font-size: 24px;
+      padding: 0 30px 10px 30px;
+      justify-content: center;
+    }
+
+    .footer {
+      width: 100%;
+      justify-content: flex-end;
+      align-items: baseline;
+      display: flex;
+      border-top: 2px solid #efefef;
+      padding: 10px 20px;
+      .cancel-button {
+        font-size: 12px;
+        text-decoration: underline;
+        margin-right: 8px;
+        cursor: pointer;
+      }
+      .form-save-button{
+        font-size: 16px;
+      }
+    }
+
+    .tax-popup-content {
+      padding: 15px 30px;
+      overflow-y: auto;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .form-inline {
+          position: relative;
+          img {
+            width: 15px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            position: absolute;
+            left: -25px;
+          }
+        }
+
+        & > .tax-popup-text {
+          align-self: center;
+        }
+
+        .tax-popup-text {
+          margin-bottom: 15px;
+          border-radius: 5px;
+          padding: 15px 5px;
+          width: 200px;
+          height: 45px;
+
+          &:active,
+          &.active {
+            .label.move-top {
+              display: block;
+            }
+          }
+          .label.move-top {
+            display: none;
+          }
+        }
+
+        .districts-container {
+          padding: 0px 0 10px 30px;
+          align-self: flex-start;
+        }
+      }
+    }
+  }
+}

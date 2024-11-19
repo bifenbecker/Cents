@@ -1,0 +1,54 @@
+.searchbar-container {
+        margin: 20px 24px 10px;
+        display: flex;
+        justify-content: flex-end;
+        &.services-list {
+            width: 100%;
+        }
+        div {
+            transition: 1s all ease;
+            height: 35px;
+            padding-bottom: 10px;
+            display: flex;
+            &.contract {
+                border-bottom: 1px solid transparent;
+                width: 20px;
+                input {
+                    width: 0;
+                    padding: 0;
+                    border: 0;
+                }
+            }
+    
+            &.expand {
+                width: 100%;
+                border-bottom: 1px solid grey;
+                input {
+                    width: 70%;
+                }
+                img.close-icon {
+                    height: 10px;
+                    width: 10px;
+                    margin-left: auto;
+                    margin-top: auto;
+                    cursor: pointer;
+                }
+                img.search-icon {
+                    cursor: auto;
+                }
+            }
+        }
+
+        img.search-icon {
+            cursor: pointer;
+            height: 20px;
+            width: 20px;
+        }
+
+        input {
+            transition: 1s all ease;
+            border: 0;
+            background-color: transparent;
+            padding-left: 5px;
+        }
+}

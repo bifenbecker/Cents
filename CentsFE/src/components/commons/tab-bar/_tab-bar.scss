@@ -1,0 +1,89 @@
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid $fifty-percent-grey;
+  overflow-x: scroll;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  .tab-item {
+    flex-shrink: 0;
+    font-weight: 500;
+    color: $color-sixty-percent-black;
+  }
+
+  .tab {
+    user-select: none;
+    font-size: 14px;
+    padding: 10px 7px;
+    position: relative;
+    top: 1px;
+    color: $color-sixty-percent-black;
+    margin: auto 1px;
+    border-bottom: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .close-icon-wrapper {
+      padding: 4px;
+      margin-left: 8px;
+      &:hover {
+        .close-icon {
+          path {
+            color: $black;
+          }
+        }
+      }
+      .close-icon {
+        font-size: 12px;
+        path {
+          color: #7b7b7b;
+        }
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.active {
+      border-bottom: 2px solid $color-theme;
+      color: $color-theme;
+      .tab-name {
+        color: $color-theme;
+      }
+    }
+  }
+}
+
+.close-tab-confirmation-modal {
+  @include flex(center, center);
+  height: 100vh;
+
+  .close-tab-confirmation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 40px;
+    width: 500px;
+    p {
+      text-align: center;
+    }
+
+    .ok-btn {
+      margin-top: 8px;
+    }
+
+    .cancel-button {
+      margin: 0;
+      padding: 0.75rem;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+.wizard-success {
+  &.general-settings-success {
+    .note-text {
+      font-size: 12px;
+      b {
+        font-size: 12px;
+      }
+    }
+    .service-wizard-types {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

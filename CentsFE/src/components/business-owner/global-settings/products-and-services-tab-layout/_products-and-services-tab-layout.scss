@@ -1,0 +1,22 @@
+.locations-card-content.p-and-s-tab-layout-card-content{
+  padding: 10px 25px;
+
+  .active-tab-content-container{
+    height: calc( 100% - 45px);
+    position: relative;
+  }
+}
+
+.p-and-s-tab-layout-card-footer{
+  height: 45px;
+  display: flex;
+  align-items: center;
+  padding: 0 25px;
+  border-top: 1px solid $color-locations-item-divider;
+
+  p{
+    margin: 0 0 0 10px;
+    font-size: 10px;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,202 @@
+name: Deploy frontend app with Blue/Green
+
+on:
+  workflow_call:
+    inputs:
+      NODE_VERSION:
+        description: 'The version of node to use for yarn build'
+        default: '16.0.0'
+        type: string
+        required: false
+      AWS_REGION:
+        description: 'The AWS region where you will deploy resources'
+        default: 'us-east-2'
+        type: string
+        required: false
+      ENV:
+        description: 'Environment name for deployment'
+        default: 'dev'
+        type: string
+        required: true
+      APP:
+        description: 'Application name'
+        default: 'cents-fe'
+        type: string
+        required: true
+      SUBDOMAIN:
+        description: 'Subdomain name for the application'
+        default: 'admin'
+        type: string
+        required: true
+      AWS_ACCOUNT_ID:
+        description: 'AWS account ID'
+        default: '476590511219'
+        type: string
+        required: true
+      APP_DNS_DOMAIN:
+        description: 'Root DNS domain for application'
+        default: 'trycents.dev'
+        type: string
+        required: true
+      UPDATE_ROUTE_53:
+        description: 'Condition to update CNAME for the live application'
+        default: false
+        type: boolean
+        required: false
+      USE_BLUE_GREEN_DEPLOY:
+        description: 'If false - workflow will use only green to deploy'
+        default: false
+        type: boolean
+        required: false
+
+concurrency:
+  group: ${{ github.ref }}-group
+  cancel-in-progress: false
+
+env:
+  IAM_ROLE_NAME: ${{ inputs.ENV }}-admin-role-for-CI
+  ENV: ${{ inputs.ENV }}
+  APP: ${{ inputs.APP }}
+  SUBDOMAIN: ${{ inputs.SUBDOMAIN }}
+  AWS_ACCOUNT_ID: ${{ inputs.AWS_ACCOUNT_ID }}
+  APP_DNS_DOMAIN: ${{ inputs.APP_DNS_DOMAIN }}
+  UPDATE_ROUTE_53: ${{ inputs.UPDATE_ROUTE_53 }}
+  AWS_REGION: ${{ inputs.AWS_REGION }}
+  USE_BLUE_GREEN_DEPLOY: ${{ inputs.USE_BLUE_GREEN_DEPLOY }}
+
+jobs:
+  deploy_frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+
+      - name: Get currently deployed part (blue or green)
+        if: ${{ inputs.USE_BLUE_GREEN_DEPLOY }}
+        run: |
+          nslookup $SUBDOMAIN.$APP_DNS_DOMAIN || (echo "Can't resolve live domain. It is deployed?"; exit 61)
+          if $(nslookup $SUBDOMAIN.$APP_DNS_DOMAIN | grep blue > /dev/null)
+            then
+              echo "Current live part is blue. Deploying to green..."
+              export PART=green
+              echo "PART=green" >> $GITHUB_ENV
+            else
+              echo "Current live part is green. Using blue for deploy"
+              export PART=blue
+              echo "PART=blue" >> $GITHUB_ENV
+          fi
+
+      - name: Set deploy to the Green part
+        if: ${{ ! inputs.USE_BLUE_GREEN_DEPLOY }}
+        run: |
+          echo "Use of the Blue/Green deploy flagged as false. Deploying to green..."
+          export PART=green
+          echo "PART=green" >> $GITHUB_ENV
+
+      - name: Git clone the repository
+        uses: actions/checkout@v2
+
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@master
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.IAM_ROLE_NAME }}
+          mask-aws-account-id: true
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Build .env file from input values
+        run: |
+          export secret_id="$ENV/$APP/env-$PART"
+          # Get secret contents
+          secret_string=$(aws secretsmanager get-secret-value --secret-id "$secret_id" \
+            --query SecretString --output text)
+          # Get keys from secret contents
+          secret_keys=$(echo $secret_string | jq -r '. | keys[]')
+          # Cleanup or create the .env file
+          echo "" > .env
+          # Fill up the .env file with data
+          for key in $secret_keys
+          do
+              echo "$key=$(echo $secret_string | jq .$key)" >> .env
+          done
+
+      - name: Install deps and build artifacts
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ inputs.NODE_VERSION }}
+          cache: 'yarn'
+      - run: |
+          yarn install --frozen-lockfile
+          CI="" yarn build
+          ls -a
+
+      - name: Sync build files to S3 bucket
+        run: |
+          export BUCKET_PREFFIX="$APP-$ENV-$PART"
+          export BUCKET_QUERY=".Buckets[] | select( .Name | startswith(\"$BUCKET_PREFFIX\")).Name"
+          BUCKET_NAME=$(aws s3api list-buckets | jq -r -c "$BUCKET_QUERY")
+          aws s3 sync build s3://$BUCKET_NAME \
+             --acl public-read --delete
+
+      - name: Switch CNAME in cloudfront
+        if: ${{ inputs.UPDATE_ROUTE_53 }}
+        run: |
+          chmod +x $GITHUB_WORKSPACE/scripts/switch_cloudfront.sh
+          $GITHUB_WORKSPACE/scripts/switch_cloudfront.sh $SUBDOMAIN.$APP_DNS_DOMAIN
+
+      - name: Get Route 53 zone ID
+        if: ${{ inputs.UPDATE_ROUTE_53 }}
+        run: |
+          AWS_ROUTE53_HOSTED_ZONE_ID=$(aws route53 list-hosted-zones \
+            | jq -r ".HostedZones[] | select(.Name | test(\"$APP_DNS_DOMAIN\")) | .Id" \
+            | awk -F "/" '{print $NF}')
+          echo "Route 53 zone ID is: $AWS_ROUTE53_HOSTED_ZONE_ID"
+          echo "AWS_ROUTE53_HOSTED_ZONE_ID=$AWS_ROUTE53_HOSTED_ZONE_ID" >> $GITHUB_ENV
+
+      - name: Update Route53 record
+        if: ${{ inputs.UPDATE_ROUTE_53 }}
+        run: |
+          export DNS_NAME="$SUBDOMAIN.$APP_DNS_DOMAIN"
+          export DNS_VALUE="$SUBDOMAIN-$PART.$APP_DNS_DOMAIN"
+          export COMMENT="Update CNAME for $DNS_NAME to $PART part, triggered by $GITHUB_EVENT_NAME in $GITHUB_REF_NAME autored by $GITHUB_ACTOR"
+          aws route53 change-resource-record-sets \
+            --hosted-zone-id $AWS_ROUTE53_HOSTED_ZONE_ID \
+            --change-batch '
+            {
+              "Comment": "'"$COMMENT"'",
+              "Changes": [{
+                      "Action": "UPSERT",
+                      "ResourceRecordSet": {
+                          "Name": "'"$DNS_NAME"'",
+                          "Type": "CNAME",
+                          "TTL": 5,
+                          "ResourceRecords": [{
+                                  "Value": "'"$DNS_VALUE"'"
+                              }
+                          ]
+                      }
+                  }
+              ]
+            }
+            ' > change-resource-record-sets.json
+            change_id=$(cat change-resource-record-sets.json | jq -r .ChangeInfo.Id)
+            echo "Change ID is $change_id"
+            change_status=$(aws route53 get-change --id $change_id | jq -r .ChangeInfo.Status)
+            echo "Change status is $change_status"
+            echo "Waiting for the Route53 changes sync"
+            timeout 600  aws route53 wait resource-record-sets-changed --id $change_id
+            change_status=$(aws route53 get-change --id $change_id | jq -r .ChangeInfo.Status)
+            echo "Change status is $change_status"
+
+      - name: Create new CloudFront Invalidation
+        run: |
+          CloudFrontARN=$(aws resourcegroupstaggingapi get-resources \
+            --tag-filters Key=san,Values=$SUBDOMAIN-$PART.$APP_DNS_DOMAIN \
+            --resource-type-filters 'cloudfront' \
+            --tags-per-page 100 \
+            --region us-east-1 | jq -r '.ResourceTagMappingList[].ResourceARN')
+          CloudFrontID=$(echo $CloudFrontARN | awk -F "/" '{print $NF}')
+          echo "Invalidate cache for the CloudFront instance with ID $CloudFrontID"
+          aws cloudfront create-invalidation --distribution-id $CloudFrontID \
+              --paths "/*"

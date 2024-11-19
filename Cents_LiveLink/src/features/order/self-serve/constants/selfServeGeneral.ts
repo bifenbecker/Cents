@@ -1,0 +1,7 @@
+export const SELF_SERVE_REDUCER = "SELF_SERVE";
+export const MACHINE_DATA_THUNK = "MACHINE_DATA_THUNK";
+export const BUSINESS_THEME_THUNK = "BUSINESS_THEME_THUNK";
+export const DATA_ORDER_THUNK = "DATA_ORDER_THUNK";
+
+export const DRYER_PREFIX = "D";
+export const WASHER_PREFIX = "W";

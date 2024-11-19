@@ -1,0 +1,207 @@
+
+.account-settings-container{
+    $input-width: 300px;
+    $input-gap: 16px;
+
+    height: 100%;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    .add-new-button{
+        padding: 15px;
+        border: 1px solid transparent;
+        p{
+            color: $fifty-percent-grey;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            span{
+                color: inherit;
+                margin-top: -1px;
+                margin-right: 5px;
+                font-size: 22px;
+                font-weight: 200;
+                line-height: 1em;
+                display: inline-block;
+            }
+        }
+
+        &:hover{
+            border: 1px solid black;
+            cursor: pointer;
+            .angleRight{
+                display: initial;
+            }
+        }
+    }
+
+    .form-section{
+        display: flex;
+        align-items: flex-start;
+        justify-content: left;
+        margin-bottom: 20px;
+        
+        &>img{  
+            width: 28px;
+            margin-right: 10px;
+        }
+
+        &.regions-section{
+            &>img{
+                width:22px;
+                margin-right: 24px;
+            }
+
+            .form-fields-container{
+                .toggle-container{
+                    display: flex;
+                    align-items: center;
+                    padding: 5px 0;
+
+                    p{
+                        margin: 0 15px 0 0;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+        &.regions-list-section{
+            display: flex;
+            flex-direction: column;
+            padding-left: 60px;
+
+            .region-item{
+                display: flex;
+                flex-direction: column;
+                padding: 10px 15px 15px 15px;
+                width: 300px;
+                border: 1px solid transparent;
+                transition: all 0ms;
+                position: relative;
+
+                .angleRight{
+                    position: absolute;
+                    right: 15px;
+                    top: 15px;
+                    transform: rotate(270deg);
+                    display: none;
+                }
+
+                p{
+                    margin: 0px;
+                    font-size: 14px;
+                }
+                .region-name{
+                    margin-bottom: 10px;
+                }
+                .districts{
+                    padding-left: 15px;
+                }                
+
+                &:hover{
+                    border: 1px solid black;
+                    cursor: pointer;
+                    .angleRight{
+                        display: initial;
+                    }
+                }
+            }
+        }
+    }   
+
+    .address-container{
+        display: grid;
+        grid-template-columns: $input-width $input-width;
+        grid-template-rows: 1fr 1fr;
+        grid-column-gap: $input-gap;
+    }
+
+    .account-settings-input{
+
+        width: $input-width;
+        margin-bottom: $input-gap;
+    }
+
+    .form-save-button{
+        width:120px;
+        height: 5px;
+        border-radius: 30px;
+        font-size: 0.85em;
+        box-sizing: border-box;
+        margin-top: 5px;
+        letter-spacing: 2px;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .error-message{
+        color: red;
+        margin: 0;
+        padding: 0px;
+        min-height: 25px;
+        &.tip {
+            margin-top: 7px;
+        }
+    }
+
+    .region-popup-container{
+        padding: 15px 0;
+        height: 100%;
+        min-width: 30vw;
+        max-width: 50vw;
+        p.header{
+            border-bottom: 2px solid $fifty-percent-grey;
+            padding-bottom: 10px;
+            font-size: 24px;
+            padding: 0 30px 10px 30px;
+        }
+
+        .region-popup-content{
+            padding: 15px 30px;
+            overflow-y: auto;
+
+            form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+                &>.region-popup-text{
+                    align-self: flex-start;
+                }
+            
+                .region-popup-text{
+                    margin-bottom: 15px;
+                    border-radius: 5px;
+                    padding: 15px 5px;
+                    width: 200px;
+            
+                    &:active, &.active{
+                        .label.move-top{
+                            display: block;
+                        }    
+                    }
+                    .label.move-top{
+                        display: none;
+                    }
+                }
+
+                .cancel-button{
+                    font-size: 12px;
+                    text-decoration: underline;
+                    margin-top: 8px;
+                    cursor: pointer;
+                }
+            
+                .districts-container{
+                    padding: 0px 0 10px 30px;
+                    align-self: flex-start;
+                }
+            }
+        }
+    }
+
+}
+

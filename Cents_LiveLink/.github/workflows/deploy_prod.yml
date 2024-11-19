@@ -1,0 +1,19 @@
+name: Deploy to prod
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy_prod:
+    if : endsWith(github.ref, '/master')
+    uses: make-cents/Cents_LiveLink/.github/workflows/deploy_template.yml@master
+    name: Deploy to prod
+    with:
+      deployment_bucket_name: 'live-link-fe-prod'
+      iam_role_name: 'deploy-live-link-prod'
+      env_secret_name: 'prod/live_link/env'
+      stripe_secret_name: 'prod/react_app/stripe_key'
+    secrets:
+      aws_account_id: ${{ secrets.AWS_ACCOUNT_ID }}
+      cfd_id: ${{ secrets.PROD_CLOUDFRONT_DISTRO_ID }}

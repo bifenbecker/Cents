@@ -1,0 +1,19 @@
+name: Deploy to epic
+on:
+  push:
+    branches:
+      - feature/delivery-timings-flexibility-epic
+
+jobs:
+  deploy_epic:
+    if : endsWith(github.ref, '/feature/delivery-timings-flexibility-epic')
+    uses: make-cents/Cents_LiveLink/.github/workflows/deploy_template.yml@feature/delivery-timings-flexibility-epic
+    name: Deploy to epic
+    with:
+      deployment_bucket_name: 'live-link-epic'
+      iam_role_name: 'deploy-live-link-epic'
+      env_secret_name: 'epic/live-link/env'
+      stripe_secret_name: 'dev/react_app/stripe_key'
+    secrets:
+      aws_account_id: ${{ secrets.DEV_AWS_ACCOUNT_ID }}
+      cfd_id: ${{ secrets.EPIC_CLOUDFRONT_DISTRO_ID }}

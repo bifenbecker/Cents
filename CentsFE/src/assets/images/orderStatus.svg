@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Icon_Order Status</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Cents-Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ORDERS-Copy-2" transform="translate(-752.000000, -418.000000)" stroke="#000000">
+            <g id="Report-Popover" transform="translate(722.000000, 245.000000)">
+                <g id="Icon_Order-Status" transform="translate(30.000000, 173.000000)">
+                    <g>
+                        <circle id="Oval" stroke-width="0.65" cx="11" cy="11" r="10.675"></circle>
+                        <g id="Group" transform="translate(10.476190, 5.238095)">
+                            <path d="M0.523809524,0.589285714 L0.523809524,7.85714286" id="Line-2" stroke-linecap="square"></path>
+                            <path d="M0.523809524,10.4761905 L0.523809524,11.5238095" id="Line"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

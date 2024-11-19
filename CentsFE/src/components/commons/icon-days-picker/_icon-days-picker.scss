@@ -1,0 +1,51 @@
+.icon-days-picker.task-field-container{
+  width: 250px;
+
+  &.clickable{
+    &.active{
+      &:after{
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .tasks-assign-card{
+    right: unset;
+    left: 102%;
+    height: 270px;
+  }
+  
+  &.bottom-menu{
+    &.clickable{
+      &.active{
+        &:after{
+          transform: rotate(90deg);
+        }
+      }
+    }
+    .tasks-assign-card{
+      right: 0;
+      left: unset;
+      top: calc(100% + 5px) !important;
+    }
+  }
+
+  &>img{
+    width: 20px;
+    max-height: 20px;
+    margin-right: 10px;
+  }
+
+  &>p{
+    margin-left: 0;
+  }
+
+}
+.no-icon{
+  &>img{
+    display: none;
+  }
+  &>p{
+    margin: 0;
+  }
+}

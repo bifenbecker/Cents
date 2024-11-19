@@ -1,0 +1,122 @@
+.right-nav-container {
+    height: 100%;
+    z-index: 2;
+    border-left: 0px;
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    .content-container {
+        margin-top: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+        height: 100%;
+        width: 100%;
+    }
+    .title-container {
+        margin-left: 12.5%;
+        margin-right: 12.5%;
+        text-align: left;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .title {
+        font-size: 20px;   
+    }
+
+    .placeholder {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin-left: 12.5%;
+        margin-right: 12.5%;
+    }
+
+    .headers-wrapper {
+        padding-bottom: 0px;
+    }
+
+    .item-container {
+        text-align: left;
+        height: 48px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        &:hover {
+            background-color: #EAF4FF !important;
+        }
+        &:focus {
+            background-color: #EAF4FF !important;
+        }
+    }
+    .selected-item-container {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        height: 48px;
+        text-align: left;
+        background-color: #EAF4FF !important;
+    }
+    .subtitle {
+        height: 100%;
+        margin-left: 12.5%;
+        margin-right: 12.5%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        color: #7B7B7B;
+        cursor: pointer;
+        &:hover {
+            color: black !important;
+        }
+    }
+    .selected-subtitle {
+        height: 100%;
+        margin-left: 12.5%;
+        margin-right: 12.5%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        color: black;
+        cursor: pointer;
+    }
+    .subheader-container {
+        margin-top: 25px;
+    }
+    .subheader-item-container {
+        text-align: left;
+        &:hover {
+            background-color: #EAF4FF !important;
+        }
+    }
+    .subheader {
+        margin-left: 12.5%;
+        margin-right: 12.5%;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        font-size: 12px;
+        color: #7B7B7B;
+        &:hover {
+            color: black !important;
+        }
+    }
+}

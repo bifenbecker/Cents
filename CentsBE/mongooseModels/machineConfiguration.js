@@ -1,0 +1,76 @@
+const mongoose = require('mongoose');
+const { Schema } = require('mongoose');
+
+const schema = new Schema(
+    {
+        LMID: Number,
+        LaundryMachineID: Number,
+        PennyID: String, // PennyID will be mac address of the device.
+        CurrentTimeStamp: Date,
+        LaundryMachineType: String,
+        LaundryMachineModel: Schema.Types.Mixed,
+        CommandGroupId: String,
+        IdempotencyKey: String,
+        LaundryMachineFeatures: Schema.Types.Mixed,
+        // Configurations: configurationSchema,
+        // machine_model config
+        LMManufacturer: Schema.Types.Mixed,
+        LMControlType: Schema.Types.Mixed,
+        LMControlTierModel: Schema.Types.Mixed,
+        LMSize: Schema.Types.Mixed,
+        LMControlSerial: Schema.Types.Mixed,
+        LMSerial: Schema.Types.Mixed,
+        LMTierType: Schema.Types.Mixed,
+        // machine_programming config
+        MachineType: Schema.Types.Mixed,
+        MachineModel: Schema.Types.Mixed,
+        DeviceName: Schema.Types.Mixed,
+        DeviceLocation: Schema.Types.Mixed,
+        MachineVendPrices: Schema.Types.Mixed,
+        TopoffData: Schema.Types.Mixed,
+        TopoffData_fullCycle: Schema.Types.Mixed,
+        //
+        HWVer: Schema.Types.Mixed,
+        FWVer: Schema.Types.Mixed,
+        HWConf1: Schema.Types.Mixed,
+        HWConf2: Schema.Types.Mixed,
+        FWConf1: Schema.Types.Mixed,
+        FWConf2: Schema.Types.Mixed,
+        FWUpdate: Schema.Types.Mixed,
+        WC1Price: Schema.Types.Mixed,
+        WC2Price: Schema.Types.Mixed,
+        WC3Price: Schema.Types.Mixed,
+        WC4Price: Schema.Types.Mixed,
+        WC5Price: Schema.Types.Mixed,
+        WC6Price: Schema.Types.Mixed,
+        WC7Price: Schema.Types.Mixed,
+        WC8Price: Schema.Types.Mixed,
+        DefaultPrice: Schema.Types.Mixed,
+        SSID1: Schema.Types.Mixed,
+        PW1: Schema.Types.Mixed,
+        SSID2: Schema.Types.Mixed,
+        PW2: Schema.Types.Mixed,
+        Coin: Schema.Types.Mixed,
+        EMV: Schema.Types.Mixed,
+        PennyMode: Schema.Types.Mixed,
+        ExternalPayment: Schema.Types.Mixed,
+        AppPayment: Schema.Types.Mixed,
+        CloudPayment: Schema.Types.Mixed,
+        CoinTotal: Schema.Types.Mixed,
+        CloudTotal: Schema.Types.Mixed,
+        EMVTotal: Schema.Types.Mixed,
+        AppTotal: Schema.Types.Mixed,
+        TerminalID: Schema.Types.Mixed,
+        TerminalSecret: Schema.Types.Mixed,
+        TerminalMode: Schema.Types.Mixed,
+        LaundryMachineDrivenPrices: Schema.Types.Mixed,
+        LaundryMachineConfiguration: Schema.Types.Mixed,
+        ExternalPaymentWB: Schema.Types.Mixed,
+        ExternalPaymentSP: Schema.Types.Mixed,
+    },
+    { timestamps: true },
+);
+
+const MachineConfiguration = mongoose.model('MachineConfiguration', schema);
+
+module.exports = exports = MachineConfiguration;

@@ -1,0 +1,10 @@
+---
+engines:
+  eslint:
+  duplication:
+    exclude_paths:
+      - "test/**/*"
+      - "migrations/**/*"
+    config:
+      languages:
+        - "javascript"

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="124px" height="109px" viewBox="0 0 124 109" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55 (78076) - https://sketchapp.com -->
+    <title>4AB97E1E-FCEB-41AB-BB89-B30F6BAB001A</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="26.8327381" y="174" width="123" height="109" rx="8"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="123" height="109" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Cents-Admin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="6">
+        <g id="ADMIN_SERVICES_New-Service_Empty" transform="translate(-601.000000, -577.000000)" stroke="#979797" stroke-width="2">
+            <g id="SIDE-PANEL" transform="translate(546.000000, 99.000000)">
+                <g id="Machine-Details" transform="translate(29.000000, 304.000000)">
+                    <use id="Rectangle" mask="url(#mask-2)" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

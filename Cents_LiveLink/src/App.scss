@@ -1,0 +1,74 @@
+@import "./components/common/material-ui-wrapper/_material-ui-wrapper.scss";
+@import "./components/common/loader/_loader.scss";
+@import "./components/online-order/business/schedule/schedule.scss";
+@import "./assets/styles/animated/index.scss";
+
+// Toast scss
+
+.Toastify__toast-container {
+  top: 75px;
+  padding: 0px 8px;
+  box-shadow: "0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2)";
+  /* Dock modal uses z-index as 9999999 */
+  z-index: 99999999;
+}
+
+.Toastify__toast {
+  height: auto;
+}
+
+.Toastify__toast-body {
+  text-align: left;
+  font-weight: 600;
+  padding: 10px 0px;
+}
+
+.Toastify__close-button-customized {
+  height: 16px;
+  padding-right: 12px;
+  margin: auto 0;
+}
+
+.Toastify__toast--success,
+.Toastify__toast--error {
+  background-color: #FFFFFF;
+  text-align: left;
+  font-weight: 500;
+  color: #000000;
+  border-radius: 10px;
+  padding: 0px 20px;
+}
+
+// Some important drawer specific styles
+
+.bottom-drawer-wrapper {
+  .react-swipeable-view-container {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+
+  .ReactSwipeableBottomSheet--closed,
+  .ReactSwipeableBottomSheet--open {
+    height: calc(var(--app-height) - 77px - 6rem) !important;
+  }
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+.scrollbarInvisible {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+}
+
+.service-button {
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.481481px;
+  width: 100%;
+  height: 60px;
+}
